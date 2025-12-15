@@ -18,10 +18,10 @@
                     },
                     colors: {
                         sketch: {
-                            bg: '#f9f7f2', // Warm paper color
+                            bg: '#f4f1ea', // Slightly darker, warmer paper
                             dark: '#1a1a1a', // Charcoal
                             gray: '#5a5a5a',
-                            flame: '#ff5e1f', // From the torch
+                            flame: '#ff5e1f', // Torch Orange
                             flameLight: '#ff8a4c',
                             googleBlue: '#4285F4',
                             googleRed: '#EA4335',
@@ -29,9 +29,6 @@
                             googleGreen: '#34A853',
                             wandbYellow: '#FFBE0B',
                         }
-                    },
-                    backgroundImage: {
-                        'paper-texture': "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZjlmN2YyIi8+CjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiMwMDAiIG9wYWNpdHk9IjAuMDIiLz4KPC9zdmc+')",
                     },
                     animation: {
                         'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
@@ -52,50 +49,78 @@
         }
     </script>
     <style>
+        /* Base Paper Texture */
         body {
-            background-color: #f9f7f2;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            background-color: #f4f1ea;
             color: #1a1a1a;
             overflow-x: hidden;
+            position: relative;
         }
-        
+
+        /* Charcoal Dust/Grain Effect on Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.08;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            mix-blend-mode: multiply;
+        }
+
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 10px;
         }
         ::-webkit-scrollbar-track {
-            background: #f0ebe1; 
+            background: #e6e2d8; 
         }
         ::-webkit-scrollbar-thumb {
-            background: #cbd5e1; 
-            border-radius: 4px;
+            background: #888; 
+            border-radius: 5px;
+            border: 2px solid #e6e2d8;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8; 
+            background: #555; 
         }
 
         /* Clean Paper Card */
         .paper-card {
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(0,0,0,0.08);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.85);
+            border: 2px solid rgba(0,0,0,0.1);
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.1); /* Sketchy shadow */
+            backdrop-filter: blur(4px);
         }
 
-        .sketch-border {
-            border: 2px solid #1a1a1a;
-            border-radius: 1rem;
+        /* Charcoal Text Effect (Rough Edges) */
+        .charcoal-text {
+            color: #1a1a1a;
+            position: relative;
+            /* Simulates the uneven pressure of charcoal */
+            text-shadow: 
+                0.5px 0.5px 0px rgba(0,0,0,0.1),
+                -0.5px -0.5px 0px rgba(0,0,0,0.1);
+        }
+        
+        .charcoal-heading {
+             background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E"), 
+                         linear-gradient(#1a1a1a, #2a2a2a);
+             -webkit-background-clip: text;
+             -webkit-text-fill-color: transparent;
+             background-blend-mode: multiply;
+             filter: contrast(150%);
         }
 
         .flame-gradient {
             background: linear-gradient(135deg, #ff5e1f, #ff9f1c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-        
-        .charcoal-text {
-            color: #1a1a1a;
-            text-shadow: 0px 0px 1px rgba(0,0,0,0.1);
+            /* Add a slight drop shadow to separate from background like a drawing */
+            filter: drop-shadow(2px 2px 0px rgba(255, 165, 0, 0.2));
         }
 
         .reveal {
@@ -112,22 +137,22 @@
 <body class="antialiased">
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 top-0 start-0 bg-sketch-bg/90 backdrop-blur-md border-b border-gray-200">
+    <nav class="fixed w-full z-50 top-0 start-0 bg-[#f4f1ea]/90 backdrop-blur-md border-b border-gray-300 shadow-sm">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="#" class="flex items-center space-x-2 rtl:space-x-reverse group">
                 <!-- Simple Logo Representation -->
-                <div class="w-8 h-8 bg-sketch-dark text-white flex items-center justify-center rounded-lg font-bold text-lg group-hover:bg-sketch-flame transition-colors">🔥</div>
-                <span class="self-center text-xl font-bold whitespace-nowrap tracking-tight font-display text-sketch-dark">ML <span class="text-sketch-flame">KOLKATA</span></span>
+                <div class="w-8 h-8 bg-sketch-dark text-white flex items-center justify-center rounded-lg font-bold text-lg group-hover:bg-sketch-flame transition-colors transform rotate-3">🔥</div>
+                <span class="self-center text-xl font-bold whitespace-nowrap tracking-tight font-display text-sketch-dark charcoal-text">ML <span class="text-sketch-flame">KOLKATA</span></span>
             </a>
             <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <a href="https://partiful.com/e/7Ec8HkY65YCAsiKoqAA1" class="text-white bg-sketch-dark hover:bg-sketch-flame focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-6 py-2.5 text-center transition-all shadow-md">Register Now</a>
+                <a href="https://partiful.com/e/7Ec8HkY65YCAsiKoqAA1" class="text-white bg-sketch-dark hover:bg-sketch-flame focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-6 py-2.5 text-center transition-all shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] border-2 border-black">Register Now</a>
             </div>
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                 <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0">
-                    <li><a href="#about" class="block py-2 px-3 text-gray-600 hover:text-sketch-flame transition-colors">About</a></li>
-                    <li><a href="#timeline" class="block py-2 px-3 text-gray-600 hover:text-sketch-flame transition-colors">Timeline</a></li>
-                    <li><a href="#tracks" class="block py-2 px-3 text-gray-600 hover:text-sketch-flame transition-colors">Tracks</a></li>
-                    <li><a href="#prizes" class="block py-2 px-3 text-gray-600 hover:text-sketch-flame transition-colors">Prizes</a></li>
+                    <li><a href="#about" class="block py-2 px-3 text-gray-700 font-bold hover:text-sketch-flame transition-colors font-display">About</a></li>
+                    <li><a href="#timeline" class="block py-2 px-3 text-gray-700 font-bold hover:text-sketch-flame transition-colors font-display">Timeline</a></li>
+                    <li><a href="#tracks" class="block py-2 px-3 text-gray-700 font-bold hover:text-sketch-flame transition-colors font-display">Tracks</a></li>
+                    <li><a href="#prizes" class="block py-2 px-3 text-gray-700 font-bold hover:text-sketch-flame transition-colors font-display">Prizes</a></li>
                 </ul>
             </div>
         </div>
@@ -135,44 +160,45 @@
 
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center pt-20">
-        <!-- Abstract Background Shapes (Simulating the Sketch style) -->
-        <div class="absolute inset-0 z-[-1] overflow-hidden opacity-30">
-            <div class="absolute top-20 right-10 w-96 h-96 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl animate-float"></div>
-            <div class="absolute bottom-20 left-10 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl animate-float" style="animation-delay: 2s"></div>
+        <!-- Abstract Background Scribbles -->
+        <div class="absolute inset-0 z-[-1] overflow-hidden opacity-40 pointer-events-none">
+            <!-- Simulated charcoal smudges -->
+            <div class="absolute top-20 right-10 w-96 h-96 bg-gray-300 rounded-full mix-blend-multiply filter blur-3xl animate-float"></div>
+            <div class="absolute bottom-20 left-10 w-96 h-96 bg-orange-100 rounded-full mix-blend-multiply filter blur-3xl animate-float" style="animation-delay: 2s"></div>
         </div>
 
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
             <!-- Hand-drawn style badge -->
-            <div class="inline-flex justify-between items-center py-1 px-4 mb-7 text-sm rounded-full border-2 border-sketch-dark bg-white text-sketch-dark hover:bg-gray-50 transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            <div class="inline-flex justify-between items-center py-1 px-4 mb-7 text-sm rounded-full border-2 border-sketch-dark bg-white text-sketch-dark shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transform -rotate-2">
                 <span class="font-bold mr-2"><i class="fa-solid fa-fire text-sketch-flame"></i> Hybrid Event</span> 
                 <span class="font-medium">Dec 26 - 27, 2025</span> 
             </div>
             
-            <h1 class="mb-4 text-5xl font-extrabold tracking-tighter leading-none md:text-7xl lg:text-8xl font-display text-sketch-dark">
-                GLOBAL <br>
-                <span class="flame-gradient">GENAI HACKATHON</span>
+            <h1 class="mb-4 text-5xl font-extrabold tracking-tighter leading-none md:text-7xl lg:text-9xl font-display text-sketch-dark">
+                <span class="charcoal-heading block">GLOBAL</span>
+                <span class="flame-gradient block mt-[-10px]">GENAI HACKATHON</span>
             </h1>
             
-            <p class="mb-8 text-lg font-medium text-gray-600 lg:text-xl sm:px-16 xl:px-48 max-w-4xl mx-auto">
-                Ignite your creativity with <strong class="text-sketch-dark">Gemini 3 Pro</strong>. A vibe coding sprint to solve complex real-world problems.
+            <p class="mb-8 text-lg font-medium text-gray-700 lg:text-xl sm:px-16 xl:px-48 max-w-4xl mx-auto charcoal-text">
+                Ignite your creativity with <strong class="text-sketch-dark decoration-sketch-flame decoration-wavy underline">Gemini 3 Pro</strong>. A vibe coding sprint to solve complex real-world problems.
             </p>
 
             <div class="flex flex-col mb-12 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-                <a href="#register" class="inline-flex justify-center items-center py-4 px-8 text-base font-bold text-center text-white rounded-xl bg-sketch-flame hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 shadow-lg shadow-orange-500/30 transition-transform hover:-translate-y-1">
+                <a href="#register" class="inline-flex justify-center items-center py-4 px-8 text-base font-bold text-center text-white rounded-xl bg-sketch-flame hover:bg-orange-600 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all">
                     Start Hacking
                     <i class="fa-solid fa-arrow-right ml-2"></i>
                 </a>
-                <a href="#tracks" class="inline-flex justify-center items-center py-4 px-8 text-base font-bold text-center text-sketch-dark border-2 border-gray-200 rounded-xl hover:bg-gray-50 focus:ring-4 focus:ring-gray-100 transition-colors">
+                <a href="#tracks" class="inline-flex justify-center items-center py-4 px-8 text-base font-bold text-center text-sketch-dark border-2 border-black rounded-xl hover:bg-gray-100 shadow-[4px_4px_0px_0px_rgba(200,200,200,1)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white">
                     View Tracks
                 </a> 
             </div>
             
-            <!-- Logos Strip (Matching the Poster) -->
-            <div class="pt-8 border-t border-gray-200 max-w-4xl mx-auto">
-                <p class="text-sm font-semibold text-gray-500 mb-6 uppercase tracking-widest">Organized With</p>
+            <!-- Logos Strip -->
+            <div class="pt-8 border-t-2 border-dashed border-gray-300 max-w-4xl mx-auto">
+                <p class="text-sm font-bold text-gray-500 mb-6 uppercase tracking-widest font-display">Organized With</p>
                 <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-90">
                     
-                    <!-- Weights & Biases Logo Representation -->
+                    <!-- Weights & Biases -->
                     <div class="flex items-center gap-2 group cursor-pointer grayscale hover:grayscale-0 transition-all duration-300">
                         <i class="fa-solid fa-chart-line text-2xl text-sketch-wandbYellow"></i>
                         <div class="text-left leading-tight">
@@ -183,7 +209,7 @@
 
                     <!-- ML Kolkata -->
                     <div class="flex items-center gap-2 group cursor-pointer">
-                        <span class="font-black text-2xl tracking-tighter text-sketch-dark font-display">ML KOLKATA</span>
+                        <span class="font-black text-2xl tracking-tighter text-sketch-dark font-display charcoal-heading">ML KOLKATA</span>
                     </div>
 
                     <!-- Google for Developers -->
@@ -200,43 +226,44 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white border-y border-gray-100">
+    <section id="about" class="py-20 border-y border-black/5 relative">
         <div class="max-w-screen-xl px-4 mx-auto reveal">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold tracking-tight text-sketch-dark sm:text-4xl font-display">Build the Impossible</h2>
-                <div class="w-24 h-1 bg-sketch-flame mx-auto mt-4 rounded-full"></div>
+                <h2 class="text-3xl font-bold tracking-tight text-sketch-dark sm:text-5xl font-display charcoal-heading">Build the Impossible</h2>
+                <!-- Scribble Underline -->
+                <div class="mx-auto mt-2 text-sketch-flame text-4xl opacity-80 font-serif">~~~~~</div>
             </div>
             
             <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6 text-lg text-gray-600">
+                <div class="space-y-6 text-lg text-gray-700">
                     <p>
                         Imagine building an application that finally solves a daily frustration or addresses a global challenge. This Hackathon challenges you to use the latest AI advancements to do exactly that.
                     </p>
-                    <p class="font-semibold text-sketch-dark">
+                    <p class="font-semibold text-sketch-dark border-l-4 border-sketch-flame pl-4">
                         Harness Gemini 3 Pro's advanced reasoning capabilities.
                     </p>
                     
                     <div class="grid grid-cols-2 gap-4 mt-6">
-                        <div class="flex items-center p-3 rounded-lg bg-gray-50 border border-gray-100">
-                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3"><i class="fa-solid fa-flask"></i></div>
-                            <span class="font-medium text-sm">Science</span>
+                        <div class="flex items-center p-3 rounded-lg bg-white border-2 border-gray-200 shadow-sm">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3 border border-blue-200"><i class="fa-solid fa-flask"></i></div>
+                            <span class="font-bold text-sm">Science</span>
                         </div>
-                        <div class="flex items-center p-3 rounded-lg bg-gray-50 border border-gray-100">
-                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 mr-3"><i class="fa-solid fa-graduation-cap"></i></div>
-                            <span class="font-medium text-sm">Education</span>
+                        <div class="flex items-center p-3 rounded-lg bg-white border-2 border-gray-200 shadow-sm">
+                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 mr-3 border border-green-200"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <span class="font-bold text-sm">Education</span>
                         </div>
-                        <div class="flex items-center p-3 rounded-lg bg-gray-50 border border-gray-100">
-                            <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 mr-3"><i class="fa-solid fa-heart-pulse"></i></div>
-                            <span class="font-medium text-sm">Health</span>
+                        <div class="flex items-center p-3 rounded-lg bg-white border-2 border-gray-200 shadow-sm">
+                            <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 mr-3 border border-purple-200"><i class="fa-solid fa-heart-pulse"></i></div>
+                            <span class="font-bold text-sm">Health</span>
                         </div>
-                        <div class="flex items-center p-3 rounded-lg bg-gray-50 border border-gray-100">
-                            <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 mr-3"><i class="fa-solid fa-briefcase"></i></div>
-                            <span class="font-medium text-sm">Business</span>
+                        <div class="flex items-center p-3 rounded-lg bg-white border-2 border-gray-200 shadow-sm">
+                            <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 mr-3 border border-orange-200"><i class="fa-solid fa-briefcase"></i></div>
+                            <span class="font-bold text-sm">Business</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="paper-card p-8 rounded-3xl relative">
+                <div class="paper-card p-8 rounded-3xl relative transform rotate-1">
                     <div class="absolute top-0 right-0 p-4 opacity-10">
                         <i class="fa-solid fa-code text-9xl"></i>
                     </div>
@@ -244,7 +271,7 @@
                     
                     <div class="space-y-6">
                         <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-sketch-dark text-white flex items-center justify-center font-bold text-xl">1</div>
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-sketch-dark text-white flex items-center justify-center font-bold text-xl shadow-md">1</div>
                             <div>
                                 <h4 class="text-lg font-bold text-gray-900">Get the Code</h4>
                                 <p class="text-gray-600 text-sm">Go to Google AI Studio Playground. Enter your prompt idea, then click the <strong>&lt;&gt; Get Code</strong> button.</p>
@@ -252,7 +279,7 @@
                         </div>
                         
                         <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-sketch-flame text-white flex items-center justify-center font-bold text-xl">2</div>
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-sketch-flame text-white flex items-center justify-center font-bold text-xl shadow-md">2</div>
                             <div>
                                 <h4 class="text-lg font-bold text-gray-900">Vibe Code</h4>
                                 <p class="text-gray-600 text-sm">Develop your solution. All participants get <strong>₹450 GCP Credits</strong>.</p>
@@ -260,7 +287,7 @@
                         </div>
 
                         <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gray-200 text-gray-700 flex items-center justify-center font-bold text-xl">3</div>
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gray-300 text-gray-800 flex items-center justify-center font-bold text-xl shadow-md">3</div>
                             <div>
                                 <h4 class="text-lg font-bold text-gray-900">Submit</h4>
                                 <p class="text-gray-600 text-sm">Record a 2-min video demo and submit via Google Form.</p>
@@ -273,36 +300,41 @@
     </section>
 
     <!-- Timeline Section -->
-    <section id="timeline" class="py-20 relative overflow-hidden">
+    <section id="timeline" class="py-20 relative overflow-hidden bg-white/40">
         <div class="max-w-screen-xl px-4 mx-auto relative z-10">
-            <h2 class="text-3xl font-bold text-center text-sketch-dark mb-16 font-display reveal">Event Schedule</h2>
+            <h2 class="text-3xl font-bold text-center text-sketch-dark mb-16 font-display reveal charcoal-heading">Event Schedule</h2>
             
-            <div class="relative border-l-4 border-gray-200 ml-4 md:ml-1/2 md:-translate-x-[2px]">
+            <div class="relative border-l-4 border-gray-300 ml-4 md:ml-1/2 md:-translate-x-[2px] border-dashed">
                 <!-- Item 1 -->
                 <div class="mb-16 flex flex-col md:flex-row items-center justify-between w-full reveal group">
                     <div class="order-1 md:w-5/12 mb-4 md:mb-0 md:text-right md:pr-12">
                         <h3 class="text-xl font-bold text-sketch-googleBlue">Online Kick-off</h3>
                         <p class="text-gray-600 mt-2">Hackathon opens online. Start ideating and coding from home.</p>
                     </div>
-                    <div class="z-20 flex items-center order-1 bg-white shadow-lg w-12 h-12 rounded-full justify-center text-sketch-googleBlue border-4 border-gray-200 group-hover:border-sketch-googleBlue transition-colors absolute left-[-1.4rem] md:static">
+                    <div class="z-20 flex items-center order-1 bg-white shadow-lg w-12 h-12 rounded-full justify-center text-sketch-googleBlue border-4 border-gray-300 group-hover:border-sketch-googleBlue transition-colors absolute left-[-1.4rem] md:static">
                         <i class="fa-solid fa-globe"></i>
                     </div>
                     <div class="order-1 md:w-5/12 md:pl-12">
-                        <span class="bg-blue-50 text-blue-700 text-sm font-bold px-4 py-1.5 rounded-full border border-blue-100">Dec 26, 9:00 AM</span>
+                        <span class="bg-blue-50 text-blue-700 text-sm font-bold px-4 py-1.5 rounded-full border border-blue-200 shadow-sm">Dec 26, 9:00 AM</span>
                     </div>
                 </div>
 
-                <!-- Item 2 -->
+                <!-- Item 2 (VENUE UPDATED) -->
                 <div class="mb-16 flex flex-col md:flex-row items-center justify-between w-full reveal group">
                     <div class="order-1 md:w-5/12 md:text-right md:pr-12 hidden md:block">
-                        <span class="bg-orange-50 text-orange-700 text-sm font-bold px-4 py-1.5 rounded-full border border-orange-100">Dec 27 (Offline)</span>
+                        <span class="bg-orange-50 text-orange-700 text-sm font-bold px-4 py-1.5 rounded-full border border-orange-200 shadow-sm">Dec 27 (Offline)</span>
                     </div>
-                    <div class="z-20 flex items-center order-1 bg-white shadow-lg w-12 h-12 rounded-full justify-center text-sketch-flame border-4 border-gray-200 group-hover:border-sketch-flame transition-colors absolute left-[-1.4rem] md:static">
+                    <div class="z-20 flex items-center order-1 bg-white shadow-lg w-12 h-12 rounded-full justify-center text-sketch-flame border-4 border-gray-300 group-hover:border-sketch-flame transition-colors absolute left-[-1.4rem] md:static">
                         <i class="fa-solid fa-location-dot"></i>
                     </div>
                     <div class="order-1 md:w-5/12 md:pl-12 mb-4 md:mb-0">
                         <h3 class="text-xl font-bold text-sketch-flame">Offline Event Begins</h3>
-                        <p class="text-gray-600 mt-2">Physical event at Kolkata. Expert talks, mentorship, and full-course lunch.</p>
+                        <p class="text-gray-800 font-bold mt-1 mb-1">
+                            <a href="https://maps.app.goo.gl/v6uSrvjL6R3BVK8EA" target="_blank" class="hover:underline flex items-center gap-1">
+                                <i class="fa-solid fa-map-pin"></i> Meghnad Saha Institute of Technology
+                            </a>
+                        </p>
+                        <p class="text-gray-600 text-sm">Expert talks, mentorship, and full-course lunch.</p>
                     </div>
                 </div>
 
@@ -312,11 +344,11 @@
                         <h3 class="text-xl font-bold text-sketch-dark">Submission Deadline</h3>
                         <p class="text-gray-600 mt-2">Record submission video and enjoy evening snacks.</p>
                     </div>
-                    <div class="z-20 flex items-center order-1 bg-white shadow-lg w-12 h-12 rounded-full justify-center text-sketch-dark border-4 border-gray-200 group-hover:border-sketch-dark transition-colors absolute left-[-1.4rem] md:static">
+                    <div class="z-20 flex items-center order-1 bg-white shadow-lg w-12 h-12 rounded-full justify-center text-sketch-dark border-4 border-gray-300 group-hover:border-sketch-dark transition-colors absolute left-[-1.4rem] md:static">
                         <i class="fa-solid fa-video"></i>
                     </div>
                     <div class="order-1 md:w-5/12 md:pl-12">
-                        <span class="bg-gray-100 text-gray-700 text-sm font-bold px-4 py-1.5 rounded-full border border-gray-200">Dec 27, 8:00 PM</span>
+                        <span class="bg-gray-100 text-gray-700 text-sm font-bold px-4 py-1.5 rounded-full border border-gray-300 shadow-sm">Dec 27, 8:00 PM</span>
                     </div>
                 </div>
             </div>
@@ -324,16 +356,16 @@
     </section>
 
     <!-- Tracks & Prizes Section -->
-    <section id="tracks" class="py-20 bg-white border-y border-gray-100">
+    <section id="tracks" class="py-20 border-t border-black/10">
         <div class="max-w-screen-xl px-4 mx-auto">
-            <h2 class="text-3xl font-bold text-center text-sketch-dark mb-4 reveal font-display">Tracks & Awards</h2>
-            <p class="text-center text-gray-500 mb-12 max-w-2xl mx-auto reveal">Total prize pool worth <span class="font-bold text-sketch-flame">₹20,000</span> in goodies.</p>
+            <h2 class="text-3xl font-bold text-center text-sketch-dark mb-4 reveal font-display charcoal-heading">Tracks & Awards</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto reveal">Total prize pool worth <span class="font-bold text-sketch-flame bg-yellow-100 px-2 rounded">₹20,000</span> in goodies.</p>
 
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Track 1 -->
-                <div class="paper-card rounded-3xl p-8 hover:shadow-xl transition-shadow reveal border-t-4 border-t-sketch-googleBlue">
+                <div class="paper-card rounded-3xl p-8 hover:shadow-xl transition-shadow reveal border-t-8 border-t-sketch-googleBlue relative overflow-hidden">
                     <div class="flex items-center gap-4 mb-6">
-                        <div class="p-3 bg-blue-50 rounded-xl">
+                        <div class="p-3 bg-blue-50 rounded-xl border border-blue-100">
                             <i class="fa-brands fa-google text-3xl text-sketch-googleBlue"></i>
                         </div>
                         <div>
@@ -341,26 +373,26 @@
                             <p class="text-xs text-gray-500 uppercase font-bold tracking-wide">Best use of Gemini</p>
                         </div>
                     </div>
-                    <div class="space-y-4 pt-4">
-                        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                    <div class="space-y-4 pt-4 border-t border-dashed border-gray-300">
+                        <div class="flex justify-between items-center p-3 bg-white border border-gray-200 rounded-lg shadow-sm">
                             <span class="text-yellow-600 font-bold"><i class="fa-solid fa-trophy mr-2"></i>1st Place</span>
                             <span class="text-gray-900 font-mono font-bold">₹5,000</span>
                         </div>
                         <div class="flex justify-between items-center px-3">
-                            <span class="text-gray-500 font-semibold">2nd Place</span>
-                            <span class="text-gray-700 font-mono">₹3,000</span>
+                            <span class="text-gray-600 font-semibold">2nd Place</span>
+                            <span class="text-gray-800 font-mono">₹3,000</span>
                         </div>
                         <div class="flex justify-between items-center px-3">
-                            <span class="text-gray-500 font-semibold">3rd Place</span>
-                            <span class="text-gray-700 font-mono">₹2,000</span>
+                            <span class="text-gray-600 font-semibold">3rd Place</span>
+                            <span class="text-gray-800 font-mono">₹2,000</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Track 2 -->
-                <div class="paper-card rounded-3xl p-8 hover:shadow-xl transition-shadow reveal border-t-4 border-t-sketch-wandbYellow">
+                <div class="paper-card rounded-3xl p-8 hover:shadow-xl transition-shadow reveal border-t-8 border-t-sketch-wandbYellow">
                     <div class="flex items-center gap-4 mb-6">
-                        <div class="p-3 bg-yellow-50 rounded-xl">
+                        <div class="p-3 bg-yellow-50 rounded-xl border border-yellow-100">
                             <i class="fa-solid fa-chart-line text-3xl text-sketch-wandbYellow"></i>
                         </div>
                         <div>
@@ -368,18 +400,18 @@
                             <p class="text-xs text-gray-500 uppercase font-bold tracking-wide">Best use of Weave</p>
                         </div>
                     </div>
-                    <div class="space-y-4 pt-4">
-                        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                    <div class="space-y-4 pt-4 border-t border-dashed border-gray-300">
+                        <div class="flex justify-between items-center p-3 bg-white border border-gray-200 rounded-lg shadow-sm">
                             <span class="text-yellow-600 font-bold"><i class="fa-solid fa-trophy mr-2"></i>1st Place</span>
                             <span class="text-gray-900 font-mono font-bold">₹5,000</span>
                         </div>
                         <div class="flex justify-between items-center px-3">
-                            <span class="text-gray-500 font-semibold">2nd Place</span>
-                            <span class="text-gray-700 font-mono">₹3,000</span>
+                            <span class="text-gray-600 font-semibold">2nd Place</span>
+                            <span class="text-gray-800 font-mono">₹3,000</span>
                         </div>
                         <div class="flex justify-between items-center px-3">
-                            <span class="text-gray-500 font-semibold">3rd Place</span>
-                            <span class="text-gray-700 font-mono">₹2,000</span>
+                            <span class="text-gray-600 font-semibold">3rd Place</span>
+                            <span class="text-gray-800 font-mono">₹2,000</span>
                         </div>
                     </div>
                 </div>
@@ -388,11 +420,10 @@
     </section>
 
     <!-- Speakers & Judges -->
-    <section class="py-20">
+    <section class="py-20 bg-white/30">
         <div class="max-w-screen-xl px-4 mx-auto text-center">
-            <h2 class="text-3xl font-bold text-sketch-dark mb-12 reveal font-display">Speakers & Judges</h2>
+            <h2 class="text-3xl font-bold text-sketch-dark mb-12 reveal font-display charcoal-heading">Speakers & Judges</h2>
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 reveal">
-                <!-- Updated Speaker Card Logic -->
                 <script>
                     const speakers = [
                         { name: "Avirup Nandi", img: "https://github.com/avirupnandi1.png" },
@@ -406,10 +437,10 @@
                     speakers.forEach(speaker => {
                         document.write(`
                             <div class="group">
-                                <div class="w-24 h-24 mx-auto rounded-full bg-gray-200 mb-4 overflow-hidden border-2 border-gray-200 group-hover:border-sketch-flame transition-colors shadow-lg">
+                                <div class="w-24 h-24 mx-auto rounded-full bg-gray-200 mb-4 overflow-hidden border-2 border-dashed border-gray-400 group-hover:border-solid group-hover:border-sketch-flame transition-all shadow-lg grayscale group-hover:grayscale-0">
                                     <img src="${speaker.img}" alt="${speaker.name}" class="w-full h-full object-cover">
                                 </div>
-                                <h4 class="text-gray-800 font-bold text-sm">${speaker.name}</h4>
+                                <h4 class="text-gray-800 font-bold text-sm font-display">${speaker.name}</h4>
                             </div>
                         `);
                     });
@@ -419,28 +450,27 @@
     </section>
 
     <!-- Judging Criteria -->
-    <section class="py-20 bg-sketch-dark text-white relative">
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjMmEyYTJhIi8+CjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiMzMzMiIG9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')] opacity-20"></div>
+    <section class="py-20 bg-[#151515] text-white relative border-y-4 border-black">
         <div class="max-w-screen-xl px-4 mx-auto reveal relative z-10">
             <h2 class="text-3xl font-bold text-center mb-12 font-display">Judging Criteria</h2>
             <div class="grid md:grid-cols-4 gap-6">
-                <div class="bg-gray-800/50 p-6 rounded-2xl text-center border border-gray-700">
-                    <div class="text-4xl font-black text-blue-400 mb-2">40%</div>
+                <div class="bg-[#222] p-6 rounded-sm text-center border-2 border-[#333] shadow-[4px_4px_0px_#444]">
+                    <div class="text-4xl font-black text-blue-400 mb-2 font-display">40%</div>
                     <h3 class="text-xl font-bold mb-2">Impact</h3>
                     <p class="text-sm text-gray-400">Real-world problem solving.</p>
                 </div>
-                <div class="bg-gray-800/50 p-6 rounded-2xl text-center border border-gray-700">
-                    <div class="text-4xl font-black text-purple-400 mb-2">30%</div>
+                <div class="bg-[#222] p-6 rounded-sm text-center border-2 border-[#333] shadow-[4px_4px_0px_#444]">
+                    <div class="text-4xl font-black text-purple-400 mb-2 font-display">30%</div>
                     <h3 class="text-xl font-bold mb-2">Tech Depth</h3>
                     <p class="text-sm text-gray-400">Effective use of Gemini 3.</p>
                 </div>
-                <div class="bg-gray-800/50 p-6 rounded-2xl text-center border border-gray-700">
-                    <div class="text-4xl font-black text-pink-400 mb-2">20%</div>
+                <div class="bg-[#222] p-6 rounded-sm text-center border-2 border-[#333] shadow-[4px_4px_0px_#444]">
+                    <div class="text-4xl font-black text-pink-400 mb-2 font-display">20%</div>
                     <h3 class="text-xl font-bold mb-2">Creativity</h3>
                     <p class="text-sm text-gray-400">Originality & Innovation.</p>
                 </div>
-                <div class="bg-gray-800/50 p-6 rounded-2xl text-center border border-gray-700">
-                    <div class="text-4xl font-black text-yellow-400 mb-2">10%</div>
+                <div class="bg-[#222] p-6 rounded-sm text-center border-2 border-[#333] shadow-[4px_4px_0px_#444]">
+                    <div class="text-4xl font-black text-yellow-400 mb-2 font-display">10%</div>
                     <h3 class="text-xl font-bold mb-2">Demo</h3>
                     <p class="text-sm text-gray-400">Storytelling quality.</p>
                 </div>
@@ -451,17 +481,17 @@
     <!-- Submission CTA -->
     <section id="register" class="py-24">
         <div class="max-w-screen-lg px-4 mx-auto text-center reveal">
-            <div class="bg-white border-2 border-sketch-dark rounded-[2rem] p-12 relative overflow-hidden shadow-[8px_8px_0px_0px_rgba(26,26,26,1)]">
+            <div class="bg-white border-2 border-black rounded-[2rem] p-12 relative overflow-hidden shadow-[8px_8px_0px_0px_rgba(26,26,26,1)]">
                 
-                <h2 class="text-4xl font-black text-sketch-dark mb-6 font-display">Ready to Vibe Code?</h2>
-                <p class="text-gray-600 mb-10 max-w-xl mx-auto text-lg">
+                <h2 class="text-4xl font-black text-sketch-dark mb-6 font-display charcoal-heading">Ready to Vibe Code?</h2>
+                <p class="text-gray-700 mb-10 max-w-xl mx-auto text-lg font-medium">
                     Start building your idea with Gemini 3 Pro. Remember to record your video demo (max 2 mins) and host your code publicly.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <button class="text-white bg-sketch-googleBlue hover:bg-blue-700 font-bold rounded-xl text-lg px-8 py-4 transition-all shadow-lg shadow-blue-500/30">
+                    <button class="text-white bg-sketch-googleBlue hover:bg-blue-700 border-2 border-black font-bold rounded-xl text-lg px-8 py-4 transition-all shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]">
                         <i class="fa-brands fa-google mr-2"></i> Submit via Google Form
                     </button>
-                    <a href="https://aistudio.google.com/prompts/new_chat" target="_blank" class="text-sketch-dark bg-gray-100 hover:bg-gray-200 font-bold rounded-xl text-lg px-8 py-4 transition-all">
+                    <a href="https://aistudio.google.com/prompts/new_chat" target="_blank" class="text-sketch-dark bg-[#f0f0f0] hover:bg-white border-2 border-black font-bold rounded-xl text-lg px-8 py-4 transition-all shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]">
                         Open AI Studio
                     </a>
                 </div>
@@ -470,17 +500,18 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white py-12 border-t border-gray-200">
+    <footer class="bg-white/80 py-12 border-t-2 border-gray-200">
         <div class="max-w-screen-xl px-4 mx-auto flex flex-col md:flex-row justify-between items-center">
             <div class="mb-4 md:mb-0 text-center md:text-left">
-                <span class="text-2xl font-black text-sketch-dark font-display">ML <span class="text-sketch-flame">Kolkata</span></span>
-                <p class="text-sm text-gray-500 mt-2">© 2025 Machine Learning Kolkata.</p>
+                <span class="text-2xl font-black text-sketch-dark font-display charcoal-text">ML <span class="text-sketch-flame">Kolkata</span></span>
+                <p class="text-sm text-gray-500 mt-2 font-bold">© 2025 Machine Learning Kolkata.</p>
             </div>
             <div class="flex space-x-6">
-                <a href="https://x.com/MLKolkata" class="text-gray-400 hover:text-sketch-flame transition-colors"><i class="fa-brands fa-twitter text-2xl"></i></a>
+                <a href="https://x.com/MLKolkata" class="text-gray-400 hover:text-black transition-colors"><i class="fa-brands fa-twitter text-2xl"></i></a>
                 <a href="https://www.linkedin.com/company/mlkolkata" class="text-gray-400 hover:text-blue-700 transition-colors"><i class="fa-brands fa-linkedin text-2xl"></i></a>
                 <a href="https://www.instagram.com/mlkolkata" class="text-gray-400 hover:text-pink-600 transition-colors"><i class="fa-brands fa-instagram text-2xl"></i></a>
-                <a href="https://t.me/MLKolkata" class="text-gray-400 hover:text-indigo-600 transition-colors"><i class="fa-brands fa-discord text-2xl"></i></a>
+                <!-- Telegram Icon (Replaces Discord) -->
+                <a href="https://t.me/MLKolkata" target="_blank" class="text-gray-400 hover:text-blue-500 transition-colors"><i class="fa-brands fa-telegram text-2xl"></i></a>
             </div>
         </div>
     </footer>
@@ -496,7 +527,7 @@
             });
         });
 
-        // Intersection Observer
+        // Intersection Observer for Reveal Animation
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
