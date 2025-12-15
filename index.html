@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global GenAI Hackathon | Machine Learning Kolkata</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -14,29 +14,37 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
                     },
                     colors: {
-                        brand: {
-                            dark: '#0f172a',
-                            purple: '#7c3aed',
-                            blue: '#2563eb',
-                            accent: '#38bdf8'
+                        sketch: {
+                            bg: '#f9f7f2', // Warm paper color
+                            dark: '#1a1a1a', // Charcoal
+                            gray: '#5a5a5a',
+                            flame: '#ff5e1f', // From the torch
+                            flameLight: '#ff8a4c',
+                            googleBlue: '#4285F4',
+                            googleRed: '#EA4335',
+                            googleYellow: '#FBBC05',
+                            googleGreen: '#34A853',
+                            wandbYellow: '#FFBE0B',
                         }
                     },
+                    backgroundImage: {
+                        'paper-texture': "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZjlmN2YyIi8+CjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiMwMDAiIG9wYWNpdHk9IjAuMDIiLz4KPC9zdmc+')",
+                    },
                     animation: {
-                        'blob': 'blob 7s infinite',
                         'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
                     },
                     keyframes: {
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                        },
                         fadeInUp: {
                             '0%': { opacity: '0', transform: 'translateY(20px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
                         }
                     }
                 }
@@ -45,8 +53,9 @@
     </script>
     <style>
         body {
-            background-color: #050505;
-            color: #e2e8f0;
+            background-color: #f9f7f2;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            color: #1a1a1a;
             overflow-x: hidden;
         }
         
@@ -55,28 +64,38 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #0f172a; 
+            background: #f0ebe1; 
         }
         ::-webkit-scrollbar-thumb {
-            background: #334155; 
+            background: #cbd5e1; 
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #475569; 
+            background: #94a3b8; 
         }
 
-        /* Glassmorphism Card */
-        .glass-card {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        /* Clean Paper Card */
+        .paper-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0,0,0,0.08);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            backdrop-filter: blur(8px);
         }
 
-        .gradient-text {
-            background: linear-gradient(to right, #60a5fa, #c084fc);
+        .sketch-border {
+            border: 2px solid #1a1a1a;
+            border-radius: 1rem;
+        }
+
+        .flame-gradient {
+            background: linear-gradient(135deg, #ff5e1f, #ff9f1c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+        
+        .charcoal-text {
+            color: #1a1a1a;
+            text-shadow: 0px 0px 1px rgba(0,0,0,0.1);
         }
 
         .reveal {
@@ -92,28 +111,23 @@
 </head>
 <body class="antialiased">
 
-    <!-- Background Decoration -->
-    <div class="fixed inset-0 z-[-1] overflow-hidden">
-        <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-purple opacity-20 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
-        <div class="absolute top-0 right-1/4 w-96 h-96 bg-brand-blue opacity-20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
-        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-brand-accent opacity-20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
-    </div>
-
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 top-0 start-0 glass-card border-b border-gray-800">
+    <nav class="fixed w-full z-50 top-0 start-0 bg-sketch-bg/90 backdrop-blur-md border-b border-gray-200">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <span class="self-center text-2xl font-bold whitespace-nowrap text-white">ML <span class="text-blue-500">Kolkata</span></span>
+            <a href="#" class="flex items-center space-x-2 rtl:space-x-reverse group">
+                <!-- Simple Logo Representation -->
+                <div class="w-8 h-8 bg-sketch-dark text-white flex items-center justify-center rounded-lg font-bold text-lg group-hover:bg-sketch-flame transition-colors">M</div>
+                <span class="self-center text-xl font-bold whitespace-nowrap tracking-tight font-display text-sketch-dark">ML <span class="text-sketch-flame">KOLKATA</span></span>
             </a>
             <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <a href="#register" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-6 py-2.5 text-center transition-all shadow-lg shadow-blue-500/30">Register Now</a>
+                <a href="#register" class="text-white bg-sketch-dark hover:bg-sketch-flame focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-6 py-2.5 text-center transition-all shadow-md">Register Now</a>
             </div>
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                 <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0">
-                    <li><a href="#about" class="block py-2 px-3 text-gray-300 hover:text-white transition-colors">About</a></li>
-                    <li><a href="#timeline" class="block py-2 px-3 text-gray-300 hover:text-white transition-colors">Timeline</a></li>
-                    <li><a href="#tracks" class="block py-2 px-3 text-gray-300 hover:text-white transition-colors">Tracks</a></li>
-                    <li><a href="#prizes" class="block py-2 px-3 text-gray-300 hover:text-white transition-colors">Prizes</a></li>
+                    <li><a href="#about" class="block py-2 px-3 text-gray-600 hover:text-sketch-flame transition-colors">About</a></li>
+                    <li><a href="#timeline" class="block py-2 px-3 text-gray-600 hover:text-sketch-flame transition-colors">Timeline</a></li>
+                    <li><a href="#tracks" class="block py-2 px-3 text-gray-600 hover:text-sketch-flame transition-colors">Tracks</a></li>
+                    <li><a href="#prizes" class="block py-2 px-3 text-gray-600 hover:text-sketch-flame transition-colors">Prizes</a></li>
                 </ul>
             </div>
         </div>
@@ -121,89 +135,136 @@
 
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center pt-20">
+        <!-- Abstract Background Shapes (Simulating the Sketch style) -->
+        <div class="absolute inset-0 z-[-1] overflow-hidden opacity-30">
+            <div class="absolute top-20 right-10 w-96 h-96 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl animate-float"></div>
+            <div class="absolute bottom-20 left-10 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl animate-float" style="animation-delay: 2s"></div>
+        </div>
+
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
-            <div class="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm rounded-full bg-gray-800 text-white hover:bg-gray-700 border border-gray-600 transition-colors">
-                <span class="text-xs bg-blue-600 rounded-full text-white px-4 py-1.5 mr-3">Hybrid Event</span> 
-                <span class="text-sm font-medium">Dec 26 - 27, 2025</span> 
-                <i class="fa-solid fa-chevron-right ml-2 text-xs"></i>
+            <!-- Hand-drawn style badge -->
+            <div class="inline-flex justify-between items-center py-1 px-4 mb-7 text-sm rounded-full border-2 border-sketch-dark bg-white text-sketch-dark hover:bg-gray-50 transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                <span class="font-bold mr-2"><i class="fa-solid fa-fire text-sketch-flame"></i> Hybrid Event</span> 
+                <span class="font-medium">Dec 26 - 27, 2025</span> 
             </div>
-            <h1 class="mb-4 text-5xl font-extrabold tracking-tight leading-none md:text-6xl lg:text-7xl text-white">
-                Global <span class="gradient-text">GenAI Hackathon</span>
+            
+            <h1 class="mb-4 text-5xl font-extrabold tracking-tighter leading-none md:text-7xl lg:text-8xl font-display text-sketch-dark">
+                GLOBAL <br>
+                <span class="flame-gradient">GENAI HACKATHON</span>
             </h1>
-            <p class="mb-8 text-lg font-normal text-gray-400 lg:text-xl sm:px-16 xl:px-48">
-                Join us for a Vibe Coding sprint. Use <strong>Gemini 3 Pro's</strong> advanced reasoning to turn natural prompts into working, complex applications. Solve real-world problems, share them with the community, and bring your ideas to life.
+            
+            <p class="mb-8 text-lg font-medium text-gray-600 lg:text-xl sm:px-16 xl:px-48 max-w-4xl mx-auto">
+                Ignite your creativity with <strong class="text-sketch-dark">Gemini 3 Pro</strong>. A vibe coding sprint to solve complex real-world problems.
             </p>
-            <div class="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-                <a href="#register" class="inline-flex justify-center items-center py-3 px-6 text-base font-medium text-center text-white rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 focus:ring-4 focus:ring-blue-300/50 shadow-lg shadow-purple-500/30 transition-transform hover:scale-105">
-                    Register for Hackathon
-                    <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+
+            <div class="flex flex-col mb-12 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
+                <a href="#register" class="inline-flex justify-center items-center py-4 px-8 text-base font-bold text-center text-white rounded-xl bg-sketch-flame hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 shadow-lg shadow-orange-500/30 transition-transform hover:-translate-y-1">
+                    Start Hacking
+                    <i class="fa-solid fa-arrow-right ml-2"></i>
                 </a>
-                <a href="#tracks" class="inline-flex justify-center items-center py-3 px-6 text-base font-medium text-center text-gray-300 border border-gray-600 rounded-full hover:text-white hover:bg-gray-800 focus:ring-4 focus:ring-gray-700 transition-colors">
+                <a href="#tracks" class="inline-flex justify-center items-center py-4 px-8 text-base font-bold text-center text-sketch-dark border-2 border-gray-200 rounded-xl hover:bg-gray-50 focus:ring-4 focus:ring-gray-100 transition-colors">
                     View Tracks
                 </a> 
             </div>
             
-            <!-- Floating features -->
-            <div class="grid grid-cols-2 gap-4 md:grid-cols-4 mt-12 text-center text-gray-400 text-sm">
-                <div class="glass-card p-4 rounded-2xl reveal">
-                    <i class="fa-brands fa-google text-2xl mb-2 text-white"></i>
-                    <p>Gemini 3 Pro</p>
-                </div>
-                <div class="glass-card p-4 rounded-2xl reveal">
-                    <i class="fa-solid fa-code-branch text-2xl mb-2 text-white"></i>
-                    <p>Weights & Biases</p>
-                </div>
-                <div class="glass-card p-4 rounded-2xl reveal">
-                    <i class="fa-solid fa-cloud text-2xl mb-2 text-white"></i>
-                    <p>₹450 GCP Credits</p>
-                </div>
-                <div class="glass-card p-4 rounded-2xl reveal">
-                    <i class="fa-solid fa-gift text-2xl mb-2 text-white"></i>
-                    <p>₹20k Prize Pool</p>
+            <!-- Logos Strip (Matching the Poster) -->
+            <div class="pt-8 border-t border-gray-200 max-w-4xl mx-auto">
+                <p class="text-sm font-semibold text-gray-500 mb-6 uppercase tracking-widest">Organized With</p>
+                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-90">
+                    
+                    <!-- Weights & Biases Logo Representation -->
+                    <div class="flex items-center gap-2 group cursor-pointer grayscale hover:grayscale-0 transition-all duration-300">
+                        <i class="fa-solid fa-chart-line text-2xl text-sketch-wandbYellow"></i>
+                        <div class="text-left leading-tight">
+                            <div class="font-bold text-gray-800">Weights & Biases</div>
+                            <div class="text-[10px] text-gray-500 uppercase">by CoreWeave</div>
+                        </div>
+                    </div>
+
+                    <!-- ML Kolkata -->
+                    <div class="flex items-center gap-2 group cursor-pointer">
+                        <span class="font-black text-2xl tracking-tighter text-sketch-dark font-display">ML KOLKATA</span>
+                    </div>
+
+                    <!-- Google for Developers -->
+                    <div class="flex items-center gap-2 group cursor-pointer grayscale hover:grayscale-0 transition-all duration-300">
+                        <i class="fa-brands fa-google text-2xl text-sketch-googleBlue"></i>
+                        <div class="font-bold text-gray-600 group-hover:text-sketch-googleBlue transition-colors">
+                            <span class="text-gray-500">for</span> Developers
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-900/50">
+    <section id="about" class="py-20 bg-white border-y border-gray-100">
         <div class="max-w-screen-xl px-4 mx-auto reveal">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Build the Impossible</h2>
-                <p class="mt-4 text-lg text-gray-400">Imagine building an application that finally solves a daily frustration or addresses a global challenge.</p>
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-sketch-dark sm:text-4xl font-display">Build the Impossible</h2>
+                <div class="w-24 h-1 bg-sketch-flame mx-auto mt-4 rounded-full"></div>
             </div>
             
             <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <p class="text-gray-300 leading-relaxed">
-                        This Global GenAI Hackathon challenges you to step up and use the latest advancements in AI to do exactly that. Harness Gemini's advanced reasoning capabilities and native multimodality to bridge the gap between idea and reality.
+                <div class="space-y-6 text-lg text-gray-600">
+                    <p>
+                        Imagine building an application that finally solves a daily frustration or addresses a global challenge. This Hackathon challenges you to use the latest AI advancements to do exactly that.
                     </p>
-                    <p class="text-gray-300 leading-relaxed">
-                        Where will you make an impact?
+                    <p class="font-semibold text-sketch-dark">
+                        Harness Gemini 3 Pro's advanced reasoning capabilities.
                     </p>
-                    <ul class="space-y-3 text-gray-400">
-                        <li class="flex items-center"><i class="fa-solid fa-flask text-purple-500 w-8"></i> <span><strong>Science:</strong> Accelerate discovery and research</span></li>
-                        <li class="flex items-center"><i class="fa-solid fa-graduation-cap text-purple-500 w-8"></i> <span><strong>Education:</strong> Reimagine learning</span></li>
-                        <li class="flex items-center"><i class="fa-solid fa-universal-access text-purple-500 w-8"></i> <span><strong>Accessibility:</strong> Build tools that work for everyone</span></li>
-                        <li class="flex items-center"><i class="fa-solid fa-heart-pulse text-purple-500 w-8"></i> <span><strong>Health:</strong> Improve lives and patient care</span></li>
-                    </ul>
-                </div>
-                <div class="glass-card p-8 rounded-3xl border border-gray-700 bg-gradient-to-br from-gray-800 to-transparent">
-                    <h3 class="text-xl font-semibold text-white mb-4">How to Participate</h3>
-                    <p class="text-gray-400 mb-6">Unlike standard hackathons, you won't need the specific "Build" feature. Use Google AI Studio Playground and the <strong>&lt;&gt; Get Code</strong> button to integrate Gemini 3 Pro into your own environment.</p>
                     
-                    <div class="flex items-center gap-4 bg-gray-900/80 p-4 rounded-xl mb-4">
-                        <i class="fa-brands fa-google text-2xl text-blue-400"></i>
-                        <div>
-                            <h4 class="text-white font-medium">Step 1: AI Studio</h4>
-                            <p class="text-xs text-gray-500">Playground Mode -> Prompt Idea -> Get Code</p>
+                    <div class="grid grid-cols-2 gap-4 mt-6">
+                        <div class="flex items-center p-3 rounded-lg bg-gray-50 border border-gray-100">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3"><i class="fa-solid fa-flask"></i></div>
+                            <span class="font-medium text-sm">Science</span>
+                        </div>
+                        <div class="flex items-center p-3 rounded-lg bg-gray-50 border border-gray-100">
+                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 mr-3"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <span class="font-medium text-sm">Education</span>
+                        </div>
+                        <div class="flex items-center p-3 rounded-lg bg-gray-50 border border-gray-100">
+                            <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 mr-3"><i class="fa-solid fa-heart-pulse"></i></div>
+                            <span class="font-medium text-sm">Health</span>
+                        </div>
+                        <div class="flex items-center p-3 rounded-lg bg-gray-50 border border-gray-100">
+                            <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 mr-3"><i class="fa-solid fa-briefcase"></i></div>
+                            <span class="font-medium text-sm">Business</span>
                         </div>
                     </div>
-                    <div class="flex items-center gap-4 bg-gray-900/80 p-4 rounded-xl">
-                        <i class="fa-solid fa-file-video text-2xl text-pink-400"></i>
-                        <div>
-                            <h4 class="text-white font-medium">Step 2: Submit</h4>
-                            <p class="text-xs text-gray-500">Video Demo + Project Link via Google Form</p>
+                </div>
+
+                <div class="paper-card p-8 rounded-3xl relative">
+                    <div class="absolute top-0 right-0 p-4 opacity-10">
+                        <i class="fa-solid fa-code text-9xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-sketch-dark mb-6 font-display">How to Participate</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-sketch-dark text-white flex items-center justify-center font-bold text-xl">1</div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-900">Get the Code</h4>
+                                <p class="text-gray-600 text-sm">Go to Google AI Studio Playground. Enter your prompt idea, then click the <strong>&lt;&gt; Get Code</strong> button.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-sketch-flame text-white flex items-center justify-center font-bold text-xl">2</div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-900">Vibe Code</h4>
+                                <p class="text-gray-600 text-sm">Develop your solution. All participants get <strong>₹450 GCP Credits</strong>.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gray-200 text-gray-700 flex items-center justify-center font-bold text-xl">3</div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-900">Submit</h4>
+                                <p class="text-gray-600 text-sm">Record a 2-min video demo and submit via Google Form.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -212,68 +273,50 @@
     </section>
 
     <!-- Timeline Section -->
-    <section id="timeline" class="py-20 relative">
-        <div class="max-w-screen-xl px-4 mx-auto">
-            <h2 class="text-3xl font-bold text-center text-white mb-16 reveal">Event Schedule</h2>
+    <section id="timeline" class="py-20 relative overflow-hidden">
+        <div class="max-w-screen-xl px-4 mx-auto relative z-10">
+            <h2 class="text-3xl font-bold text-center text-sketch-dark mb-16 font-display reveal">Event Schedule</h2>
             
-            <div class="relative border-l-2 border-gray-700 ml-4 md:ml-1/2 md:-translate-x-[1px]">
+            <div class="relative border-l-4 border-gray-200 ml-4 md:ml-1/2 md:-translate-x-[2px]">
                 <!-- Item 1 -->
-                <div class="mb-12 flex flex-col md:flex-row items-center justify-between w-full reveal">
-                    <div class="order-1 md:w-5/12 mb-4 md:mb-0 md:text-right md:pr-8">
-                        <h3 class="text-xl font-bold text-blue-400">Online Kick-off</h3>
-                        <p class="text-gray-300 mt-2">Hackathon opens online. Start ideating and coding from the comfort of your home.</p>
+                <div class="mb-16 flex flex-col md:flex-row items-center justify-between w-full reveal group">
+                    <div class="order-1 md:w-5/12 mb-4 md:mb-0 md:text-right md:pr-12">
+                        <h3 class="text-xl font-bold text-sketch-googleBlue">Online Kick-off</h3>
+                        <p class="text-gray-600 mt-2">Hackathon opens online. Start ideating and coding from home.</p>
                     </div>
-                    <div class="z-20 flex items-center order-1 bg-blue-600 shadow-xl w-10 h-10 rounded-full justify-center text-white text-sm font-bold border-4 border-gray-900 absolute left-[-1.2rem] md:static">
-                        26
+                    <div class="z-20 flex items-center order-1 bg-white shadow-lg w-12 h-12 rounded-full justify-center text-sketch-googleBlue border-4 border-gray-200 group-hover:border-sketch-googleBlue transition-colors absolute left-[-1.4rem] md:static">
+                        <i class="fa-solid fa-globe"></i>
                     </div>
-                    <div class="order-1 md:w-5/12 md:pl-8">
-                        <span class="bg-gray-800 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">Dec 26, 2025 - 9:00 AM</span>
+                    <div class="order-1 md:w-5/12 md:pl-12">
+                        <span class="bg-blue-50 text-blue-700 text-sm font-bold px-4 py-1.5 rounded-full border border-blue-100">Dec 26, 9:00 AM</span>
                     </div>
                 </div>
 
                 <!-- Item 2 -->
-                <div class="mb-12 flex flex-col md:flex-row items-center justify-between w-full reveal">
-                    <div class="order-1 md:w-5/12 md:text-right md:pr-8 hidden md:block">
-                        <span class="bg-gray-800 text-purple-300 text-sm font-medium px-3 py-1 rounded-full">Dec 27, 2025</span>
+                <div class="mb-16 flex flex-col md:flex-row items-center justify-between w-full reveal group">
+                    <div class="order-1 md:w-5/12 md:text-right md:pr-12 hidden md:block">
+                        <span class="bg-orange-50 text-orange-700 text-sm font-bold px-4 py-1.5 rounded-full border border-orange-100">Dec 27 (Offline)</span>
                     </div>
-                    <div class="z-20 flex items-center order-1 bg-purple-600 shadow-xl w-10 h-10 rounded-full justify-center text-white text-sm font-bold border-4 border-gray-900 absolute left-[-1.2rem] md:static">
-                        27
+                    <div class="z-20 flex items-center order-1 bg-white shadow-lg w-12 h-12 rounded-full justify-center text-sketch-flame border-4 border-gray-200 group-hover:border-sketch-flame transition-colors absolute left-[-1.4rem] md:static">
+                        <i class="fa-solid fa-location-dot"></i>
                     </div>
-                    <div class="order-1 md:w-5/12 md:pl-8 mb-4 md:mb-0">
-                        <h3 class="text-xl font-bold text-purple-400">Offline Event Begins</h3>
-                        <p class="text-gray-300 mt-2">Physical event start. Collaborative building with local folks from Kolkata.</p>
-                        <ul class="text-sm text-gray-500 mt-2 space-y-1">
-                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Full day of expert talks</li>
-                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Full course lunch included</li>
-                        </ul>
+                    <div class="order-1 md:w-5/12 md:pl-12 mb-4 md:mb-0">
+                        <h3 class="text-xl font-bold text-sketch-flame">Offline Event Begins</h3>
+                        <p class="text-gray-600 mt-2">Physical event at Kolkata. Expert talks, mentorship, and full-course lunch.</p>
                     </div>
                 </div>
 
                 <!-- Item 3 -->
-                <div class="mb-12 flex flex-col md:flex-row items-center justify-between w-full reveal">
-                    <div class="order-1 md:w-5/12 mb-4 md:mb-0 md:text-right md:pr-8">
-                        <h3 class="text-xl font-bold text-pink-400">Recording & Snacks</h3>
-                        <p class="text-gray-300 mt-2">Finalize your code, record your submission video with our support, and enjoy evening snacks.</p>
+                <div class="mb-16 flex flex-col md:flex-row items-center justify-between w-full reveal group">
+                    <div class="order-1 md:w-5/12 mb-4 md:mb-0 md:text-right md:pr-12">
+                        <h3 class="text-xl font-bold text-sketch-dark">Submission Deadline</h3>
+                        <p class="text-gray-600 mt-2">Record submission video and enjoy evening snacks.</p>
                     </div>
-                    <div class="z-20 flex items-center order-1 bg-pink-600 shadow-xl w-10 h-10 rounded-full justify-center text-white text-sm font-bold border-4 border-gray-900 absolute left-[-1.2rem] md:static">
-                        20:00
+                    <div class="z-20 flex items-center order-1 bg-white shadow-lg w-12 h-12 rounded-full justify-center text-sketch-dark border-4 border-gray-200 group-hover:border-sketch-dark transition-colors absolute left-[-1.4rem] md:static">
+                        <i class="fa-solid fa-video"></i>
                     </div>
-                    <div class="order-1 md:w-5/12 md:pl-8">
-                        <span class="bg-gray-800 text-pink-300 text-sm font-medium px-3 py-1 rounded-full">Submission Deadline</span>
-                    </div>
-                </div>
-
-                 <!-- Item 4 -->
-                 <div class="mb-8 flex flex-col md:flex-row items-center justify-between w-full reveal">
-                    <div class="order-1 md:w-5/12 md:text-right md:pr-8 hidden md:block">
-                        <span class="bg-gray-800 text-yellow-300 text-sm font-medium px-3 py-1 rounded-full">Dec 27, 21:00</span>
-                    </div>
-                    <div class="z-20 flex items-center order-1 bg-yellow-500 shadow-xl w-10 h-10 rounded-full justify-center text-white text-sm font-bold border-4 border-gray-900 absolute left-[-1.2rem] md:static">
-                        <i class="fa-solid fa-trophy text-xs"></i>
-                    </div>
-                    <div class="order-1 md:w-5/12 md:pl-8 mb-4 md:mb-0">
-                        <h3 class="text-xl font-bold text-yellow-500">Prize Distribution</h3>
-                        <p class="text-gray-300 mt-2">Winners announcement and closing ceremony.</p>
+                    <div class="order-1 md:w-5/12 md:pl-12">
+                        <span class="bg-gray-100 text-gray-700 text-sm font-bold px-4 py-1.5 rounded-full border border-gray-200">Dec 27, 8:00 PM</span>
                     </div>
                 </div>
             </div>
@@ -281,58 +324,62 @@
     </section>
 
     <!-- Tracks & Prizes Section -->
-    <section id="tracks" class="py-20 bg-gray-900/50">
+    <section id="tracks" class="py-20 bg-white border-y border-gray-100">
         <div class="max-w-screen-xl px-4 mx-auto">
-            <h2 class="text-3xl font-bold text-center text-white mb-4 reveal">Tracks & Awards</h2>
-            <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto reveal">Total prize pool worth ₹20,000 in goodies. All participants receive ₹450 GCP credits.</p>
+            <h2 class="text-3xl font-bold text-center text-sketch-dark mb-4 reveal font-display">Tracks & Awards</h2>
+            <p class="text-center text-gray-500 mb-12 max-w-2xl mx-auto reveal">Total prize pool worth <span class="font-bold text-sketch-flame">₹20,000</span> in goodies.</p>
 
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Track 1 -->
-                <div class="glass-card rounded-3xl p-8 hover:border-blue-500 transition-colors reveal">
+                <div class="paper-card rounded-3xl p-8 hover:shadow-xl transition-shadow reveal border-t-4 border-t-sketch-googleBlue">
                     <div class="flex items-center gap-4 mb-6">
-                        <div class="p-3 bg-blue-900/50 rounded-lg">
-                            <i class="fa-brands fa-google text-3xl text-blue-400"></i>
+                        <div class="p-3 bg-blue-50 rounded-xl">
+                            <i class="fa-brands fa-google text-3xl text-sketch-googleBlue"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-white">Google for Developers Track</h3>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 font-display">Google for Developers</h3>
+                            <p class="text-xs text-gray-500 uppercase font-bold tracking-wide">Best use of Gemini</p>
+                        </div>
                     </div>
-                    <p class="text-gray-400 mb-6 min-h-[50px]">Build the best application utilizing Gemini 3 Pro's multimodal capabilities via the API.</p>
-                    <div class="space-y-4 border-t border-gray-700 pt-6">
-                        <div class="flex justify-between items-center">
-                            <span class="text-yellow-400 font-bold"><i class="fa-solid fa-trophy mr-2"></i>1st Place</span>
-                            <span class="text-white font-mono">₹5,000</span>
+                    <div class="space-y-4 pt-4">
+                        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                            <span class="text-yellow-600 font-bold"><i class="fa-solid fa-trophy mr-2"></i>1st Place</span>
+                            <span class="text-gray-900 font-mono font-bold">₹5,000</span>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-gray-300 font-bold"><i class="fa-solid fa-medal mr-2"></i>2nd Place</span>
-                            <span class="text-white font-mono">₹3,000</span>
+                        <div class="flex justify-between items-center px-3">
+                            <span class="text-gray-500 font-semibold">2nd Place</span>
+                            <span class="text-gray-700 font-mono">₹3,000</span>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-orange-400 font-bold"><i class="fa-solid fa-medal mr-2"></i>3rd Place</span>
-                            <span class="text-white font-mono">₹2,000</span>
+                        <div class="flex justify-between items-center px-3">
+                            <span class="text-gray-500 font-semibold">3rd Place</span>
+                            <span class="text-gray-700 font-mono">₹2,000</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Track 2 -->
-                <div class="glass-card rounded-3xl p-8 hover:border-yellow-500 transition-colors reveal">
+                <div class="paper-card rounded-3xl p-8 hover:shadow-xl transition-shadow reveal border-t-4 border-t-sketch-wandbYellow">
                     <div class="flex items-center gap-4 mb-6">
-                        <div class="p-3 bg-yellow-900/50 rounded-lg">
-                            <i class="fa-solid fa-chart-line text-3xl text-yellow-400"></i>
+                        <div class="p-3 bg-yellow-50 rounded-xl">
+                            <i class="fa-solid fa-chart-line text-3xl text-sketch-wandbYellow"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-white">Weights & Biases Track</h3>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 font-display">Weights & Biases</h3>
+                            <p class="text-xs text-gray-500 uppercase font-bold tracking-wide">Best use of Weave</p>
+                        </div>
                     </div>
-                    <p class="text-gray-400 mb-6 min-h-[50px]">Demonstrate the best use of Weave for tracking and evaluating your GenAI application.</p>
-                    <div class="space-y-4 border-t border-gray-700 pt-6">
-                        <div class="flex justify-between items-center">
-                            <span class="text-yellow-400 font-bold"><i class="fa-solid fa-trophy mr-2"></i>1st Place</span>
-                            <span class="text-white font-mono">₹5,000</span>
+                    <div class="space-y-4 pt-4">
+                        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                            <span class="text-yellow-600 font-bold"><i class="fa-solid fa-trophy mr-2"></i>1st Place</span>
+                            <span class="text-gray-900 font-mono font-bold">₹5,000</span>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-gray-300 font-bold"><i class="fa-solid fa-medal mr-2"></i>2nd Place</span>
-                            <span class="text-white font-mono">₹3,000</span>
+                        <div class="flex justify-between items-center px-3">
+                            <span class="text-gray-500 font-semibold">2nd Place</span>
+                            <span class="text-gray-700 font-mono">₹3,000</span>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-orange-400 font-bold"><i class="fa-solid fa-medal mr-2"></i>3rd Place</span>
-                            <span class="text-white font-mono">₹2,000</span>
+                        <div class="flex justify-between items-center px-3">
+                            <span class="text-gray-500 font-semibold">3rd Place</span>
+                            <span class="text-gray-700 font-mono">₹2,000</span>
                         </div>
                     </div>
                 </div>
@@ -343,99 +390,70 @@
     <!-- Speakers & Judges -->
     <section class="py-20">
         <div class="max-w-screen-xl px-4 mx-auto text-center">
-            <h2 class="text-3xl font-bold text-white mb-12 reveal">Speakers & Judges</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 reveal">
-                <!-- Person -->
-                <div class="group">
-                    <div class="w-24 h-24 mx-auto rounded-full bg-gray-700 mb-4 overflow-hidden border-2 border-gray-600 group-hover:border-blue-500 transition-colors">
-                        <img src="https://ui-avatars.com/api/?name=Avirup+Nandi&background=random" alt="Avirup Nandi" class="w-full h-full object-cover">
-                    </div>
-                    <h4 class="text-white font-medium text-sm">Avirup Nandi</h4>
-                </div>
-                <!-- Person -->
-                <div class="group">
-                    <div class="w-24 h-24 mx-auto rounded-full bg-gray-700 mb-4 overflow-hidden border-2 border-gray-600 group-hover:border-blue-500 transition-colors">
-                        <img src="https://ui-avatars.com/api/?name=Sitam+Meur&background=random" alt="Sitam Meur" class="w-full h-full object-cover">
-                    </div>
-                    <h4 class="text-white font-medium text-sm">Sitam Meur</h4>
-                </div>
-                <!-- Person -->
-                <div class="group">
-                    <div class="w-24 h-24 mx-auto rounded-full bg-gray-700 mb-4 overflow-hidden border-2 border-gray-600 group-hover:border-blue-500 transition-colors">
-                        <img src="https://ui-avatars.com/api/?name=Sugato+Bagchi&background=random" alt="Sugato Bagchi" class="w-full h-full object-cover">
-                    </div>
-                    <h4 class="text-white font-medium text-sm">Sugato Bagchi</h4>
-                </div>
-                <!-- Person -->
-                <div class="group">
-                    <div class="w-24 h-24 mx-auto rounded-full bg-gray-700 mb-4 overflow-hidden border-2 border-gray-600 group-hover:border-blue-500 transition-colors">
-                        <img src="https://ui-avatars.com/api/?name=Shubhayu+M&background=random" alt="Shubhayu Majumdar" class="w-full h-full object-cover">
-                    </div>
-                    <h4 class="text-white font-medium text-sm">Shubhayu Majumdar</h4>
-                </div>
-                <!-- Person -->
-                <div class="group">
-                    <div class="w-24 h-24 mx-auto rounded-full bg-gray-700 mb-4 overflow-hidden border-2 border-gray-600 group-hover:border-blue-500 transition-colors">
-                        <img src="https://ui-avatars.com/api/?name=Subhranil+Paul&background=random" alt="Subhranil Paul" class="w-full h-full object-cover">
-                    </div>
-                    <h4 class="text-white font-medium text-sm">Subhranil Paul</h4>
-                </div>
-                 <!-- Person -->
-                 <div class="group">
-                    <div class="w-24 h-24 mx-auto rounded-full bg-gray-700 mb-4 overflow-hidden border-2 border-gray-600 group-hover:border-blue-500 transition-colors">
-                        <img src="https://ui-avatars.com/api/?name=Rishiraj+Acharya&background=random" alt="Rishiraj Acharya" class="w-full h-full object-cover">
-                    </div>
-                    <h4 class="text-white font-medium text-sm">Rishiraj Acharya</h4>
-                </div>
+            <h2 class="text-3xl font-bold text-sketch-dark mb-12 reveal font-display">Speakers & Judges</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 reveal">
+                <!-- Helper to generate speaker card -->
+                <script>
+                    const speakers = ["Avirup Nandi", "Sitam Meur", "Sugato Bagchi", "Shubhayu Majumdar", "Subhranil Paul", "Rishiraj Acharya"];
+                    speakers.forEach(name => {
+                        document.write(`
+                            <div class="group">
+                                <div class="w-24 h-24 mx-auto rounded-full bg-gray-200 mb-4 overflow-hidden border-2 border-gray-200 group-hover:border-sketch-flame transition-colors shadow-lg">
+                                    <img src="https://ui-avatars.com/api/?name=${name.replace(' ', '+')}&background=random&color=fff&bold=true" alt="${name}" class="w-full h-full object-cover">
+                                </div>
+                                <h4 class="text-gray-800 font-bold text-sm">${name}</h4>
+                            </div>
+                        `);
+                    });
+                </script>
             </div>
         </div>
     </section>
 
     <!-- Judging Criteria -->
-    <section class="py-20 bg-gray-900/30">
-        <div class="max-w-screen-xl px-4 mx-auto reveal">
-            <h2 class="text-3xl font-bold text-center text-white mb-12">Judging Criteria</h2>
+    <section class="py-20 bg-sketch-dark text-white relative">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjMmEyYTJhIi8+CjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiMzMzMiIG9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')] opacity-20"></div>
+        <div class="max-w-screen-xl px-4 mx-auto reveal relative z-10">
+            <h2 class="text-3xl font-bold text-center mb-12 font-display">Judging Criteria</h2>
             <div class="grid md:grid-cols-4 gap-6">
-                <div class="glass-card p-6 rounded-2xl text-center">
-                    <div class="text-4xl font-bold text-blue-500 mb-2">40%</div>
-                    <h3 class="text-xl font-semibold text-white mb-2">Impact</h3>
-                    <p class="text-sm text-gray-400">Does the application solve a real-world problem with tangible potential for positive change?</p>
+                <div class="bg-gray-800/50 p-6 rounded-2xl text-center border border-gray-700">
+                    <div class="text-4xl font-black text-blue-400 mb-2">40%</div>
+                    <h3 class="text-xl font-bold mb-2">Impact</h3>
+                    <p class="text-sm text-gray-400">Real-world problem solving.</p>
                 </div>
-                <div class="glass-card p-6 rounded-2xl text-center">
-                    <div class="text-4xl font-bold text-purple-500 mb-2">30%</div>
-                    <h3 class="text-xl font-semibold text-white mb-2">Technical Depth</h3>
-                    <p class="text-sm text-gray-400">Does it work? How effectively does it utilize Gemini 3's advanced capabilities?</p>
+                <div class="bg-gray-800/50 p-6 rounded-2xl text-center border border-gray-700">
+                    <div class="text-4xl font-black text-purple-400 mb-2">30%</div>
+                    <h3 class="text-xl font-bold mb-2">Tech Depth</h3>
+                    <p class="text-sm text-gray-400">Effective use of Gemini 3.</p>
                 </div>
-                <div class="glass-card p-6 rounded-2xl text-center">
-                    <div class="text-4xl font-bold text-pink-500 mb-2">20%</div>
-                    <h3 class="text-xl font-semibold text-white mb-2">Creativity</h3>
-                    <p class="text-sm text-gray-400">How original is the idea? Does it leverage Gemini 3 in new, impossible ways?</p>
+                <div class="bg-gray-800/50 p-6 rounded-2xl text-center border border-gray-700">
+                    <div class="text-4xl font-black text-pink-400 mb-2">20%</div>
+                    <h3 class="text-xl font-bold mb-2">Creativity</h3>
+                    <p class="text-sm text-gray-400">Originality & Innovation.</p>
                 </div>
-                <div class="glass-card p-6 rounded-2xl text-center">
-                    <div class="text-4xl font-bold text-yellow-500 mb-2">10%</div>
-                    <h3 class="text-xl font-semibold text-white mb-2">Presentation</h3>
-                    <p class="text-sm text-gray-400">How engaging is the video demo? Does it tell a powerful story?</p>
+                <div class="bg-gray-800/50 p-6 rounded-2xl text-center border border-gray-700">
+                    <div class="text-4xl font-black text-yellow-400 mb-2">10%</div>
+                    <h3 class="text-xl font-bold mb-2">Demo</h3>
+                    <p class="text-sm text-gray-400">Storytelling quality.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Submission CTA -->
-    <section id="register" class="py-20">
+    <section id="register" class="py-24">
         <div class="max-w-screen-lg px-4 mx-auto text-center reveal">
-            <div class="glass-card rounded-3xl p-12 relative overflow-hidden">
-                <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-blue-500 opacity-10 rounded-full blur-3xl"></div>
-                <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 bg-purple-500 opacity-10 rounded-full blur-3xl"></div>
+            <div class="bg-white border-2 border-sketch-dark rounded-[2rem] p-12 relative overflow-hidden shadow-[8px_8px_0px_0px_rgba(26,26,26,1)]">
                 
-                <h2 class="text-3xl font-bold text-white mb-6">Ready to Vibe Code?</h2>
-                <p class="text-gray-300 mb-8 max-w-xl mx-auto">
-                    Start building your idea with Gemini 3 Pro. Remember to record your video demo (max 2 mins) and host your code publicly. Submissions are accepted via Google Form until Dec 27, 8 PM.
+                <h2 class="text-4xl font-black text-sketch-dark mb-6 font-display">Ready to Vibe Code?</h2>
+                <p class="text-gray-600 mb-10 max-w-xl mx-auto text-lg">
+                    Start building your idea with Gemini 3 Pro. Remember to record your video demo (max 2 mins) and host your code publicly.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <button class="text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-full text-lg px-8 py-4 transition-all hover:scale-105 shadow-lg shadow-blue-500/50">
+                    <button class="text-white bg-sketch-googleBlue hover:bg-blue-700 font-bold rounded-xl text-lg px-8 py-4 transition-all shadow-lg shadow-blue-500/30">
                         <i class="fa-brands fa-google mr-2"></i> Register via Google Form
                     </button>
-                    <a href="https://aistudio.google.com/prompts/new_chat" target="_blank" class="text-white bg-gray-700 hover:bg-gray-600 font-medium rounded-full text-lg px-8 py-4 transition-all">
+                    <a href="https://aistudio.google.com/prompts/new_chat" target="_blank" class="text-sketch-dark bg-gray-100 hover:bg-gray-200 font-bold rounded-xl text-lg px-8 py-4 transition-all">
                         Open AI Studio
                     </a>
                 </div>
@@ -444,23 +462,23 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black py-8 border-t border-gray-900">
+    <footer class="bg-white py-12 border-t border-gray-200">
         <div class="max-w-screen-xl px-4 mx-auto flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-4 md:mb-0">
-                <span class="text-2xl font-bold text-white">ML <span class="text-blue-500">Kolkata</span></span>
-                <p class="text-sm text-gray-500 mt-2">© 2025 Machine Learning Kolkata. All Rights Reserved.</p>
+            <div class="mb-4 md:mb-0 text-center md:text-left">
+                <span class="text-2xl font-black text-sketch-dark font-display">ML <span class="text-sketch-flame">Kolkata</span></span>
+                <p class="text-sm text-gray-500 mt-2">© 2025 Machine Learning Kolkata.</p>
             </div>
             <div class="flex space-x-6">
-                <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-twitter text-xl"></i></a>
-                <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-linkedin text-xl"></i></a>
-                <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-instagram text-xl"></i></a>
-                <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-discord text-xl"></i></a>
+                <a href="#" class="text-gray-400 hover:text-sketch-flame transition-colors"><i class="fa-brands fa-twitter text-2xl"></i></a>
+                <a href="#" class="text-gray-400 hover:text-blue-700 transition-colors"><i class="fa-brands fa-linkedin text-2xl"></i></a>
+                <a href="#" class="text-gray-400 hover:text-pink-600 transition-colors"><i class="fa-brands fa-instagram text-2xl"></i></a>
+                <a href="#" class="text-gray-400 hover:text-indigo-600 transition-colors"><i class="fa-brands fa-discord text-2xl"></i></a>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scroll for anchor links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -470,24 +488,17 @@
             });
         });
 
-        // Intersection Observer for fade-up animations
+        // Intersection Observer
         const revealElements = document.querySelectorAll('.reveal');
-
-        const revealCallback = (entries, observer) => {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                     observer.unobserve(entry.target);
                 }
             });
-        };
-
-        const revealOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
-
-        const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+        
         revealElements.forEach(el => revealObserver.observe(el));
     </script>
 </body>
