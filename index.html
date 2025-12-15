@@ -392,16 +392,24 @@
         <div class="max-w-screen-xl px-4 mx-auto text-center">
             <h2 class="text-3xl font-bold text-sketch-dark mb-12 reveal font-display">Speakers & Judges</h2>
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 reveal">
-                <!-- Helper to generate speaker card -->
+                <!-- Updated Speaker Card Logic -->
                 <script>
-                    const speakers = ["Avirup Nandi", "Sitam Meur", "Sugato Bagchi", "Shubhayu Majumdar", "Subhranil Paul", "Rishiraj Acharya"];
-                    speakers.forEach(name => {
+                    const speakers = [
+                        { name: "Avirup Nandi", img: "https://github.com/avirupnandi1.png" },
+                        { name: "Sitam Meur", img: "https://github.com/sitammeur.png" },
+                        { name: "Sugato Bagchi", img: "https://github.com/sugatobagchi.png" },
+                        { name: "Shubhayu Majumdar", img: "https://github.com/shubhayu-64.png" },
+                        { name: "Subhranil Paul", img: "https://github.com/GeneralSubhra.png" },
+                        { name: "Rishiraj Acharya", img: "https://github.com/rishiraj.png" }
+                    ];
+                    
+                    speakers.forEach(speaker => {
                         document.write(`
                             <div class="group">
                                 <div class="w-24 h-24 mx-auto rounded-full bg-gray-200 mb-4 overflow-hidden border-2 border-gray-200 group-hover:border-sketch-flame transition-colors shadow-lg">
-                                    <img src="https://ui-avatars.com/api/?name=${name.replace(' ', '+')}&background=random&color=fff&bold=true" alt="${name}" class="w-full h-full object-cover">
+                                    <img src="${speaker.img}" alt="${speaker.name}" class="w-full h-full object-cover">
                                 </div>
-                                <h4 class="text-gray-800 font-bold text-sm">${name}</h4>
+                                <h4 class="text-gray-800 font-bold text-sm">${speaker.name}</h4>
                             </div>
                         `);
                     });
