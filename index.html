@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global GenAI Hackathon | Machine Learning Kolkata</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',
+                            purple: '#7c3aed',
+                            blue: '#2563eb',
+                            accent: '#38bdf8'
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050505;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Background Decoration -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-purple opacity-20 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-brand-blue opacity-20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-brand-accent opacity-20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 start-0 glass-card border-b border-gray-800">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <span class="self-center text-2xl font-bold whitespace-nowrap text-white">ML <span class="text-blue-500">Kolkata</span></span>
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                <a href="#register" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-6 py-2.5 text-center transition-all shadow-lg shadow-blue-500/30">Register Now</a>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0">
+                    <li><a href="#about" class="block py-2 px-3 text-gray-300 hover:text-white transition-colors">About</a></li>
+                    <li><a href="#timeline" class="block py-2 px-3 text-gray-300 hover:text-white transition-colors">Timeline</a></li>
+                    <li><a href="#tracks" class="block py-2 px-3 text-gray-300 hover:text-white transition-colors">Tracks</a></li>
+                    <li><a href="#prizes" class="block py-2 px-3 text-gray-300 hover:text-white transition-colors">Prizes</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
+            <div class="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm rounded-full bg-gray-800 text-white hover:bg-gray-700 border border-gray-600 transition-colors">
+                <span class="text-xs bg-blue-600 rounded-full text-white px-4 py-1.5 mr-3">Hybrid Event</span> 
+                <span class="text-sm font-medium">Dec 26 - 27, 2025</span> 
+                <i class="fa-solid fa-chevron-right ml-2 text-xs"></i>
+            </div>
+            <h1 class="mb-4 text-5xl font-extrabold tracking-tight leading-none md:text-6xl lg:text-7xl text-white">
+                Global <span class="gradient-text">GenAI Hackathon</span>
+            </h1>
+            <p class="mb-8 text-lg font-normal text-gray-400 lg:text-xl sm:px-16 xl:px-48">
+                Join us for a Vibe Coding sprint. Use <strong>Gemini 3 Pro's</strong> advanced reasoning to turn natural prompts into working, complex applications. Solve real-world problems, share them with the community, and bring your ideas to life.
+            </p>
+            <div class="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
+                <a href="#register" class="inline-flex justify-center items-center py-3 px-6 text-base font-medium text-center text-white rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 focus:ring-4 focus:ring-blue-300/50 shadow-lg shadow-purple-500/30 transition-transform hover:scale-105">
+                    Register for Hackathon
+                    <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </a>
+                <a href="#tracks" class="inline-flex justify-center items-center py-3 px-6 text-base font-medium text-center text-gray-300 border border-gray-600 rounded-full hover:text-white hover:bg-gray-800 focus:ring-4 focus:ring-gray-700 transition-colors">
+                    View Tracks
+                </a> 
+            </div>
+            
+            <!-- Floating features -->
+            <div class="grid grid-cols-2 gap-4 md:grid-cols-4 mt-12 text-center text-gray-400 text-sm">
+                <div class="glass-card p-4 rounded-2xl reveal">
+                    <i class="fa-brands fa-google text-2xl mb-2 text-white"></i>
+                    <p>Gemini 3 Pro</p>
+                </div>
+                <div class="glass-card p-4 rounded-2xl reveal">
+                    <i class="fa-solid fa-code-branch text-2xl mb-2 text-white"></i>
+                    <p>Weights & Biases</p>
+                </div>
+                <div class="glass-card p-4 rounded-2xl reveal">
+                    <i class="fa-solid fa-cloud text-2xl mb-2 text-white"></i>
+                    <p>₹450 GCP Credits</p>
+                </div>
+                <div class="glass-card p-4 rounded-2xl reveal">
+                    <i class="fa-solid fa-gift text-2xl mb-2 text-white"></i>
+                    <p>₹20k Prize Pool</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-900/50">
+        <div class="max-w-screen-xl px-4 mx-auto reveal">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Build the Impossible</h2>
+                <p class="mt-4 text-lg text-gray-400">Imagine building an application that finally solves a daily frustration or addresses a global challenge.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <p class="text-gray-300 leading-relaxed">
+                        This Global GenAI Hackathon challenges you to step up and use the latest advancements in AI to do exactly that. Harness Gemini's advanced reasoning capabilities and native multimodality to bridge the gap between idea and reality.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed">
+                        Where will you make an impact?
+                    </p>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center"><i class="fa-solid fa-flask text-purple-500 w-8"></i> <span><strong>Science:</strong> Accelerate discovery and research</span></li>
+                        <li class="flex items-center"><i class="fa-solid fa-graduation-cap text-purple-500 w-8"></i> <span><strong>Education:</strong> Reimagine learning</span></li>
+                        <li class="flex items-center"><i class="fa-solid fa-universal-access text-purple-500 w-8"></i> <span><strong>Accessibility:</strong> Build tools that work for everyone</span></li>
+                        <li class="flex items-center"><i class="fa-solid fa-heart-pulse text-purple-500 w-8"></i> <span><strong>Health:</strong> Improve lives and patient care</span></li>
+                    </ul>
+                </div>
+                <div class="glass-card p-8 rounded-3xl border border-gray-700 bg-gradient-to-br from-gray-800 to-transparent">
+                    <h3 class="text-xl font-semibold text-white mb-4">How to Participate</h3>
+                    <p class="text-gray-400 mb-6">Unlike standard hackathons, you won't need the specific "Build" feature. Use Google AI Studio Playground and the <strong>&lt;&gt; Get Code</strong> button to integrate Gemini 3 Pro into your own environment.</p>
+                    
+                    <div class="flex items-center gap-4 bg-gray-900/80 p-4 rounded-xl mb-4">
+                        <i class="fa-brands fa-google text-2xl text-blue-400"></i>
+                        <div>
+                            <h4 class="text-white font-medium">Step 1: AI Studio</h4>
+                            <p class="text-xs text-gray-500">Playground Mode -> Prompt Idea -> Get Code</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 bg-gray-900/80 p-4 rounded-xl">
+                        <i class="fa-solid fa-file-video text-2xl text-pink-400"></i>
+                        <div>
+                            <h4 class="text-white font-medium">Step 2: Submit</h4>
+                            <p class="text-xs text-gray-500">Video Demo + Project Link via Google Form</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="py-20 relative">
+        <div class="max-w-screen-xl px-4 mx-auto">
+            <h2 class="text-3xl font-bold text-center text-white mb-16 reveal">Event Schedule</h2>
+            
+            <div class="relative border-l-2 border-gray-700 ml-4 md:ml-1/2 md:-translate-x-[1px]">
+                <!-- Item 1 -->
+                <div class="mb-12 flex flex-col md:flex-row items-center justify-between w-full reveal">
+                    <div class="order-1 md:w-5/12 mb-4 md:mb-0 md:text-right md:pr-8">
+                        <h3 class="text-xl font-bold text-blue-400">Online Kick-off</h3>
+                        <p class="text-gray-300 mt-2">Hackathon opens online. Start ideating and coding from the comfort of your home.</p>
+                    </div>
+                    <div class="z-20 flex items-center order-1 bg-blue-600 shadow-xl w-10 h-10 rounded-full justify-center text-white text-sm font-bold border-4 border-gray-900 absolute left-[-1.2rem] md:static">
+                        26
+                    </div>
+                    <div class="order-1 md:w-5/12 md:pl-8">
+                        <span class="bg-gray-800 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">Dec 26, 2025 - 9:00 AM</span>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="mb-12 flex flex-col md:flex-row items-center justify-between w-full reveal">
+                    <div class="order-1 md:w-5/12 md:text-right md:pr-8 hidden md:block">
+                        <span class="bg-gray-800 text-purple-300 text-sm font-medium px-3 py-1 rounded-full">Dec 27, 2025</span>
+                    </div>
+                    <div class="z-20 flex items-center order-1 bg-purple-600 shadow-xl w-10 h-10 rounded-full justify-center text-white text-sm font-bold border-4 border-gray-900 absolute left-[-1.2rem] md:static">
+                        27
+                    </div>
+                    <div class="order-1 md:w-5/12 md:pl-8 mb-4 md:mb-0">
+                        <h3 class="text-xl font-bold text-purple-400">Offline Event Begins</h3>
+                        <p class="text-gray-300 mt-2">Physical event start. Collaborative building with local folks from Kolkata.</p>
+                        <ul class="text-sm text-gray-500 mt-2 space-y-1">
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Full day of expert talks</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Full course lunch included</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="mb-12 flex flex-col md:flex-row items-center justify-between w-full reveal">
+                    <div class="order-1 md:w-5/12 mb-4 md:mb-0 md:text-right md:pr-8">
+                        <h3 class="text-xl font-bold text-pink-400">Recording & Snacks</h3>
+                        <p class="text-gray-300 mt-2">Finalize your code, record your submission video with our support, and enjoy evening snacks.</p>
+                    </div>
+                    <div class="z-20 flex items-center order-1 bg-pink-600 shadow-xl w-10 h-10 rounded-full justify-center text-white text-sm font-bold border-4 border-gray-900 absolute left-[-1.2rem] md:static">
+                        20:00
+                    </div>
+                    <div class="order-1 md:w-5/12 md:pl-8">
+                        <span class="bg-gray-800 text-pink-300 text-sm font-medium px-3 py-1 rounded-full">Submission Deadline</span>
+                    </div>
+                </div>
+
+                 <!-- Item 4 -->
+                 <div class="mb-8 flex flex-col md:flex-row items-center justify-between w-full reveal">
+                    <div class="order-1 md:w-5/12 md:text-right md:pr-8 hidden md:block">
+                        <span class="bg-gray-800 text-yellow-300 text-sm font-medium px-3 py-1 rounded-full">Dec 27, 21:00</span>
+                    </div>
+                    <div class="z-20 flex items-center order-1 bg-yellow-500 shadow-xl w-10 h-10 rounded-full justify-center text-white text-sm font-bold border-4 border-gray-900 absolute left-[-1.2rem] md:static">
+                        <i class="fa-solid fa-trophy text-xs"></i>
+                    </div>
+                    <div class="order-1 md:w-5/12 md:pl-8 mb-4 md:mb-0">
+                        <h3 class="text-xl font-bold text-yellow-500">Prize Distribution</h3>
+                        <p class="text-gray-300 mt-2">Winners announcement and closing ceremony.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tracks & Prizes Section -->
+    <section id="tracks" class="py-20 bg-gray-900/50">
+        <div class="max-w-screen-xl px-4 mx-auto">
+            <h2 class="text-3xl font-bold text-center text-white mb-4 reveal">Tracks & Awards</h2>
+            <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto reveal">Total prize pool worth ₹20,000 in goodies. All participants receive ₹450 GCP credits.</p>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Track 1 -->
+                <div class="glass-card rounded-3xl p-8 hover:border-blue-500 transition-colors reveal">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 bg-blue-900/50 rounded-lg">
+                            <i class="fa-brands fa-google text-3xl text-blue-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">Google for Developers Track</h3>
+                    </div>
+                    <p class="text-gray-400 mb-6 min-h-[50px]">Build the best application utilizing Gemini 3 Pro's multimodal capabilities via the API.</p>
+                    <div class="space-y-4 border-t border-gray-700 pt-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-yellow-400 font-bold"><i class="fa-solid fa-trophy mr-2"></i>1st Place</span>
+                            <span class="text-white font-mono">₹5,000</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300 font-bold"><i class="fa-solid fa-medal mr-2"></i>2nd Place</span>
+                            <span class="text-white font-mono">₹3,000</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-orange-400 font-bold"><i class="fa-solid fa-medal mr-2"></i>3rd Place</span>
+                            <span class="text-white font-mono">₹2,000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Track 2 -->
+                <div class="glass-card rounded-3xl p-8 hover:border-yellow-500 transition-colors reveal">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 bg-yellow-900/50 rounded-lg">
+                            <i class="fa-solid fa-chart-line text-3xl text-yellow-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">Weights & Biases Track</h3>
+                    </div>
+                    <p class="text-gray-400 mb-6 min-h-[50px]">Demonstrate the best use of Weave for tracking and evaluating your GenAI application.</p>
+                    <div class="space-y-4 border-t border-gray-700 pt-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-yellow-400 font-bold"><i class="fa-solid fa-trophy mr-2"></i>1st Place</span>
+                            <span class="text-white font-mono">₹5,000</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300 font-bold"><i class="fa-solid fa-medal mr-2"></i>2nd Place</span>
+                            <span class="text-white font-mono">₹3,000</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-orange-400 font-bold"><i class="fa-solid fa-medal mr-2"></i>3rd Place</span>
+                            <span class="text-white font-mono">₹2,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speakers & Judges -->
+    <section class="py-20">
+        <div class="max-w-screen-xl px-4 mx-auto text-center">
+            <h2 class="text-3xl font-bold text-white mb-12 reveal">Speakers & Judges</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 reveal">
+                <!-- Person -->
+                <div class="group">
+                    <div class="w-24 h-24 mx-auto rounded-full bg-gray-700 mb-4 overflow-hidden border-2 border-gray-600 group-hover:border-blue-500 transition-colors">
+                        <img src="https://ui-avatars.com/api/?name=Avirup+Nandi&background=random" alt="Avirup Nandi" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-white font-medium text-sm">Avirup Nandi</h4>
+                </div>
+                <!-- Person -->
+                <div class="group">
+                    <div class="w-24 h-24 mx-auto rounded-full bg-gray-700 mb-4 overflow-hidden border-2 border-gray-600 group-hover:border-blue-500 transition-colors">
+                        <img src="https://ui-avatars.com/api/?name=Sitam+Meur&background=random" alt="Sitam Meur" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-white font-medium text-sm">Sitam Meur</h4>
+                </div>
+                <!-- Person -->
+                <div class="group">
+                    <div class="w-24 h-24 mx-auto rounded-full bg-gray-700 mb-4 overflow-hidden border-2 border-gray-600 group-hover:border-blue-500 transition-colors">
+                        <img src="https://ui-avatars.com/api/?name=Sugato+Bagchi&background=random" alt="Sugato Bagchi" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-white font-medium text-sm">Sugato Bagchi</h4>
+                </div>
+                <!-- Person -->
+                <div class="group">
+                    <div class="w-24 h-24 mx-auto rounded-full bg-gray-700 mb-4 overflow-hidden border-2 border-gray-600 group-hover:border-blue-500 transition-colors">
+                        <img src="https://ui-avatars.com/api/?name=Shubhayu+M&background=random" alt="Shubhayu Majumdar" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-white font-medium text-sm">Shubhayu Majumdar</h4>
+                </div>
+                <!-- Person -->
+                <div class="group">
+                    <div class="w-24 h-24 mx-auto rounded-full bg-gray-700 mb-4 overflow-hidden border-2 border-gray-600 group-hover:border-blue-500 transition-colors">
+                        <img src="https://ui-avatars.com/api/?name=Subhranil+Paul&background=random" alt="Subhranil Paul" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-white font-medium text-sm">Subhranil Paul</h4>
+                </div>
+                 <!-- Person -->
+                 <div class="group">
+                    <div class="w-24 h-24 mx-auto rounded-full bg-gray-700 mb-4 overflow-hidden border-2 border-gray-600 group-hover:border-blue-500 transition-colors">
+                        <img src="https://ui-avatars.com/api/?name=Rishiraj+Acharya&background=random" alt="Rishiraj Acharya" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-white font-medium text-sm">Rishiraj Acharya</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Judging Criteria -->
+    <section class="py-20 bg-gray-900/30">
+        <div class="max-w-screen-xl px-4 mx-auto reveal">
+            <h2 class="text-3xl font-bold text-center text-white mb-12">Judging Criteria</h2>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="glass-card p-6 rounded-2xl text-center">
+                    <div class="text-4xl font-bold text-blue-500 mb-2">40%</div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Impact</h3>
+                    <p class="text-sm text-gray-400">Does the application solve a real-world problem with tangible potential for positive change?</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center">
+                    <div class="text-4xl font-bold text-purple-500 mb-2">30%</div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Technical Depth</h3>
+                    <p class="text-sm text-gray-400">Does it work? How effectively does it utilize Gemini 3's advanced capabilities?</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center">
+                    <div class="text-4xl font-bold text-pink-500 mb-2">20%</div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Creativity</h3>
+                    <p class="text-sm text-gray-400">How original is the idea? Does it leverage Gemini 3 in new, impossible ways?</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center">
+                    <div class="text-4xl font-bold text-yellow-500 mb-2">10%</div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Presentation</h3>
+                    <p class="text-sm text-gray-400">How engaging is the video demo? Does it tell a powerful story?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Submission CTA -->
+    <section id="register" class="py-20">
+        <div class="max-w-screen-lg px-4 mx-auto text-center reveal">
+            <div class="glass-card rounded-3xl p-12 relative overflow-hidden">
+                <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-blue-500 opacity-10 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 bg-purple-500 opacity-10 rounded-full blur-3xl"></div>
+                
+                <h2 class="text-3xl font-bold text-white mb-6">Ready to Vibe Code?</h2>
+                <p class="text-gray-300 mb-8 max-w-xl mx-auto">
+                    Start building your idea with Gemini 3 Pro. Remember to record your video demo (max 2 mins) and host your code publicly. Submissions are accepted via Google Form until Dec 27, 8 PM.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <button class="text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-full text-lg px-8 py-4 transition-all hover:scale-105 shadow-lg shadow-blue-500/50">
+                        <i class="fa-brands fa-google mr-2"></i> Register via Google Form
+                    </button>
+                    <a href="https://aistudio.google.com/prompts/new_chat" target="_blank" class="text-white bg-gray-700 hover:bg-gray-600 font-medium rounded-full text-lg px-8 py-4 transition-all">
+                        Open AI Studio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-900">
+        <div class="max-w-screen-xl px-4 mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="text-2xl font-bold text-white">ML <span class="text-blue-500">Kolkata</span></span>
+                <p class="text-sm text-gray-500 mt-2">© 2025 Machine Learning Kolkata. All Rights Reserved.</p>
+            </div>
+            <div class="flex space-x-6">
+                <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-twitter text-xl"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-linkedin text-xl"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-instagram text-xl"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-discord text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Intersection Observer for fade-up animations
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const revealOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+        revealElements.forEach(el => revealObserver.observe(el));
+    </script>
+</body>
+</html>
