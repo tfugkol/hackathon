@@ -301,57 +301,102 @@
     </section>
 
     <!-- Timeline Section -->
-    <section id="timeline" class="py-20 relative overflow-hidden bg-white/40">
-        <div class="max-w-screen-xl px-4 mx-auto relative z-10">
-            <h2 class="text-3xl font-bold text-center text-sketch-dark mb-16 font-display reveal charcoal-heading">Event Schedule</h2>
+    <section id="timeline" class="py-24 relative overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+            <div class="absolute top-1/4 left-0 w-64 h-64 bg-orange-100/50 rounded-full blur-3xl mix-blend-multiply"></div>
+            <div class="absolute bottom-1/4 right-0 w-64 h-64 bg-blue-100/50 rounded-full blur-3xl mix-blend-multiply"></div>
+        </div>
+
+        <div class="max-w-5xl px-4 mx-auto relative z-10">
+            <h2 class="text-4xl font-bold text-center text-sketch-dark mb-20 font-display charcoal-heading">Event Schedule</h2>
             
-            <div class="relative border-l-4 border-gray-300 ml-4 md:ml-1/2 md:-translate-x-[2px] border-dashed">
-                <!-- Item 1 -->
-                <div class="mb-16 flex flex-col md:flex-row items-center justify-between w-full reveal group">
-                    <div class="order-1 md:w-5/12 mb-4 md:mb-0 md:text-right md:pr-12">
-                        <h3 class="text-xl font-bold text-sketch-googleBlue">Online Kick-off</h3>
-                        <p class="text-gray-600 mt-2">Hackathon opens online. Start ideating and coding from home.</p>
+            <div class="relative">
+                <!-- vertical line -->
+                <!-- Mobile: Left side (left-8), Desktop: Center (left-1/2) -->
+                <div class="absolute top-0 bottom-0 left-8 md:left-1/2 w-px bg-transparent border-l-2 border-dashed border-gray-300 transform -translate-x-1/2 h-full z-0"></div>
+
+                <!-- ITEM 1: Online Kick-off -->
+                <div class="mb-12 md:mb-24 flex flex-col md:flex-row items-center w-full group reveal">
+                    
+                    <!-- Left Side (Text on Desktop) -->
+                    <div class="w-full md:w-1/2 pl-20 md:pl-0 md:pr-16 md:text-right relative z-10 order-2 md:order-1">
+                        <h3 class="text-2xl font-bold text-sketch-googleBlue font-display">Online Kick-off</h3>
+                        <p class="text-gray-600 mt-2 font-medium leading-relaxed">Hackathon opens online. Start ideating and coding from home using Gemini API.</p>
+                        <!-- Mobile Date (Visible only on mobile) -->
+                        <span class="md:hidden inline-block mt-3 bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-full border border-blue-200">Dec 26, 9:00 AM</span>
                     </div>
-                    <div class="z-20 flex items-center order-1 bg-white shadow-lg w-12 h-12 rounded-full justify-center text-sketch-googleBlue border-4 border-gray-300 group-hover:border-sketch-googleBlue transition-colors absolute left-[-1.4rem] md:static">
-                        <i class="fa-solid fa-globe"></i>
+
+                    <!-- Icon (Center) -->
+                    <div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center order-1 md:order-2 z-20">
+                        <div class="w-12 h-12 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center shadow-md group-hover:scale-110 group-hover:border-sketch-googleBlue transition-all duration-300">
+                            <i class="fa-solid fa-globe text-sketch-googleBlue text-lg"></i>
+                        </div>
                     </div>
-                    <div class="order-1 md:w-5/12 md:pl-12">
-                        <span class="bg-blue-50 text-blue-700 text-sm font-bold px-4 py-1.5 rounded-full border border-blue-200 shadow-sm">Dec 26, 9:00 AM</span>
+
+                    <!-- Right Side (Date on Desktop) -->
+                    <div class="w-full md:w-1/2 md:pl-16 hidden md:block order-3">
+                        <span class="bg-white text-sketch-googleBlue text-sm font-bold px-5 py-2 rounded-full border-2 border-blue-100 shadow-[3px_3px_0px_rgba(219,234,254,1)]">
+                            Dec 26, 9:00 AM
+                        </span>
                     </div>
                 </div>
 
-                <!-- Item 2 (VENUE UPDATED) -->
-                <div class="mb-16 flex flex-col md:flex-row items-center justify-between w-full reveal group">
-                    <div class="order-1 md:w-5/12 md:text-right md:pr-12 hidden md:block">
-                        <span class="bg-orange-50 text-orange-700 text-sm font-bold px-4 py-1.5 rounded-full border border-orange-200 shadow-sm">Dec 27 (Offline)</span>
+                <!-- ITEM 2: Offline Event (Alternating) -->
+                <div class="mb-12 md:mb-24 flex flex-col md:flex-row items-center w-full group reveal">
+                    
+                    <!-- Left Side (Date on Desktop) -->
+                    <div class="w-full md:w-1/2 md:pr-16 md:text-right hidden md:block order-1">
+                        <span class="bg-white text-sketch-flame text-sm font-bold px-5 py-2 rounded-full border-2 border-orange-100 shadow-[3px_3px_0px_rgba(255,237,213,1)]">
+                            Dec 27 (Offline)
+                        </span>
                     </div>
-                    <div class="z-20 flex items-center order-1 bg-white shadow-lg w-12 h-12 rounded-full justify-center text-sketch-flame border-4 border-gray-300 group-hover:border-sketch-flame transition-colors absolute left-[-1.4rem] md:static">
-                        <i class="fa-solid fa-location-dot"></i>
+
+                    <!-- Icon (Center) -->
+                    <div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center order-1 md:order-2 z-20">
+                        <div class="w-12 h-12 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center shadow-md group-hover:scale-110 group-hover:border-sketch-flame transition-all duration-300">
+                            <i class="fa-solid fa-location-dot text-sketch-flame text-lg"></i>
+                        </div>
                     </div>
-                    <div class="order-1 md:w-5/12 md:pl-12 mb-4 md:mb-0">
-                        <h3 class="text-xl font-bold text-sketch-flame">Offline Event Begins</h3>
-                        <p class="text-gray-800 font-bold mt-1 mb-1">
-                            <a href="https://maps.app.goo.gl/v6uSrvjL6R3BVK8EA" target="_blank" class="hover:underline flex items-center gap-1">
-                                <i class="fa-solid fa-map-pin"></i> Meghnad Saha Institute of Technology
-                            </a>
-                        </p>
-                        <p class="text-gray-600 text-sm">Expert talks, mentorship, and full-course lunch.</p>
+
+                    <!-- Right Side (Text on Desktop) -->
+                    <div class="w-full md:w-1/2 pl-20 md:pl-16 text-left relative z-10 order-2 md:order-3">
+                        <h3 class="text-2xl font-bold text-sketch-flame font-display">Offline Event Begins</h3>
+                        <a href="https://maps.app.goo.gl/v6uSrvjL6R3BVK8EA" target="_blank" class="inline-flex items-center gap-1 text-gray-900 font-bold mt-1 hover:underline decoration-sketch-flame">
+                            <i class="fa-solid fa-map-pin text-sm"></i> Meghnad Saha Institute
+                        </a>
+                        <p class="text-gray-600 mt-2 font-medium leading-relaxed">Expert talks, mentorship, and full-course lunch.</p>
+                        <!-- Mobile Date -->
+                        <span class="md:hidden inline-block mt-3 bg-orange-50 text-orange-700 text-xs font-bold px-3 py-1 rounded-full border border-orange-200">Dec 27 (Offline)</span>
                     </div>
                 </div>
 
-                <!-- Item 3 -->
-                <div class="mb-16 flex flex-col md:flex-row items-center justify-between w-full reveal group">
-                    <div class="order-1 md:w-5/12 mb-4 md:mb-0 md:text-right md:pr-12">
-                        <h3 class="text-xl font-bold text-sketch-dark">Submission Deadline</h3>
-                        <p class="text-gray-600 mt-2">Record submission video and enjoy evening snacks.</p>
+                <!-- ITEM 3: Submission Deadline -->
+                <div class="flex flex-col md:flex-row items-center w-full group reveal">
+                    
+                    <!-- Left Side (Text on Desktop) -->
+                    <div class="w-full md:w-1/2 pl-20 md:pl-0 md:pr-16 md:text-right relative z-10 order-2 md:order-1">
+                        <h3 class="text-2xl font-bold text-sketch-dark font-display">Submission Deadline</h3>
+                        <p class="text-gray-600 mt-2 font-medium leading-relaxed">Record submission video, submit to form, and enjoy evening snacks.</p>
+                        <!-- Mobile Date -->
+                        <span class="md:hidden inline-block mt-3 bg-gray-100 text-gray-700 text-xs font-bold px-3 py-1 rounded-full border border-gray-300">Dec 27, 8:00 PM</span>
                     </div>
-                    <div class="z-20 flex items-center order-1 bg-white shadow-lg w-12 h-12 rounded-full justify-center text-sketch-dark border-4 border-gray-300 group-hover:border-sketch-dark transition-colors absolute left-[-1.4rem] md:static">
-                        <i class="fa-solid fa-video"></i>
+
+                    <!-- Icon (Center) -->
+                    <div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center order-1 md:order-2 z-20">
+                        <div class="w-12 h-12 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center shadow-md group-hover:scale-110 group-hover:border-sketch-dark transition-all duration-300">
+                            <i class="fa-solid fa-video text-sketch-dark text-lg"></i>
+                        </div>
                     </div>
-                    <div class="order-1 md:w-5/12 md:pl-12">
-                        <span class="bg-gray-100 text-gray-700 text-sm font-bold px-4 py-1.5 rounded-full border border-gray-300 shadow-sm">Dec 27, 8:00 PM</span>
+
+                    <!-- Right Side (Date on Desktop) -->
+                    <div class="w-full md:w-1/2 md:pl-16 hidden md:block order-3">
+                        <span class="bg-white text-gray-800 text-sm font-bold px-5 py-2 rounded-full border-2 border-gray-200 shadow-[3px_3px_0px_rgba(229,231,235,1)]">
+                            Dec 27, 8:00 PM
+                        </span>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
