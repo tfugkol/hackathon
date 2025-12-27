@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Showcase | Global GenAI Hackathon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        sketch: {
+                            bg: '#f4f1ea',
+                            dark: '#1a1a1a',
+                            gray: '#5a5a5a',
+                            flame: '#ff5e1f',
+                            flameLight: '#ff8a4c',
+                            googleBlue: '#4285F4',
+                            googleRed: '#EA4335',
+                            googleYellow: '#FBBC05',
+                            googleGreen: '#34A853',
+                            wandbYellow: '#FFBE0B',
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f4f1ea;
+            color: #1a1a1a;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.08;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            mix-blend-mode: multiply;
+        }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #e6e2d8; }
+        ::-webkit-scrollbar-thumb { background: #888; border-radius: 5px; border: 2px solid #e6e2d8; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+
+        .paper-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(0,0,0,1);
+            box-shadow: 6px 6px 0px rgba(0,0,0,1);
+            transition: all 0.2s ease;
+        }
+        
+        .paper-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0px rgba(0,0,0,1);
+        }
+
+        .paper-card.winner-card {
+            border: 3px solid #1a1a1a;
+        }
+
+        .charcoal-heading {
+             background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E"), 
+                         linear-gradient(#1a1a1a, #2a2a2a);
+             -webkit-background-clip: text;
+             -webkit-text-fill-color: transparent;
+             background-blend-mode: multiply;
+             filter: contrast(150%);
+        }
+
+        .modal-overlay {
+            background-color: rgba(244, 241, 234, 0.8);
+            backdrop-filter: blur(8px);
+        }
+        
+        /* Markdown-like styling for descriptions */
+        .prose p { margin-bottom: 1rem; line-height: 1.6; }
+        .prose h3 { font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem; font-family: 'Space Grotesk', sans-serif; }
+        .prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .prose a { color: #4285F4; text-decoration: underline; }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 start-0 bg-[#f4f1ea]/95 backdrop-blur-md border-b border-gray-300 shadow-sm">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="index.html" class="flex items-center space-x-2 rtl:space-x-reverse group">
+                <div class="w-8 h-8 bg-sketch-dark text-white flex items-center justify-center rounded-lg font-bold text-lg group-hover:bg-sketch-flame transition-colors transform rotate-3">🔥</div>
+                <span class="self-center text-xl font-bold whitespace-nowrap tracking-tight font-display text-sketch-dark charcoal-heading">ML <span class="text-sketch-flame">KOLKATA</span></span>
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                <a href="index.html" class="text-sketch-dark bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none font-bold rounded-lg text-sm px-4 py-2 text-center transition-all border-2 border-black shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="pt-32 pb-12 px-4 text-center">
+        <div class="inline-flex justify-between items-center py-1 px-4 mb-6 text-sm rounded-full border-2 border-sketch-dark bg-white text-sketch-dark shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transform -rotate-1">
+            <span class="font-bold mr-2">🎉 Results Announced</span> 
+        </div>
+        <h1 class="text-5xl md:text-7xl font-extrabold font-display text-sketch-dark mb-4 charcoal-heading">
+            PROJECT <span class="text-sketch-flame">SHOWCASE</span>
+        </h1>
+        <p class="text-xl text-gray-700 max-w-2xl mx-auto font-medium">
+            Celebrating the innovative solutions built with Gemini 3 Pro and Weights & Biases.
+        </p>
+    </header>
+
+    <!-- Content Container -->
+    <main class="flex-grow max-w-screen-xl mx-auto px-4 w-full pb-20">
+        
+        <!-- Winners Section -->
+        <div id="winners-section" class="mb-20 hidden">
+            <div class="flex items-center gap-4 mb-8">
+                <h2 class="text-3xl font-bold font-display text-sketch-dark border-b-4 border-sketch-flame inline-block pb-1">Winning Teams</h2>
+                <i class="fa-solid fa-trophy text-yellow-500 text-3xl animate-bounce"></i>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="winners-grid">
+                <!-- Winner cards injected via JS -->
+            </div>
+        </div>
+
+        <!-- All Projects Section -->
+        <div>
+            <h2 class="text-3xl font-bold font-display text-sketch-dark mb-8 border-b-4 border-gray-300 inline-block pb-1">All Submissions</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+                <!-- Cards injected via JS -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 modal-overlay overflow-y-auto">
+        <div class="relative w-full max-w-4xl bg-white border-4 border-black shadow-[10px_10px_0px_rgba(0,0,0,1)] rounded-2xl my-8">
+            
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 bg-red-100 hover:bg-red-200 border-2 border-black rounded-full flex items-center justify-center text-red-600 font-bold transition-transform hover:rotate-90 z-10">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div class="p-8 md:p-12">
+                <!-- Modal Header -->
+                <div class="mb-8 border-b-2 border-dashed border-gray-300 pb-6">
+                    <div id="modal-badges" class="flex flex-wrap gap-2 mb-4"></div>
+                    <h2 id="modal-title" class="text-3xl md:text-5xl font-black font-display text-sketch-dark mb-2"></h2>
+                    <p id="modal-subtitle" class="text-xl text-gray-600 font-medium italic"></p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Sidebar -->
+                    <div class="md:col-span-1 space-y-6">
+                        <!-- Team -->
+                        <div class="bg-sketch-bg p-4 rounded-xl border-2 border-black shadow-sm">
+                            <h4 class="font-bold text-gray-500 uppercase text-xs tracking-widest mb-3">Team</h4>
+                            <div id="modal-team-name" class="font-bold text-xl mb-2 text-sketch-flame font-display"></div>
+                            <ul id="modal-members" class="space-y-2 text-sm font-semibold text-gray-800"></ul>
+                        </div>
+
+                        <!-- Links -->
+                        <div class="bg-sketch-bg p-4 rounded-xl border-2 border-black shadow-sm">
+                            <h4 class="font-bold text-gray-500 uppercase text-xs tracking-widest mb-3">Resources</h4>
+                            <div id="modal-links" class="flex flex-col gap-2"></div>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="md:col-span-2">
+                        <h4 class="font-bold text-gray-900 text-lg mb-4 font-display flex items-center">
+                            <i class="fa-regular fa-file-lines mr-2"></i> Project Details
+                        </h4>
+                        <div id="modal-description" class="prose text-gray-800 whitespace-pre-line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white/80 py-12 border-t-2 border-gray-200 mt-auto">
+        <div class="max-w-screen-xl px-4 mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0 text-center md:text-left">
+                <span class="text-2xl font-black text-sketch-dark font-display charcoal-heading">ML <span class="text-sketch-flame">Kolkata</span></span>
+                <p class="text-sm text-gray-500 mt-2 font-bold">© 2025 Machine Learning Kolkata.</p>
+            </div>
+            <div class="flex space-x-6">
+                <a href="https://x.com/MLKolkata" class="text-gray-400 hover:text-black transition-colors"><i class="fa-brands fa-twitter text-2xl"></i></a>
+                <a href="https://www.linkedin.com/company/mlkolkata" class="text-gray-400 hover:text-blue-700 transition-colors"><i class="fa-brands fa-linkedin text-2xl"></i></a>
+                <a href="https://www.instagram.com/mlkolkata" class="text-gray-400 hover:text-pink-600 transition-colors"><i class="fa-brands fa-instagram text-2xl"></i></a>
+                <a href="https://t.me/MLKolkata" target="_blank" class="text-gray-400 hover:text-blue-500 transition-colors"><i class="fa-brands fa-telegram text-2xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ==========================================
+        // PASTE YOUR FULL JSON DATA HERE
+        // ==========================================
+        const hackathonData = [
+          {
+            "Team Name": "Stack Overflowers",
+            "Team Member 1 Name": "Shagil Islam",
+            "Team Member 2 Name": "Shadan Akhtar",
+            "Team Member 3 Name": "Yousuf Minhaj Khan",
+            "Title": "Mnemosyne - The AI Memory Prosthetic",
+            "Subtitle": "Instead of a simple reminder app, Mnemosyne is an \"Always-On\" Multi-Agent System that runs on an early-stage Alzheimer’s/Dementia patients' phone (or wearable) and passively \"listens\" to conversations and \"sees\" the environment (via camera/audio) to provide real-time context cues to the patient before they get confused.",
+            "Project Description": "We've added a detailed description about the entire project in this public README: https://github.com/shagil77/mnemosyne\n\nMnemosyne: The Gemini 3 Memory Prosthetic 🧠✨\n\nA real-time \"Cognitive Prosthetic\" that leverages Gemini 3's 2M+ context window to restore dignity and social connection for dementia patients.\n\n---\n\nThe Mission (Problem & Impact): Dementia doesn't just steal memories; it steals the confidence to interact with the world. Patients often face the \"Stranger in the Mirror\" problem—failing to recognize loved ones, which leads to social withdrawal and rapid cognitive decline. Mnemosyne acts as an invisible, empathetic friend that whispers vital context (names, shared memories, and emotional cues) into a patient’s earpiece in real-time, allowing them to navigate life with independence and dignity.\n\n---\n\nTechnical Architecture: Mnemosyne uses a Hierarchical Multi-Agent System designed to process a live multimodal stream with extreme efficiency.\n\n1. Perception Agent (Gemini 3 Flash)\n\n* Role: Handles the high-frequency multimodal \"Passive Listening\" phase.\n\n* Capability: Processes sub-second video/audio frames to detect faces, voices, and environmental \"vibes.\" It outputs structured JSON only when \"High-Signal\" entities (like a person entering the room) are detected.\n\n2. Context Agent (Gemini 3 Pro)\n* Role: The \"Active Reasoning\" brain.\n\n* Gemini Advantage: Utilizes the 2M+ context window to maintain a \"Living Knowledge Graph\" of the patient’s entire life history.\n* Frugal Relevance Filter: We engineered a custom filter that reduces token usage by intelligently deciding when to trigger deep memory retrieval vs. remaining in a low-power idle state.\n\n3. Whisper Agent (Gemini 3 Pro)\n* Role: Natural Language Generation with high Emotional EQ.\n\n* Output: Decides what to whisper to the patient to minimize cognitive load while maximizing social success (e.g., \"That's your grandson, Rahul. He was here yesterday.\").\n\n---\n\nSafety & Monitoring (Weights & Biases)\nWe integrated **Weights & Biases (W&B) to move beyond a simple prototype into a safety-first HealthTech solution:\n\n* Memory Confidence: Tracks how accurately the AI is identifying entities.\n* Hallucination Guardrails: Logs AI reasoning paths to ensure whispers are grounded in the patient's actual history.\n* Emotional Heatmaps: Provides caregivers with a dashboard of the patient's mood and engagement trends throughout the day.\n\n---\n\nTech Stack\n* Core AI: Google Gemini 3.0 Pro & Flash (Multimodal Preview).\n\n* Observability: Weights & Biases (Trace & Dashboarding).\n* Frontend: Vite, React (Glassmorphism & High-Contrast UI for accessibility).\n* Backend: Python 3.10+, FastAPI.\n* Deployment: Optimized for low-latency edge processing.\n\n---\n\nMnemosyne doesn't just use AI to answer questions; it uses Gemini 3 to anticipate human needs. By bridging global knowledge (recognizing a face) with private memory (mapping that face to a grandson), we’ve created a \"Zero-UI\" interface where the technology learns the patient, not the other way around.\n\nSubmission for the Global GenAI Hackathon hosted by Machine Learning Kolkata.",
+            "Project Links": "https://github.com/shagil77/mnemosyne,https://mnemosyne-frontend-677184796940.us-central1.run.app/",
+            "Video Demo": "https://youtu.be/_JeuQl3rqYM?si=r4iOh2RXDTaBXm-R",
+            "Prizes": "1st wandb track"
+          },
+          {
+            "Team Name": "Beginny",
+            "Team Member 1 Name": "Akanksha Kumari",
+            "Team Member 2 Name": "Tushar Vaskar Sharma",
+            "Team Member 3 Name": "",
+            "Title": "StudyBee",
+            "Subtitle": "StudyBee is an AI study companion that turns focus into a friendly competition by tracking learning habits, generating AI insights, and ranking students on shared leaderboards.",
+            "Project Description": "This project is an AI-powered student productivity tracker made as a Chrome extension. It tracks browsing activity and sort into learning, distraction, or mixed usage and gives real-time feedback through a clean, interactive dashboard. The platform also adds a competitive aspect by letting users create groups, compare their progress on leaderboards , and stay accountable together. It pushes notification alerts when user is distracted while having a low learning time. Using Generative AI (Gemini), the system displays daily motivation, weekly reflections through a dashboard of learning vs distracted, and an AI study coach that students can talk to. Overall, the project combines tracking behaviour, AI insights, and gamification to make studying more engaging and self-aware.",
+            "Project Links": "https://github.com/tusharvaskarsharma/StudyBee.git",
+            "Video Demo": "https://youtu.be/oebV_2La9vg?si=gDIMzg9srVdGpH5O",
+            "Prizes": "1st google track"
+          },
+          {
+            "Team Name": "Code Matrix",
+            "Team Member 1 Name": "Ayush Kumar",
+            "Team Member 2 Name": "Dhiraj Kumar Chowdhury",
+            "Team Member 3 Name": "",
+            "Title": "DocAI — AI-Powered Clinical Health Intelligence",
+            "Subtitle": "DocAI turns medical reports and scans into clear, traceable health insights using AI you can actually trust.",
+            "Project Description": "DocAI is built to help people make sense of their medical reports when they need clarity the most. By allowing users to upload blood reports or medical images, DocAI carefully extracts key health markers and explains them in simple, understandable language, helping users see what matters and what steps they can take next.\n\nAll analysis is handled securely on the backend using Google Gemini, and every AI decision is traced with Weights & Biases (W&B Weave) to ensure transparency and reliability. By combining thoughtful AI with traceability and a calm, user-first experience, DocAI aims to make early health awareness and preventive care more approachable, respectful, and accessible.\n\nGitHub Link: https://github.com/ayushkumar2601/DocAI\nLive Link: https://docaihealth.vercel.app\nX post: https://x.com/notmuchayush/status/2004456915812958476?s=20",
+            "Project Links": "https://docaihealth.vercel.app/",
+            "Video Demo": "https://www.youtube.com/watch?v=C8qsbIZCLR0",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "DEV NEXUS",
+            "Team Member 1 Name": "Amitava Datta",
+            "Team Member 2 Name": "Pranay De",
+            "Team Member 3 Name": "Srinjinee Mitra",
+            "Title": "CivicPulse: AI-Powered Civic Engagement for Smarter Communities",
+            "Subtitle": "CivicPulse reconnects citizens with their local government by transforming the often frustrating process of reporting public issues into a simple, transparent, and rewarding collaboration, using AI to help everyone work together to build safer and more beautiful communities.",
+            "Project Description": "CivicPulse is a comprehensive, AI-powered Progressive Web App (PWA) with TWA features designed to revolutionize how local communities report, manage, and resolve civic issues. It creates a transparent and efficient three-node network that connects Citizens, Municipal Officials, and Field Supervisors, ensuring accountability and engagement at every step and also maintain a trust between government and citizen.\n\nThe platform is built on a \"three-faced\" model, providing a tailored experience for each user role:\n1. For Citizens: An interactive, gamified mobile-first experience to report issues, track their resolution in real-time, and earn rewards for contributing to their community.\n2. For Municipal Officials: A powerful administrative dashboard to manage incoming reports, assign tasks to field staff or supervisors, and monitor overall performance with detailed analytics.\n3. For Field Supervisors: A streamlined work queue to receive assignments, submit completion reports with photo evidence, and compete on a performance-based leaderboard.\n\nThe application follows a seamless workflow powered by AI:\n\n1. AI-Assisted Reporting (Citizen): A citizen spots an issue (e.g., a pothole). They use the app to capture photos, record audio notes, and select a category. Our AI engine, powered by Google's Gemini model, instantly analyses the submission to:\no Validate the image's relevance (whether the image actually represent a issue or not) and assign a severity score (1-10). If the image is of any random person or object it will be rejected during submission and no issue will be generated.\no Transcribe audio notes (can be in any language including regional languages like Hindi, Bengali etc.) into text.\no Checks whether the audio is relevant to the image or not.\no Determine an intelligent priority level (Low, Medium, High).\no Generate a concise, descriptive title with a ticket ID.\n\n2. Sorting and Assignment (Municipal Official): The validated report appears in the official's \"Sorted Work Queue.\" They can view all AI-generated details, see how many other citizens have \"joined\" the report, and assign it to the appropriate supervisor with a deadline.\n\n3. Resolution and Verification (Field Supervisor): The ticket appears in the supervisor's personal dashboard. After completing the work, they submit a completion report with \"after\" photos. To ensure authenticity, our AI performs:\no AI Image Detection: Rejects submissions with AI-generated images and penalizes the supervisor's \"Trust Score.\"\no Completion Analysis: Cross-validates the \"before\" and \"after\" photos to confirm the work was done correctly.\n\n4. Final Approval & Feedback (Official & Citizen): The official reviews the supervisor's report, aided by the AI analysis. Upon approval, the ticket is marked as \"Resolved,\" and the supervisor earns \"Efficiency Points.\" The original reporter i.e., the citizen is then notified and can provide a star rating, which directly influences the supervisor's \"Trust Score.\"\nHighlighting Features:\no Gamification Engine: In addition to simple reporting, CivicPulse also provides a rewarding and competitive environment where:\no Citizens earn Utility Points for valid reports, which can be redeemed for local vouchers (integration with Blockchain currency in future), and unlock Badges for achievements.\no Supervisors earn Efficiency Points for timely, high-quality work, competing on a dedicated leaderboard.\no A universal Trust Score penalizes misuse (e.g., spam reports, fraudulent photos) to maintain system integrity.\no Hybrid AI Priority Engine: Our intelligent triage system combines multiple data points—image severity, textual keywords, issue category, and community \"join\" count—to create a priority level that is far more accurate and effective than manual sorting as here priority will increase based on the number of users that joined the issue.",
+            "Project Links": "https://github.com/AmitavaDatta2004/Civic-Nexus , https://civic-pulse-seven.vercel.app/",
+            "Video Demo": "https://youtu.be/AZlao4by4-c?si=bsuGyYa4IUe3hOZ_",
+            "Prizes": "2nd google track"
+          },
+          {
+            "Team Name": "Pokemon",
+            "Team Member 1 Name": "Fardin Rahaman",
+            "Team Member 2 Name": "Ashish Karmakar",
+            "Team Member 3 Name": "",
+            "Title": "Flow Do",
+            "Subtitle": "FlowDo is an AI-powered visual learning flow builder that lets you create interactive study plans by connecting nodes, upload files to generate flows, chat with your flow for context-aware answers, and automatically organize your content with AI assistance",
+            "Project Description": "FlowDo is an AI-powered visual learning flow builder that helps students and educators create interactive study plans by connecting concepts as nodes on a canvas. It integrates Google Gemini AI to generate explanations, quizzes, and study plans from topics or uploaded files (PDF/TXT/MD), features a RAG-based chat system that answers questions using visible node content, and includes auto-layout algorithms for organizing complex flows. Built with React, TypeScript, and Firebase for cloud storage, it combines graph visualization, AI content generation, and intelligent organization to transform how people structure and interact with learning materials\n\nHere is our github project link: https://github.com/hawatri/FlowDo.git",
+            "Project Links": "https://flowdo.hawatri.in/",
+            "Video Demo": "https://youtu.be/BKTN3upEgY0",
+            "Prizes": "3rd google track"
+          },
+          {
+            "Team Name": "Mambas",
+            "Team Member 1 Name": "Aryan Biswas",
+            "Team Member 2 Name": "Nikhil Kumar Ria",
+            "Team Member 3 Name": "Ayush Kumar",
+            "Title": "PixelPrompt",
+            "Subtitle": "PixelPrompt is an AI-powered educational tool that instantly converts any written text into a fully playable, interactive video game using Google Gemini 2.5 for logic and generative AI for real-time graphics.",
+            "Project Description": "PixelPrompt is an AI-powered \"Text-to-Game\" engine designed to revolutionize the EduTech sector. It allows educators and students to instantly convert abstract concepts into fully playable, interactive video games just by typing a sentence.\n\nTraditional education often struggles with engagement because creating interactive software requires coding skills that most teachers lack. PixelPrompt solves this by using Google Gemini 2.5 Flash to analyze natural language (e.g., \"The white blood cells hunt the virus\" or \"Sort the waste into plastic and organic\") and dynamically construct a game from scratch.\n\nThe engine automatically selects the best gameplay mechanic (Shooter, Sorter, Dodger, Connector), generates unique pixel-art assets in real-time using generative image diffusion, and builds a working executable in seconds. This democratizes game development, turning passive textbook reading into active, gamified learning without requiring a single line of code.\n\nKey Features:\n\nInstant Gamification: Transforms text prompts into one of 6 unique game modes.\n\nReal-Time Asset Generation: Creates custom sprites and visuals on the fly.\n\nSmart Assessment: Tracks player reaction times and accuracy for psychometric profiling.\n\nZero-Code Platform: Accessible to any teacher or student with a computer.",
+            "Project Links": "https://github.com/CodesByAryan/PixelPrompt",
+            "Video Demo": "https://www.youtube.com/watch?v=W8yopEFuyuU",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Nano pineapple",
+            "Team Member 1 Name": "Poushali Bhattacharyya",
+            "Team Member 2 Name": "Mounasuvra Banerjee",
+            "Team Member 3 Name": "Souradip Pal",
+            "Title": "Ramen Art",
+            "Subtitle": "Manga creation app using AI",
+            "Project Description": "🍜 Ramen Art AI\n\nRamen Art AI is a powerful web application that combines AI-driven storytelling, character creation, and manga generation to help creators bring their narratives to life. Built with modern web technologies, it offers an intuitive interface for generating stories, creating original characters (OCs), and managing creative projects with a full-fledged manga creation suite.\n\n✨ Features\n📖 Story Generation & Refinement\n\nAI-Powered Story Creation\nGenerate complete stories with customizable parameters such as genre, tone, length, and target audience.\n\nAI Story Refinement\nRefine raw prompts into detailed, structured narratives using Google Gemini AI.\n\nFull-Context Prompting\nAutomatically builds rich prompts including story metadata, world-building, arc details, and scene summaries.\n\n🎨 OC Maker (Original Character Creator)\n\nAI Image Generation\nGenerate high-quality character artwork using Z-Image groups and Gemini Image models.\n\nFlexible Input Methods\n\nFree-text custom descriptions\n\nDropdown selections for:\n\nGender, Style, Age\n\nBody Type, Hair, Eyes, Face\n\nSkin Tone, Clothing, Accessories\n\nAI Prompt Optimization\nEnhance character descriptions using Gemini-powered refinement.\n\nCharacter Library\nSave OCs per story and reuse them as visual references during manga generation.\n\n🖌️ Manga Creator (Interactive Canvas)\n\nInteractive Canvas\nDrag-and-drop elements with fully customizable panel layouts.\n\nAutomated Panel Generation (1-Click Workflow)\nA streamlined 3-step AI pipeline:\n\nSuggest Action – AI analyzes story context to propose the next panel action\n\nOptimize Prompt – Converts the action into a detailed image prompt\n\nGenerate Image – Uses Gemini 2.5 Flash Image to create the panel\n\nCharacter Consistency\nAutomatically uses saved character images as visual references.\n\nPage-Level Generation\nGenerate complete manga pages with consistent style and layout.\n\nReal-Time Updates\nGenerated images are instantly applied to the selected panels on the canvas.\n\n🎯 Smart Enhancements\n\nAI Background Removal using Cloudinary\n\nResponsive, Modern UI with glassmorphism design\n\nToast Notifications for clear user feedback",
+            "Project Links": "https://github.com/ramenartai/Ramen_Art/",
+            "Video Demo": "https://www.youtube.com/watch?v=n8K_2LgP61A",
+            "Prizes": "2nd wandb track"
+          },
+          {
+            "Team Name": "Han Solo",
+            "Team Member 1 Name": "Priyam Pandey",
+            "Team Member 2 Name": "",
+            "Team Member 3 Name": "",
+            "Title": "Med Sage",
+            "Subtitle": "MedSage is a lightweight clinical triage tool that converts raw patient transcripts into concise, risk-focused medical summaries using Gemini, with full AI performance tracing via Weave.",
+            "Project Description": "MedSage is a web-based application designed to help clinicians quickly understand complex patient histories. Doctors can upload medical transcripts as text, PDF, or DOCX files, which are then analyzed using Google Gemini to generate a short, clinically useful summary, key symptoms, conditions, medications, and an overall risk assessment.\nThe application emphasizes clarity, speed, and accountability. Every AI inference is automatically logged and traced using Weave, allowing developers and judges to inspect model behavior, prompts, and outputs for transparency and evaluation. MedSage demonstrates how generative AI can be safely integrated into healthcare workflows while maintaining observability and performance insights.",
+            "Project Links": "https://huggingface.co/spaces/Priyam2307/Med_Sage",
+            "Video Demo": "https://youtu.be/dGxCBcsHeqU?si=5cW9MSOO2Bz5kqEJ",
+            "Prizes": "3rd wandb track"
+          },
+          {
+            "Team Name": "Team Envision",
+            "Team Member 1 Name": "Sougata Sarkar",
+            "Team Member 2 Name": "Sayan Debnath",
+            "Team Member 3 Name": "Sanish Bhagat",
+            "Title": "Health Sathi",
+            "Subtitle": "Healthcare simplified with multimodal AI.",
+            "Project Description": "Health Sathi: Healthcare simplified with Multimodal AI\nThe Problem: Uncertainty among patients regarding their medical reports and diagnosis.\nIn the current healthcare landscape, there is a huge \"clarity gap\" between medical professionals, medical reports and patients. Medical reports are often dense with handwritten prescriptions with unclear handwriting and instructions, being very difficult to understand, and lab results can feel very complex to extract. For many, especially those in regional areas and senior citizens, this confusion is compounded by language barriers and unclear instructions. When patients don’t fully understand their diagnosis or medication schedules, it leads to anxiety, non compliance and health complications.\nOur Solution: Health Sathi : Your digital health companion.\nHealth Sathi (meaning \"Health Companion\") is an innovative, multimodal AI assistant designed to bridge this gap. By leveraging the advanced reasoning and vision capabilities of Google’s Gemini 2.5 and 3 Flash models, Health Sathi transforms complex medical data into actionable, easy-to-understand guidance. It doesn't just process text; it \"sees\" prescriptions, \"hears\" symptoms, and \"reads\" clinical reports to provide a holistic view of a patient’s health.\n\nUnique Selling Points:\n1. Empowering Patients: Health Sathi makes healthcare accessible through intuitive multimodal inputs:\n•\tVision & Voice: Patients can upload photos of medicine bottles or record their symptoms naturally using speech-to-text.\n•\tBreaking Barriers: To ensure no one is left behind, the AI translates clinical advice into 10+ Indian regional languages (such as Hindi, Tamil, Marathi and other Indian regional language) unlike any other solutions.\n•\tAccessibility: With integrated Text-to-Speech (TTS), users can listen to their guidance—a vital feature for the elderly or visually impaired.\n•\tPrivacy & Portability: Using IndexedDB, the app works offline, storing records locally on the device. Patients can also generate professional PDF assessments to share with family or caregivers.\n2. Supporting Doctors: The platform is designed to complement, not replace, human expertise:\n•\tTriage Dashboard: Doctors are presented with a prioritized list, distinguishing between Critical and Pending cases to optimize their workflow.\n•\tClinical Verification: Every AI insight is anchored in a RAG (Retrieval-Augmented Generation) framework. This \"Health Sathi Medical Library\" ensures that responses are grounded in established medical protocols (e.g., Cardiology or Renal guidelines), significantly reducing the risk of hallucinations.\n•\tOne-Click Actions: Doctors can quickly approve, modify, or escalate AI assessments, maintaining total clinical oversight.\nThe Innovation Stack:\nHealth Sathi is built on a high-performance, modern tech stack designed for speed and responsiveness:\n•\tCore: Built with React 19 and TypeScript for a robust, type-safe frontend experience.\n•\tAI Engine:  We are utilizing Gemini-3-Flash for rapid document analysis and Gemini-2.5-Flash-TTS for natural voice generation.\n•\tState & Storage: Zustand manages the application state, while IndexedDB provides a secure, client-side NoSQL database for local-first data persistence.\n•\tStyling: A custom-animated UI powered by Tailwind CSS ensures the experience is as comforting as it is functional.\nThe Vision:\nHealth Sathi represents a shift toward empathetic tech. By combining the power of Large Multimodal Models (LMMs) with a human-centric design, the project ensures that medical clarity is no longer a luxury, but a standard for everyone, regardless of their language or technical literacy.",
+            "Project Links": "https://health-sathi-rosy.vercel.app/",
+            "Video Demo": "https://youtu.be/Or58CVNoXNc",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "White Hats 2.0",
+            "Team Member 1 Name": "Prajes Das",
+            "Team Member 2 Name": "Shreyash Tiwari",
+            "Team Member 3 Name": "Mohini Mishra",
+            "Title": "AI Powered Smart Exercise System with Personalized Coaching Assistant.",
+            "Subtitle": "AI-Driven Personalized Fitness & Coaching System with Real Time Feedback Analysis using Gemini and Weave for statistical formulation.",
+            "Project Description": "INTRODUCTION: Our AI powered smart exercise system represents a significant advancement in integrating technology with wellness, specifically yoga practice. This innovation combines embedded sensors, artificial intelligence (AI), and smart watch integration to provide users with a comprehensive and personalized exercise  experience. The device’s embedded sensors monitor posture, balance, and pressure distribution, feeding data to an AI-driven application that delivers real-time feedback and recommendations. By syncing with smart watches, the software also tracks heart rate, calorie expenditure, and activity levels, offering a holistic view of the user's fitness journey.\nA key feature of the AI powered smart exercise is its ability to deliver curated yoga and exercising content from expert instructors. This vast library of guided sessions is tailored to individual skill levels, goals, and preferences. The AI system continuously learns from user interactions, refining its recommendations to maintain relevance and engagement, thereby enhancing practice effectiveness and user motivation. Affordability is a core consideration in the software’s design, achieved through cost-effective materials and scalable manufacturing. By leveraging existing smart watch technology, the need for additional devices is minimized, further reducing costs.\n\nPROBLEM BEING SOLVED: Exercise is widely recognized for its physical and mental health benefits; however, incorrect posture, lack of expert supervision, and inconsistent practice significantly reduce its effectiveness and may lead to injury. Traditional yoga mats are passive tools that provide no feedback, and online classes , while helpful, lacked personal guidance and real-time correction. Hiring personal instructors offers quality guidance but is cost-prohibitive and inaccessible for many users.\n\nExisting smart fitness solutions are often fragmented, expensive, or dependent on multiple devices, increasing complexity and reducing adoption. There is a clear need for a unified, intelligent, and affordable system that can provide real-time feedback, adaptive training, and progress tracking without requiring constant human supervision.\n\nPROPOSED SOLUTION: SOLMat (our device) addresses these challenges by the integration of technology with wellness practices that has seen significant advancements, particularly in the realm of exercise. The system focuses on the development of an Artificial Intelligence (AI)-based software solution that enhances user experience by integrating with smartwatches for comprehensive progress tracking and providing expert-curated wellness content. The primary objective of this innovation is to make advanced in house exercise practice accessible and affordable to a broader audience.\n\nSYSTEM ARCHITECTURE:\n\nThe SOLMat comprises the following features:\n\n1.Embedded sensors and camera that monitors physical parameters and capture's users movements for posture correction.\n2.AI powered guidance and personalized yoga sessions that ensures high-quality engaging experience.\n3.Affordability and accessibility using cost-effective hardware and existing wearable devices.\n4.Voice interaction module that provides real-time guidance and accepts voice commands.\n5.Smartwatch integration that collects biometric data to complement posture analytics.\n\nKEY TECHNICAL DETAILS:\nAI Model:\n\n*Model Used: Gemini-2.0-Flash\n\n*Purpose: Enables high-speed, low-latency inference for real-time posture correction, intelligent feedback generation, and automated workout routine creation.\nJustification: Optimized for responsiveness and scalability, ensuring instant corrective guidance and adaptive workout recommendations without perceptible lag.\n\n*Input Data:\n\n*Source: MediaPipe and YOLO Pose Estimation Framework\n*Data Type: Raw two-dimensional Cartesian coordinate pairs (x, y) extracted from detected body landmarks such as shoulders, elbows, hips, and knees, used for posture analysis and movement tracking.\n\n*Output Mechanism:\n\n*Feedback Type: Dynamic voice guidance and adaptive workout instructions\nDelivery Method: Text-to-speech engine via the speak() function, powered by AI-generated responses from the Gemini API.\n*Weight–Bias Analytics and Monitoring:\nTool Used: Weights & Biases (W&B)\nPurpose: Used in conjunction with the weight–bias decision tool to log, monitor, and analyze workout performance metrics across sessions.\n*Tracked Parameters:\nNumber of repetitions performed\nDuration of each workout session\nDetected posture states and correction frequency\nExercise type and completion status\nJustification: W&B enables persistent storage and visualization of workout statistics, allowing longitudinal performance tracking and facilitating data-driven refinement of AI decision thresholds and weight–bias parameters for improved personalization.\n\nPERSONALIZED AI ASSISTANT:\n\nIt is a revolutionary fusion of ancient practice and cutting-edge technology, designed to elevate your wellness journey. It is a sophisticated network of embedded sensors, designed to track your movements with pinpoint accuracy. These sensors capture data on your body alignment, weight distribution, and even micro-adjustments during poses, all in real time. As you move through your practice, the AI processes this data and provides immediate, personalized feedback through a connected app or integrated audio system. Whether you’re holding a challenging pose, the AI ensures that you are always in optimal alignment, reducing the risk of injury and enhancing the effectiveness of each posture. It’s also equipped to monitor your breathing patterns and heart rate, giving you the overall wellness. The AI can detect subtle changes in your breath and suggest modifications to your practice. This integration of breath and movement helps you achieve a more mindful practice, where body and mind are in perfect balance. This software can also count the number of postures you have performed and automatically switches to another posture once repetition goals are met.\n\nSMART WATCH INTEGRATION:\n\nThe Smart Yoga Mat integrates seamlessly with smart watches, allowing for comprehensive tracking of additional metrics such as heart rate, calories burned, and overall activity levels.\nThis integration provides a holistic view of the user’s fitness journey, combining data from both the mat and the smart watch.\n\nADVANTAGE OVER NORMAL CURRENT INDUSTRY DEVICES : \n\nAn AI-powered exercising assistant offers significant advantages over traditional, standard methods, primarily by providing personalized feedback and guidance. Here's a breakdown:\n Real-time Posture Correction: \n1.Unlike a regular gym trainer, an AI-powered exercising coach uses sensors to track your movements and alignment.\n2. It provides instant feedback, helping you correct your poses and prevent injuries.\nPersonalized Guidance: \n3. AI algorithms can adapt to your skill level, offering tailored routines and adjustments.\n4. This eliminates the need for constant in-person instruction, making it ideal for home practice.\nProgress Tracking: \n5. SOLMat can record your sessions, track your progress, and identify areas for improvement.\n6.This data-driven approach helps you stay motivated and achieve your fitness goals.\nEnhanced Safety: \n7.By providing real-time corrections, the device minimizes the risk of injury from incorrect posture.\n8. This is particularly beneficial for beginners or those with physical limitations.\nIncreased Engagement: \n9.The interactive nature of AI-powered coach can make exercise practice more engaging and enjoyable.\n10.Features like audio prompts and haptic feedback can enhance the overall experience.\nThe gamified mode in our website also enables users to compete with their own self and make you exercising sessions much more engaging and enjoying.\nConvenience: \n11.Being able to have expert level feed back at any time, in your own home, adds a level of convience that is hard to overstate.\nIn essence, an AI-powered yoga mat transforms a passive tool into an active, intelligent guide, revolutionizing the way people practice yoga.\n\nCONCLUSION:\nBy transforming a yoga mat into an intelligent training system, SoLMat bridges the gap between expert instruction and home-based practice.This report details the technical specifications of the Smart Yoga Mat, including sensor technology, AI algorithms, and smart watch integration protocols. It also emphasizes user experience design, focusing on ease of use and accessibility. Our Device aims to democratize access to high-quality practice, potentially impacting the wellness industry by making advanced exercise accessible and affordable to a wider audience.",
+            "Project Links": "https://github.com/prajesdas/AI-Driven-Smart-Yoga-Mat-for-Personalized-Yoga-Guidance-and-Progress-Analytics",
+            "Video Demo": "https://youtube.com/shorts/NeV0AUD9Msw?feature=share",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "NoAura",
+            "Team Member 1 Name": "Sanjoy Paul",
+            "Team Member 2 Name": "Shubhojit Ghosh",
+            "Team Member 3 Name": "",
+            "Title": "Mailto",
+            "Subtitle": "AI-powered Personalized Outreach Workspace",
+            "Project Description": "We Developers can build anything, but when its about the very opportunities we need the most, we struggle. We are not expert in outreach, sales, or marketing, but these skills decide whether our work gets noticed.\nWriting personalized emails is slow, inconsistent and mentally exhausting, which limits our visibility and growth.\n\nMailto solves that.\nMailto is an AI powered outreach workspace that helps you generate, personalize, send and track emails from one place.\n\nWe use Google Gemini API to craft context-aware messaging and Weights & Biases to continuously learn what tone produces better response.\n\nSo users have 80% of their time, scale outreach effortlessly and get more replies, without learning marketing. It turns communication from weakness into a strength for developers, founders and builders who want their work to gain attention.\n\nBasically Mailto is an intelligent email workspace that helps you generate, customize, send, and track emails—all from a single interface. Designed for productivity-focused users, Mailto combines AI-driven content generation with real-world email workflows like recipient management, tone control, delivery, and status tracking. It is built for the Submission for Global GenAI Hackathon hosted by Machine Learning Kolkata.\n\nTech Stack:\nReactJS\nExpressJS\nMongoDB\nNodeJS\nGemini API\nWandb Weights & Biases\nNodemailer\nSMTP\n\nWorking Flow/Architecture:\nFirst Users have to create a workspace and set context to it, it can have multiple intent like: Job Outreach, Selling a product and Collaboration.\nAfter making workspace you can compose an email, for this you have to give the person’s X handle and email whom you want to outreach. You can manage the mail tone by customizing the sliders which have parameters such as: personalized, formal and persuasiveness.\nAfter clicking generate we collect the user’s X posts and analyze his/her personality and tone and make a customized mail for reaching them.\nOn clicking send the mail gets sent with help of SMTP and nodemailer and the recipient card gets saved and renders on frontend. \nWith the help of Weights and Biases we get the data of which format or what level of customization brings us the best reply rate.",
+            "Project Links": "https://github.com/Shubhojit-Official/Mailto/tree/main?tab=readme-ov-file",
+            "Video Demo": "https://youtu.be/fYv2q_RCG4w",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Null Pointer",
+            "Team Member 1 Name": "Puskar Nath",
+            "Team Member 2 Name": "Souvik Chakraborty",
+            "Team Member 3 Name": "",
+            "Title": "Rakshak",
+            "Subtitle": "An intelligent AI guardian for nuclear plants that predicts disasters before they happen and guides operators with step-by-step instructions to save lives.",
+            "Project Description": "Team Name: Null Pointer\nRAKSHAK: An AI System for Proactive Nuclear Safety and Automated Emergency Coordination\n\n1. Problem Statement\nThe privatization and growth of the nuclear ecosystem present a significant safety concern as India pursues its clean energy aspirations under the new SHANTI ACT.\nHistorical disasters like Bhopal and Chernobyl taught us a brutal lesson: the greatest loss of life isn't caused by the mechanical failure itself, but by the delay in detection and poor coordination between plant operators and external emergency services.\nCurrent SCADA(Supervisory Control And Data Acquisition) systems are Reactive—they trigger alarms only after a threshold is exceeded. In a critical meltdown scenario, this leaves minimal reaction time for operators and surrounding communities.\n2. The Solution: RAKSHAK\nRAKSHAK is an intelligent Human-Machine Interface (HMI) that transforms passive sensor data into proactive life-saving interventions .It's \"Physics-Constrained\" architecture guarantees that AI forecasts never go beyond safety rules or physical principles.\nKey Concepts of the RAKSHAK Architecture\n1. Analytics Layers (Deterministic & Machine Learning)\nWe split the AI analysis into two distinct parts:\n•\tDeterministic Safety Layer: This follows strict laws of physics. It uses Rate-of-Change Analysis ($dT/dt$ and $dP/dt$) to calculate the \"velocity of danger,\" helping us understand how fast the situation is escalating.\n•\tMachine-Learning Anomaly Layer: This uses advanced models  to detect tiny patterns or deviations in sensor data that are invisible to the human eye.\n2. Rule-Based Safety  \nThis is a critical safety feature. This ensures the AI never violates reactor physics or regulatory limits. \n3. Probabilistic Root-Cause Diagnosis\nThe system doesn’t just say \"Danger\"; it explains why it is happening using statistical confidence. For example: \"Primary Coolant Pump Failure: 85% Confidence.\" This helps operators make the right decision instantly.\n4. Dynamic SOP Guidance:\nThe system offers a particular SOP (Standard Operating Procedure) or Advisory Action Plan during a crisis. Based on the particular failure found, it provides the operator with detailed guidance on what to do next.\n5. Defense-in-Depth & Security:\nTo satisfy regulatory bodies, the architecture includes Air-Gapped Data Access and Defense-in-Depth layers. This means the core safety logic is physically isolated from the internet to prevent cyber-attacks.\n6.Safety Alert :\nIf the system detects a situation going out of control, it automatically sends alerts to nearby hospitals and police stations located outside the danger zone. This ensures help is ready before the crisis hits.\nCONCLUSION:\nConstrained AI framework to change nuclear safety from a reactive battle to a proactive approach. It prevents AI faults in critical  which guarantees complete dependability and regulatory compliance. In the end, RAKSHAK bridges the gap between detection and reaction to save lives by automating coordination with emergency services.",
+            "Project Links": "https://geminiworkflow.vercel.app/",
+            "Video Demo": "https://youtu.be/Xyhirj5W_eE",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Arnab",
+            "Team Member 1 Name": "Arnab Kumar Dey",
+            "Team Member 2 Name": "",
+            "Team Member 3 Name": "",
+            "Title": "HealthWise",
+            "Subtitle": "Personalized Health Care Assistant",
+            "Project Description": "https://drive.google.com/file/d/1i-jl24pYb7f3usQo8LYYbRysp_Czjkvx/view?usp=sharing",
+            "Project Links": "https://github.com/arnab9957/HeathWise.git",
+            "Video Demo": "https://youtu.be/-hkV75Cna1U",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Ascension",
+            "Team Member 1 Name": "Arnab Mandal",
+            "Team Member 2 Name": "Debaditya Majumder",
+            "Team Member 3 Name": "Ananya Mukherjee",
+            "Title": "3D Learning Hub",
+            "Subtitle": "An interactive 3D learning site that showcases models and answers questions via a Gemini-powered chatbot.",
+            "Project Description": "3D Learning Hub is a lightweight, web-based educational platform that transforms learning into an immersive experience using interactive 3D models and an AI assistant.\n\nBuilt with vanilla JavaScript, Tailwind CSS, and Google’s <model-viewer>, the platform runs as a fast static site — no heavy frameworks, no build tools, easy to deploy anywhere.\n\n✨ Key Features\n\n🧠 AI-powered chatbot (via secure backend + Google Gemini) for real-time learning support\n\n🧩 Interactive 3D model viewer for visual and hands-on exploration\n\n📱 Responsive, modern UI optimized for all devices\n\n⚡ Zero-build deployment — host instantly on Vercel or any static server\n\n🎯 Why It Matters\n\n3D Learning Hub demonstrates how 3D visualization + AI can dramatically improve engagement and understanding in education — while keeping the tech stack simple, fast, and accessible.",
+            "Project Links": "https://github.com/Arnab-apk/Model-StudyPlace",
+            "Video Demo": "https://youtu.be/9cCIE-nqhT0",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Solo Leveling",
+            "Team Member 1 Name": "Sayan Senapati",
+            "Team Member 2 Name": "",
+            "Team Member 3 Name": "",
+            "Title": "Krishi AI",
+            "Subtitle": "AI-powered crop disease diagnosis application",
+            "Project Description": "AI-powered crop disease diagnosis application for Indian farmers. Built with Next.js, TypeScript, MongoDB, and Google Gemini AI. next step is creating one WhatsApp chat bot for al those features",
+            "Project Links": "https://krishi-aii.vercel.app",
+            "Video Demo": "https://youtu.be/05lyNJCKLAE",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Frostbyte",
+            "Team Member 1 Name": "ADRISHA BISWAS",
+            "Team Member 2 Name": "",
+            "Team Member 3 Name": "",
+            "Title": "MediBill AI",
+            "Subtitle": "MediBill AI is a web app that is used for live tracking of updates in a hospital bill and giving detailed explanation of billed items when required.",
+            "Project Description": "MediBill AI is a patient-focused web app built to make hospital billing more transparent and easier to understand. Instead of revealing all charges at the time of discharge, it allows patients and families to see their bills update in real time as treatment progresses.\nThe idea came from noticing how confusing hospital bills can be, especially in private hospitals where medical terms, unclear charges and insurance uncertainty often leave families stressed and unprepared. MediBill AI helps reduce this confusion by explaining each bill item in simple language and indicating how insurance usually applies.\nTo make the experience more accessible, MediBill AI includes a family-friendly explanation mode, supports multiple languages and provides educational visual descriptions of medicines and procedures. Overall, the goal is to help patients and families stay informed, avoid surprises and feel more confident about hospital expenses.",
+            "Project Links": "https://github.com/adrisha-dev/medibill-ai (Github Repo)  https://medibill-ai-r96xmviyydp5zbduvxj7yk.streamlit.app/#medi-bill-ai (Demo Web app)",
+            "Video Demo": "https://youtu.be/ASwWTOONouU",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Prompt-as-a-Service(Paas)",
+            "Team Member 1 Name": "Suvam Paul",
+            "Team Member 2 Name": "Vikash Kumar",
+            "Team Member 3 Name": "Mohana Pal",
+            "Title": "DEV.OS - Advanced AI Operating System Assistant",
+            "Subtitle": "Intelligent AI-Powered Automation Platform for Seamless System Control and Workflow Integration",
+            "Project Description": "DEV.OS is an innovative AI-powered assistant designed to revolutionize how developers and users interact with their operating systems. Built with a modular microservices architecture, it seamlessly integrates cutting-edge generative AI technology to automate complex workflows.",
+            "Project Links": "https://github.com/Suvam-paul145/Dev-AI-OS-assistant",
+            "Video Demo": "https://youtu.be/_-PIhqmKfw0",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Neuro Vortex",
+            "Team Member 1 Name": "Soumyl Singh Sisodia",
+            "Team Member 2 Name": "Altamas",
+            "Team Member 3 Name": "Tanay Chowdhury",
+            "Title": "Skin Arogya",
+            "Subtitle": "Skin Arogya is an AI-powered multilingual web app that identifies Acne or Eczema and provides the user with a detailed report.",
+            "Project Description": "A user-friendly, AI-powered web application called Skin Arogya helps people comprehend common skin conditions like acne and eczema. In addition to describing their symptoms, such as itching, duration, or discomfort, users can upload a picture of their skin. In order to produce a clear, understandable result, the app uses both the image and their description.\n\nSkin Arogya generates a detailed report in multiple languages using the Gemini API to enhance and broaden the experience. This report emphasizes the significance of specific symptoms and provides a straightforward explanation of the findings. With an emphasis on safety, transparency, and trust, the app does not speculate when it is unsure; instead, it makes this clear and advises users to consult a professional.",
+            "Project Links": "https://skinarogya.streamlit.app/ ; https://github.com/Altamas1399/skinarogya",
+            "Video Demo": "https://youtu.be/dsF3HbBNMhw?si=U17E9XGCuOu4Wz_B",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "BhayanakAtmas",
+            "Team Member 1 Name": "Aritra Giri",
+            "Team Member 2 Name": "Satyam Mondal",
+            "Team Member 3 Name": "",
+            "Title": "EventHub",
+            "Subtitle": "EventHub is an AI-powered full-stack platform that uses Gemini 3 Pro to eliminate manual data entry through intelligent ID scanning and provide hyper-personalized event recommendations based on user intent.",
+            "Project Description": "EventHub – Event Engagement with Gemini 3 Pro\n\n\nThe Problem We’re Solving\n\nMost people have had the experience of the problem called \"registration wall\" — that moment when you want to join an event but lose interest because you have to type out a long list of personal details. On top of that, scrolling through hundreds of events to find something that you actually want to be a part of or somewhere you actually want to be in.\nTo bridge this problem between organizers and attendees, we introduce “EventHub” ,making the entire problem less time-consuming and effortless rather than being a headache.\n\n\nOur Proposed Solution\n\n        EventHub, an AI-driven platform which handles the “heavy-lifting” for both the user and the administrator. Instead of a static website where everything feels dull, we built a living system which has a soul as AI that recognizes who you are and where you actually belong.\n        Our core idea is simple: Handle the boring tasks, like typing forms and searching for an event for yourself, over to an AI, so we can focus on the event by our own.\n\n\nHow We Integrated Gemini 3 Pro\n\nFor this particular task we chose the model “Gemini 3 Pro Preview” because of its “multimodal features”, meaning it can understand images and texts simultaneously with human-like reasoning. \n\nA. AI-Powered Smart Registration\nInstead of a manual form, we implemented a \"Scan & Go\" feature.\n•        The Experience: A user simply uploads a photo of their ID card (which can be their college ID or any kind of Govt. ID).\n•        The Intelligence: Gemini 3 Pro uses its vision capabilities to identify the layout of the card, extract the name and email, and even calculate the user's age based on their date of birth.\n•        The Result: A registration process that used to take minutes now takes seconds, with zero typing required.\nB. Contextual Event Recommendations\nMost systems suggest events based on simple tags (e.g., \"Coding\"). EventHub uses Gemini’s reasoning to understand the vibe of a user's interests and picks what matches their vibe perfectly.\n•        The Experience: Users see a \"Top Picks\" section curated specifically for them.\n•        The Intelligence: Gemini looks at a user’s profile and explains its logic. For example: \"Because you are a Computer Science student and recently attended a Logic Seminar, you might enjoy this Chess Tournament\".\n•        The Result: Higher engagement because users feel the platform truly understands their professional and personal goals and tries to pick the best for the user.\nC. Dynamic Access Control\nWe leveraged AI to help manage our secure 3-tier system (User, Moderator, Admin).\n•        The Experience: Admins can \"invite\" others to help manage the site.\n•        The Intelligence: The system uses secure back-end logic to generate invite notifications. Once a user accepts, the AI-driven \"Gatekeeper\" reveals their access credentials, ensuring that staff privileges are handled with high security but a smooth user flow.\n\n\nWhy This Matters\n\nBy using Gemini 3 Pro, we’ve moved beyond basic automation. We’ve created a platform that:\n1.        Respects User Time: By eliminating manual data entry.\n2.        Reduces Human Error: By letting AI handle data extraction from documents.\n3.        Encourages Discovery: By making personalized suggestions that actually make sense to the user.\nEventHub is not just a tool for booking events; it is a demonstration of how AI can make digital interactions feel more human.\n\n\nConclusion\n\n        EventHub redefines the whole process of event managing by replacing the manual administrative hurdles with a seamless AI-driven experience. We have transformed the standard booking process into a modern digital concierge by prioritizing user time and personalization.\n        The integration of “Google Gemini 3 Pro Preview” was a huge turn for this field, which took event managing to a next level. Its multimodal capabilities turned the complex task of ID verification into a “one-click” auto-fill action, while its reasoning engine allowed for sematic event recommendations that truly matches the vibes of the user.\n        And last but not the least, this project stands out to be a proof that Generative AI can be powerful when it acts as an “invisible” layer, removing friction, enhancing security, and simplifying discovery. By combining the MERN Stack with cutting-edge AI, EventHub demonstrates that modern software can be both highly functional and genuinely human-centric.",
+            "Project Links": "https://github.com/Saty-am21-04/EventHub",
+            "Video Demo": "https://youtu.be/cSRNBgxde8k",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Trinity",
+            "Team Member 1 Name": "Sayan Paul",
+            "Team Member 2 Name": "Soumili Sarkar",
+            "Team Member 3 Name": "Shreya Dutta",
+            "Title": "Serene_AI",
+            "Subtitle": "Mental Health Assistant",
+            "Project Description": "SERENE - AI-Powered Mental Wellness Companion\nSERENE is a 24/7 mental health support chatbot built to provide empathetic, accessible, and private emotional support to anyone experiencing stress, anxiety, or emotional distress.\n\n🎯 The Problem\nMental health challenges affect millions worldwide, yet professional help remains inaccessible due to cost, stigma, and long wait times. People need immediate, judgment-free support during emotional crises.\n\n💡 Our Solution\nSERENE combines Google Gemini 2.0 Flash AI with custom TensorFlow intent classification to deliver:\n\nInstant emotional support - No waiting lists or appointments\nEmpathetic AI conversations - Trained specifically for mental wellness\nCrisis intervention protocols - Built-in safety measures for self-harm detection\nComplete privacy - All conversations stored locally, never used for training\nPersonalized journey tracking - Remembers your emotional patterns over time\n🛠️ How It Works\nIntent Classification: Custom TensorFlow model identifies mental health needs (stress, anxiety, depression, crisis)\nGemini AI Integration: Context-aware prompts generate empathetic, supportive responses\nSafety First: Detects crisis situations and suggests professional resources\nPersistent Memory: SQLite database maintains conversation history for continuity\n🚀 Technical Stack\nFrontend: React + TypeScript, Tailwind CSS, Shadcn/ui\nBackend: FastAPI (Python), TensorFlow/Keras\nAI: Google Gemini 2.0 Flash, custom ML models\nDatabase: SQLite with JWT authentication\nDeployment Ready: Docker, Render, Vercel compatible\n🎨 Key Features\n✅ Real-time AI mental health conversations\n✅ Intent classification (10+ mental health categories)\n✅ Multi-conversation management with search\n✅ Dark/Light theme for accessibility\n✅ Mobile-responsive design\n✅ Secure authentication & data isolation\n✅ Crisis support protocols\n\n⚠️ Ethical Design\nSERENE is NOT a replacement for professional therapy. We clearly communicate:\n\nWe don't diagnose conditions\nWe don't provide medical advice\nWe encourage seeking professional help\nEmergency resources are always accessible\n🌍 Impact\nSERENE democratizes mental health support by providing:\n\nImmediate help when therapists aren't available\nStigma-free environment for vulnerable conversations\n24/7 availability across time zones\nFree alternative to expensive therapy (supplement, not replacement)\n🔮 Future Vision\nMood tracking analytics over time\nIntegration with professional therapist platforms\nMulti-language support for global reach\nVoice conversation capabilities\nCommunity support features\nSERENE isn't just a chatbot—it's a compassionate companion built to make mental wellness support accessible to everyone, everywhere, anytime.",
+            "Project Links": "https://github.com/Sayan1355/Serene_AI",
+            "Video Demo": "https://youtu.be/vmF1oZZnvaw",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Alu Siddo",
+            "Team Member 1 Name": "Samiran Pal",
+            "Team Member 2 Name": "Sudipta Ghorami",
+            "Team Member 3 Name": "Aniket Pal",
+            "Title": "Context: Your Second Brain",
+            "Subtitle": "A browser extension that captures webpage context, stores it as searchable AI memory, and powers a smart chatbot using Gemini embeddings.",
+            "Project Description": "Context - Your Personal Second Brain for Web Browsing\n\nEver saved a hundred bookmarks and then forgot why you saved half of them? Yeah, we've all been there. That's exactly why we built Context.\n\nWhat is it?\n\nContext is a browser extension + web app combo that helps you save the important parts of web pages (not the whole page) and then lets you chat with your saved stuff using AI. Think of it like having a personal assistant who remembers everything you told them to remember.\n\nThe Problem We're Solving\n\nHere's the thing - bookmarks are broken. You save a page, it sits in a folder, and three weeks later you have no idea why you saved it. The title says \"React Documentation\" but which part? What were you trying to learn?\n\nWe wanted something smarter:\n\nSave only the parts that matter to you (a paragraph, a code snippet, a key insight)\nAutomatically tag and categorize what you save\nSearch by meaning, not just keywords\nAsk questions and get answers from YOUR saved knowledge\nHow It Actually Works\n\nSaving Memories (Ctrl+Shift+S)\n\nWhen you're on any webpage and find something useful, just hit the keyboard shortcut. The extension grabs the page info - title, URL, any text you've selected. Then our AI (Gemini) analyzes it and creates a summary, figures out why you might have saved it (learning? research? shopping?), and adds relevant tags. Everything gets stored with vector embeddings so we can search by meaning later.\n\nThe Chat Feature (RAG Pipeline)\n\nThis is the cool part. When you ask a question like \"What did I read about React hooks?\", here's what happens behind the scenes:\n\nYour question gets converted into a vector (numbers that represent meaning)\nWe search through all your saved memories to find the most relevant ones\nWe bundle those memories as context and ask the AI to answer using ONLY your saved content\nYou get an answer with sources showing exactly which memories were used\nIt's called RAG (Retrieval Augmented Generation) - basically the AI only knows what you've told it to remember.\n\nDashboard & Stats\n\nSee all your memories in one place. Filter by intent (learning, research, work, etc.), search semantically, view tag clouds, check how many memories you have per category. It's your personal knowledge base visualized.\n\nTech Stack\n\nBrowser Extension - Chrome extension with React-based sidepanel, captures page content\nBackend - Node.js + Express, handles auth, memory storage, search, and chat\nDatabase - MongoDB for storing memories with vector embeddings\nAI - Google Gemini for content analysis, summarization, embeddings, and chat responses\nFrontend Web App - React + TypeScript dashboard for viewing memories and chatting\nFeatures\n\nOne-click save - Ctrl+Shift+S saves current page with AI analysis\nSmart summarization - AI creates a 1-2 sentence summary of what you saved\nAuto-tagging - Automatically adds 3-5 relevant tags\nIntent detection - Figures out if you're learning, researching, shopping, etc.\nSemantic search - Search by meaning, not just exact words\nRAG Chat - Ask questions, get answers from your saved memories\nSource citations - See which memories the AI used to answer\nPrivacy-first - Nothing is saved unless YOU choose to save it\nWhat Makes This Different\n\nMost note-taking or bookmark apps either:\n\nSave too much (whole pages you'll never read again)\nRequire too much manual work (tagging, organizing)\nDon't let you query your knowledge\nWe hit a middle ground - you control what gets saved, but the AI does the boring work of organizing and retrieving. And when you need that info back, you just ask in plain English.\n\nPrivacy\n\nWe take this seriously. The extension doesn't auto-save anything. No background scraping. No selling your data. You press save, it saves. You don't press save, it doesn't exist in our system. Simple.",
+            "Project Links": "https://github.com/samiranpal2004/Context",
+            "Video Demo": "https://www.youtube.com/watch?v=Nk8B8mw-tik",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "NueralCoders",
+            "Team Member 1 Name": "Bikram Mondal",
+            "Team Member 2 Name": "Sreeja Guha Majumdar",
+            "Team Member 3 Name": "Rohit Kumar Debnath",
+            "Title": "DevOps-Ghostwriter",
+            "Subtitle": "Autonomous DevOps agents to automates PR audits, security, and docs with observability via W&B Weave",
+            "Project Description": "An intelligent multi-agent AI system that acts as your virtual DevOps engineer. Monitor GitHub Pull Requests, perform deep security audits, execute code in sandboxes, and auto-generate documentation — all while maintaining full observability through Weights & Biases Weave. Sit back, relax, and let AI handle your DevOps workflows!",
+            "Project Links": "https://github.com/BikramMondal5/DevOps-Ghostwriter",
+            "Video Demo": "https://youtu.be/g9ufl5saa7U",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "codely",
+            "Team Member 1 Name": "Biswaranjan Nag",
+            "Team Member 2 Name": "Swapna Pal Chowdhury",
+            "Team Member 3 Name": "",
+            "Title": "CODEQUEST",
+            "Subtitle": "easy coding learning website gamified version",
+            "Project Description": "Welcome to CodeQuest — an interactive, game-inspired platform that makes learning to code simple, engaging, and beginner-friendly.CodeQuest helps learners build strong fundamentals in Python and JavaScript through short levels, quizzes, hands-on challenges, instant feedback, and fun visual cues. Instead of long lectures, learners actively practice and learn by doing.\nWhy CodeQuest?\n\n✔ Level-based learning with clear progression\n✔ Separate Python and JavaScript learning paths\n✔ Star and XP-based progress tracking\n✔ Instant explanations for correct and wrong answers\n✔ Light-hearted feedback to reduce learning stress\n✔ Built-in AI tutor for on-demand coding help\n✔ Clean, modern UI with light and dark mode\n\n Who is CodeQuest for?\n\n• Absolute beginners in coding\n• College students and self-learners\n• Hackathon and academic projects\n• Anyone who wants a friendly, pressure-free way to learn programming\n\nTech Stack\n\n• React + TypeScript + Vite\n• AI-powered tutoring (Google Gemini)\n• Modern, responsive UI design\n \nLearn. Practice. Improve.\nCodeQuest turns coding into a guided, supportive experience where mistakes are part of the journey—not something to fear.",
+            "Project Links": "https://python-playground-nine.vercel.app",
+            "Video Demo": "https://youtu.be/PQXnqBQbzvQ",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "TANTRIKS",
+            "Team Member 1 Name": "Subhojyoti Maity",
+            "Team Member 2 Name": "Chandan Saha",
+            "Team Member 3 Name": "",
+            "Title": "Twindex",
+            "Subtitle": "Personalized Health Risk Analysis Powered by AI",
+            "Project Description": "https://twindex-write-up.vercel.app/",
+            "Project Links": "https://github.com/MONSTERBOY110/Twindex",
+            "Video Demo": "https://youtu.be/T2_dkNMZqU8?si=08P-T0dqBDlgMKsL",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Strange Coders",
+            "Team Member 1 Name": "Arko Kundu",
+            "Team Member 2 Name": "Swastik Sarkar",
+            "Team Member 3 Name": "",
+            "Title": "Strat OS",
+            "Subtitle": "The Operating System for Strategic Intelligence",
+            "Project Description": "StratOS is the world's first Living Strategic Twin powered by Gemini. While traditional BI tools look backward at data, StratOS looks forward using Generative Game Theory. It allows CEOs to simulate high-stakes decisions, predict specific competitor counter-moves, and generate execution blueprints—war-gaming the future before spending a dollar.\n\n💡 The Problem (Business/FinTech track):\nStrategic decision-making is currently broken. Executives rely on gut instinct or static spreadsheets to make billion-dollar bets.\nThe Cost: 67% of strategic plans fail due to unforeseen second-order effects.\nThe Gap: There is no tool that simulates \"Competitor Retaliation.\" Standard AI gives generic advice; it doesn't play out the scenario like a chess engine.\n\n🛠️ The Solution :\nStratOS upgrades the concept of a \"Chatbot\" to a \"Simulation Engine.\"\nBy leveraging Gemini’s advanced reasoning and massive context window, we created a Nash Equilibrium Engine.\nTwin Synchronization: Ingests company profile and market context.\nGame Theory Agents: Assigns the AI a \"Ruthless Competitor\" persona to stress-test your strategy.\nVisual Logic: Converts unstructured text into a valid React Flow Data Flow Diagram (DFD) for execution.\n\n⚙️ Technical Implementation :\nFrontend: Next.js 16 (App Router) with Framer Motion for \"Reasoning Trace\" visualization.\nAI Engine: Google Gemini Pro/Flash via the Vercel AI SDK. We utilize System Instructions to enforce JSON schema outputs for the competitor_profile and risk_heatmap.\nVisualization: react-flow + dagre: Automated layout algorithms to render the Implementation Blueprint.\nDynamic Risk Heatmaps calculated from semantic analysis of the scenario.\n\n🌍 Real-World Viability :\nStratOS transforms strategy from an art into a science. From a startup founder deciding on a pivot to a Fortune 500 CEO weighing an acquisition, StratOS provides the one thing money can't buy: \"Foresight\".",
+            "Project Links": "https://ceo-in-a-box.vercel.app/",
+            "Video Demo": "https://youtu.be/YRpLNCWM_Jg",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Evo X",
+            "Team Member 1 Name": "Manas Kumar Ghosh",
+            "Team Member 2 Name": "Debkanta Dey",
+            "Team Member 3 Name": "",
+            "Title": "CropShield: The Voice-Native AI Agronomist",
+            "Subtitle": "Saving harvests with a multimodal AI that sees disease, senses weather, and speaks the farmer's native dialect via Gemini 2.5.",
+            "Project Description": "In the Global South, pests destroy 20-40% of crops annually. The cure exists, but the access does not. Existing apps rely on text, failing the millions of smallholder farmers who cannot read.\nCropShield is a multilingual, multimodal AI platform that acts as a \"Digital Kissan Mitra\" (Farmer's Friend), bridging the gap between frontier AI and the furrowed field.\n\nHow we built it (The Tech Stack):\n\nMultimodal Reasoning (Gemini 2.5 Flash): We go beyond simple image classification. CropShield combines Visual Evidence (leaf photo) + Environmental Context (Real-time Lat/Long Weather Data). The model reasons across these modalities—for example, advising against chemical spraying if rain is forecast—to generate a safe, hyper-local treatment plan.\n\nNative Audio Agent (The Breakthrough): Leveraging Gemini 2.5’s native audio streaming, we built a real-time, bi-directional voice agent. It bypasses text entirely. Farmers can speak in their local dialect (Hindi/Bengali), and the AI listens, understands context, and responds instantly with empathy and precision.\n\nKey Features:\nZero-Literacy Interface: Full functionality via Native Audio.\nDual-Path Remedy: Suggests both zero-cost organic solutions (\"Desi Jugad\") and specific chemical brands available in local markets.\nMarket Linkage: Locates nearby fertilizer shops using Geolocation.\n\nIn future we will add a crop related disease catalog that works based on the crop's age ( growth stage). These feature will help farmers identify possible diseases before and after they affect the crop.\n\nCropShield isn't just an app; it's food security in a pocket.",
+            "Project Links": "https://ai.studio/apps/drive/1Qf2L5cAjtL7Ct5hUAiJyXu9uX02WwVZW?fullscreenApplet=true",
+            "Video Demo": "https://youtu.be/qL5vkqxaI18",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Ashes",
+            "Team Member 1 Name": "Samya Deb Biswas",
+            "Team Member 2 Name": "Anindha Biswas",
+            "Team Member 3 Name": "Akash Biswas",
+            "Title": "Zentra",
+            "Subtitle": "Micro finance loan dApp",
+            "Project Description": "Zentra combines Google Gemini 2.0's advanced AI vision capabilities with Polygon blockchain smart contracts to revolutionize peer-to-peer lending. Our platform uses real-time deepfake detection and liveness verification for instant KYC, eliminating identity fraud while providing trustless, collateral-free loans to the underbanked. With Weights & Biases ML monitoring and dynamic trust scoring, we're building the future of financial inclusion where AI meets blockchain to create transparent, fraud-proof lending for everyone.",
+            "Project Links": "https://github.com/anindhabiswas25/Zentra",
+            "Video Demo": "https://youtu.be/-EILpMadRJI?si=DXvAb9UKzPc2I1gO",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Team Mavericks",
+            "Team Member 1 Name": "Piyush Sharma",
+            "Team Member 2 Name": "",
+            "Team Member 3 Name": "",
+            "Title": "Vertical Farming Planner Pro",
+            "Subtitle": "ertical Farm Planner an AI-tool built with Google Gemini that helps first-time vertical farm founders in India simulate pre-investment scenarios, estimating costs, revenues, and ROI to mitigate risks in sustainable urban agriculture",
+            "Project Description": "Hi, I'm Piyush Sharma, a 3rd-year B.Tech CSE student from The Neotia University in Kolkata. I built Vertical Farm Planner for the Global GenAI Hackathon by Machine Learning Kolkata because It's a quick web app to help new vertical farm owners in India plan without the guesswork.\n\nVertical farming? It's like growing veggies in stacked shelves inside buildings—no big fields needed. Uses less water (95% savings), fits in cities, grows food all year, and skips chemicals for fresh eats. Perfect for India's crowded spots and water shortages.\n\nBUT the downside of this is it is very much cost intensive and requires costly infrastructure hence if the startups invest this big amount without proper planning it can incur huge losses to them..\n\nHERE COMES MY VF-PLANNER-PRO,  \nit simulates investments fast—input city, size, crops (lettuce/herbs), setup. Gemini AI delivers costs, revenue forecasts, ROI timelines (e.g., 30% margins in 18 months), power-saving tips, and eco-scores. No spreadsheets or consultants; turns rooftop \"Also you can CHAT with our AI Advisor to optimize your plan.",
+            "Project Links": "https://vertical-farm-planner-wtw7gapvd2ysvjeincptwp.streamlit.app/",
+            "Video Demo": "https://youtu.be/AHM7BS7RIXY",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Prime",
+            "Team Member 1 Name": "Debangan Ghosh",
+            "Team Member 2 Name": "Soumojit Das",
+            "Team Member 3 Name": "Soumyadeep Das Adhikary",
+            "Title": "PathShala AI",
+            "Subtitle": "PathShala AI is an AI-powered career architect designed to guide India's youth through the complexities of the modern job market.",
+            "Project Description": "PathShala AI is an AI-powered career architect designed to guide India's youth through the\ncomplexities of the modern job market. It is a full-stack web application that provides a seamless journey from personalized\nonboarding to career readiness.\nOur core feature: Instead of generic courses, our platform uses AI model to generate a unique, stepby-step learning roadmap for every single user.\nOur goal is to transform a user's individual skills and career ambitions into a dynamic, scannable,\nand actionable plan, bridging the gap between their current abilities and their dream job.",
+            "Project Links": "https://github.com/debanganghosh08/PathShala-AI.git",
+            "Video Demo": "https://youtu.be/DM6tyDBnizc?si=eGvq8yBrWy4UlLxL",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Dobby",
+            "Team Member 1 Name": "Soudip Biswas",
+            "Team Member 2 Name": "Srinjoy Pramanick",
+            "Team Member 3 Name": "",
+            "Title": "AssumptionLens",
+            "Subtitle": "A web app that analyzes code changes and surfaces the hidden engineering assumptions they introduce, remove, or strengthen—so developers understand what might break before it breaks.",
+            "Project Description": "We built a web app that helps developers understand the unspoken assumptions their code changes make — things like whether code will run safely in parallel, whether data will always be clean, or whether external services will behave as expected. Instead of throwing raw diffs or error messages at you, it explains potential risks in simple, human language, so you can see what might break before it actually does.",
+            "Project Links": "https://github.com/SoudipBiswas/genai",
+            "Video Demo": "https://www.youtube.com/watch?v=tf2lBWJOLzM",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "404s",
+            "Team Member 1 Name": "Sayan Ghosh",
+            "Team Member 2 Name": "Snarta Paul",
+            "Team Member 3 Name": "Subhajit Kumar Roy",
+            "Title": "Traily",
+            "Subtitle": "Traily is a smart Chrome extension that helps you make sense of your browsing by visually mapping your research and letting you talk to it like a personal assistant.",
+            "Project Description": "Traily is a smart Chrome extension that helps you keep track of your online learning without any extra effort. As you browse articles, docs, or tutorials, Traily automatically connects related pages and turns them into a simple visual map of your research. You can then ask questions in plain language—like what you’ve already learned about a topic—and get answers based on your own browsing history. Everything stays inside your browser, so it’s private, lightweight, and designed to turn messy tabs into a clear learning journey.",
+            "Project Links": "https://github.com/subhajit-7047/CHROME-EXTENTION-TRAILY",
+            "Video Demo": "https://youtu.be/m6XfmHEpOjE",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Bengal Blazers",
+            "Team Member 1 Name": "Tousif Azim",
+            "Team Member 2 Name": "Shreejita Biswas",
+            "Team Member 3 Name": "",
+            "Title": "AI Stock Analyst",
+            "Subtitle": "AI Stock Analyst is an AI-powered web application that provides intelligent stock analysis and recommendation insights using Google’s Gemini AI and real-time market data.",
+            "Project Description": "We have build an AI powered Stock Analyst which povidesd quick analysis and recommendation using Gemini AI and real time market data that is provided manually by the user.It gives a clear cut verdict whether to buy,hold or avoid the stocks.",
+            "Project Links": "https://github.com/Tousif18/Ai-Stock-Analyst",
+            "Video Demo": "https://drive.google.com/file/d/1XcAlN86JlikkNAagFWagLSgwXsq4fAfx/view?usp=sharing",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Kit-Kat",
+            "Team Member 1 Name": "Rohit Ghosh",
+            "Team Member 2 Name": "Pritam Saha",
+            "Team Member 3 Name": "",
+            "Title": "Lecture_Lens",
+            "Subtitle": "Lecture_Lens is an AI-powered tool that transforms educational YouTube lectures into timestamped visual summaries, enabling faster revision through automated scene detection and Generative AI insights.",
+            "Project Description": "Lecture_Lens is an AI-powered application designed to make learning from long educational videos faster and more effective. Students often spend a lot of time rewatching entire lectures just to find a specific explanation or concept. Lecture_Lens solves this problem by automatically breaking down YouTube lecture videos into meaningful, easy-to-understand sections.\n\nWhen a user provides a lecture video link, the system first downloads the video and uses computer vision techniques to detect important visual changes such as slide transitions, whiteboard explanations, or code demonstrations. Instead of sending the entire video to an AI model, only these key visual snapshots are selected. Each snapshot is then analyzed using a Generative AI vision model, which produces a short, clear summary explaining what is happening at that exact moment in the lecture.\n\nThe final output is a structured timeline containing timestamps, visual snapshots, and concise summaries. This allows learners to quickly scan the lecture, understand what topics are covered, and jump directly to the parts they need for revision. Lecture_Lens demonstrates how Generative AI and computer vision can work together to transform passive video lectures into organized, student-friendly study resources.",
+            "Project Links": "https://github.com/R0HIT-01/lecture-lens",
+            "Video Demo": "https://youtu.be/tIQhH_j97Ho",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "TEAM SOUL",
+            "Team Member 1 Name": "BISHWAJIT SHAW",
+            "Team Member 2 Name": "",
+            "Team Member 3 Name": "",
+            "Title": "NEXUS",
+            "Subtitle": "EDUCATIONAL AI AGENT",
+            "Project Description": "Project Title: NEXUS AI AGENT\nTagline: Bridging the gap between standard curriculum and individual potential through a multi-agent smart classroom ecosystem.\n\n1. Project Overview\nNEXUS AI AGENT is an intelligent, multi-agent orchestration platform designed to transform traditional classrooms into dynamic, personalized learning environments. Built using advanced LLMs (like Gemini) and the Model Context Protocol (MCP), Nexus acts as a \"Digital Teaching Assistant\" that analyzes student performance in real-time to curate bespoke educational paths.\n\nThe core of Nexus lies in its ability to take a single lesson topic and automatically differentiate it into scaffolded tiers, ensuring that no student is left behind while high-performers remain challenged.\n\n2. What We Built\nWe developed a fully functional agentic workflow that handles the heavy lifting of lesson planning and student monitoring:\n\nThe Orchestrator: The brain of the system that receives teacher inputs and coordinates specialized sub-agents.\n\nThe Personalization Agent: Analyzes student profiles (interests, learning gaps, and past scores) to generate three distinct versions of every lesson: Emerging, Proficient, and Advanced.\n\nThe Smart Classroom Agent: Recommends specific EdTech tool integrations (VR, IoT, or interactive boards) tailored to the day's specific activity.\n\nSocratic Feedback Engine: An interactive layer that engages students with critical-thinking questions rather than rote memorization, facilitating true conceptual understanding.\n\n3. Key Features\nReal-time Differentiation: Automatically adjusts reading levels, vocabulary, and problem complexity based on individual student data.\n\nInterests-Based Scaffolding: Can re-frame complex math or science problems into contexts students care about (e.g., using sports stats to teach linear equations).\n\nInteractive Chat Interface: A student-facing portal where the AI acts as a 1:1 tutor, using the Socratic method to guide them toward answers.\n\nTeacher Dashboard: Provides a birds-eye view of classroom progress, highlighting which students are \"stuck\" and requiring human intervention.\n\n4. The Value Proposition\nFor Teachers: Reduces the administrative burden of manual differentiation by up to 80%, allowing educators to focus on emotional support and high-level mentorship.\n\nFor Students: Provides a \"safe space\" to ask questions and receive explanations that resonate with their personal learning style.\n\nFor Schools: Maximizes the utility of existing hardware (tablets, smartboards) by providing a software layer that makes these tools truly \"smart.\"\n\n5. Technical Stack\nAI Engine: Google Gemini Pro / Flash (via Google AI Studio/Vertex AI).\n\nFramework: Python / LangChain (or CrewAI/Autogen for agent orchestration).\n\nDeployment: Vercel (Frontend) & FastAPI (Backend).\n\nInterfacing: Streamlit / Next.js for the user dashboard.",
+            "Project Links": "https://github.com/biswajitsaw/NEXUS-AI-AGENT",
+            "Video Demo": "https://youtu.be/UnIAfdZy7jI",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Mind_Matrix",
+            "Team Member 1 Name": "Tiyasha Paul",
+            "Team Member 2 Name": "Anurag Dey",
+            "Team Member 3 Name": "Saikat Bera",
+            "Title": "SkillHive",
+            "Subtitle": "An intelligent learning platform that adapts to each student's pace, identifies learning gaps, and provides personalized recommendations, and helps in job searching using AI and machine learning algorithms.",
+            "Project Description": "Our student-first MVP is a smart study companion that turns your existing notes, screenshots, and video links into a tailored learning plan and bite-sized practice you can actually do every day: after a quick diagnostic it creates a realistic multi-day plan based on your exam, time availability and strengths; you can snap photos of textbook pages or handwritten sheets and the app’s OCR instantly makes them searchable and quizable; with one click the system generates exam-style practice questions and clear model answers drawn from your own materials; a context-aware chat tutor answers doubts using your uploaded notes and past mistakes, so help is specific to what you’re learning; and a simple progress dashboard and daily reminders show where you improved and what to focus on next. The result is less time hunting for resources and more time practicing the exact material you need to master—designed to help students build momentum, close knowledge gaps quickly, and feel confident on exam day.",
+            "Project Links": "https://github.com/Saikat-Bera04/ml-kolkata",
+            "Video Demo": "https://youtu.be/KQTlThXM7lQ",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Arjun",
+            "Team Member 1 Name": "Srijita Dutta",
+            "Team Member 2 Name": "Dibyendu Chatterjee",
+            "Team Member 3 Name": "",
+            "Title": "SecureFin",
+            "Subtitle": "Scalability , Security , Regulatory Compliance, all at one place.",
+            "Project Description": "Smart-Fin is a cutting-edge fintech application that addresses the three major challenges in the financial technology industry:\n\n Security: Blockchain-based immutable audit trails and cryptographic verification\n Scalability: Cloud-native architecture with auto-scaling and load balancing\nCompliance: AI-powered regulatory monitoring and automated updates.\nSecurity Layer (Blockchain)\n✅ Immutable transaction logging on blockchain\n✅ Smart contract-based audit trails\n✅ Cryptographic signing and verification\n✅ Tamper-proof record keeping\nScalability Layer (Cloud Computing)\n✅ Auto-scaling infrastructure\n✅ Connection pooling and caching\n✅ Rate limiting and load balancing\n✅ Multi-region deployment support\n✅ CDN integration for static assets\nCompliance Layer (AI/ML)\n✅ Real-time transaction analysis using TensorFlow.js\n✅ Automated AML (Anti-Money Laundering) detection\n✅ KYC (Know Your Customer) verification\n✅ Regulatory change detection and implementation\n✅ GDPR, PSD2, SOC 2 compliance",
+            "Project Links": "https://studio--studio-7539031716-446f7.us-central1.hosted.app",
+            "Video Demo": "https://youtu.be/Glgk--a1G_Q?si=-Olsm-jxcnyJ7k5k",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "FraudBuster",
+            "Team Member 1 Name": "Soumyaneel Dey Sarkar",
+            "Team Member 2 Name": "SOULINA MONDAL",
+            "Team Member 3 Name": "Anupom kundu",
+            "Title": "Ai scam and fraud message analyser",
+            "Subtitle": "Helpful in detecting  phishing fake message mails chats etc.",
+            "Project Description": "A full stack web application helpful in detecting fraud and scams often circulated through messages, emails , links, chats etc.",
+            "Project Links": "https://codepen.io/Souliy-Mondal/full/zxBxjmy.            http://localhost:5000/",
+            "Video Demo": "https://youtu.be/7tN5iSwkrRo?si=Vc-dl4mP1gIZhb7n",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "CosmicCoderz",
+            "Team Member 1 Name": "Manish Bera",
+            "Team Member 2 Name": "Sayan Ghanty",
+            "Team Member 3 Name": "Arnab Paul",
+            "Title": "TruthNet",
+            "Subtitle": "The AI-Powered Fraud Detection & Content Authenticity Platform is the next generation in cybersecurity applications designed to combat digital fraud, misinformation, and online scams in real time. In a world where AI-generated content, phishing attacks, and fraudulent payment schemes continue to rise, this platform offers a unified intelligent system for verifying digital trust across media, links, and transactions.",
+            "Project Description": "An AI-powered Fraud Detection and Content Authenticity Platform to help fight digital fraud, misinformation, and online scams in real time. While AI-generated content, phishing attacks, and fraudulent payment schemes continue to rise, this platform offers a single intelligent system through which users can verify digital trust across media, links, and transactions.\n\nIt uses advanced AI models-Gemini through Lovable AI-to scan images, videos, and QR codes, as well as URLs and payment requests that have been uploaded, for authenticity, manipulation, or maliciousness. Every analysis comes back with a risk score, confidence level, and a human-readable explanation to provide transparency and trust in AI decisions.\n\nWith the integration of blockchain-based verification, cryptographic hashes of verified content are stored on Ethereum/Polygon to ensure long-term tamper resistance and authenticity, thus acting as an immutable proof of originality. Therefore, it will be apt for use in legal, journalistic, financial, and forensic casework.\n\nBuilt on a modern, animated web interface, real-time alerts, and a context-aware AI chatbot, the platform detects fraud but also educates users on how scams work and how to stay protected.\n\nKey Competencies\n\nIt detects AI-generated images, deepfakes, and other manipulated media.\n\nIdentifies phishing URLs, malicious QR codes, and scam payment requests\n\nProvides the checking of authenticity with blockchain support.\n\nSends real-time fraud alerts\n\nIncludes an AI chatbot, giving explanations and guiding the student.\n\nEnsures users privacy by secure authentication and data isolation.\n\nImpact & Use Cases\n\nMisinformation control for media and journalism\n\nScam prevention for individuals and businesses\n\nObtain secure digital verification for finance and legal industries.\n\nCyber awareness & education for daily users\n\nConclusion\n\nIt acts like a digital trust engine, merging AI, blockchain, and real-time security intelligence on one platform. It empowers users to navigate the modern digital world with confidence by making fraud detection accessible, explainable, and tamper-proof.",
+            "Project Links": "https://trruthnet.lovable.app/",
+            "Video Demo": "https://drive.google.com/drive/folders/19YXTJSntViIalJeyFJQAI4QY3TW3B3Q2",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "ZenX",
+            "Team Member 1 Name": "Soumadeep Maity",
+            "Team Member 2 Name": "Soumalya Roy",
+            "Team Member 3 Name": "Ujan Chakraborti",
+            "Title": "LearnZen - AI Personal Study Mentor",
+            "Subtitle": "LearnZen is an AI-powered personal study mentor that uses Gemini 3 to create realistic, personalized study plans based on a student’s syllabus, available time, and exam deadlines.",
+            "Project Description": "# LearnZen - AI-Powered Study Mentor\n\n## 🎯 Project Overview\n\n**LearnZen** is an intelligent, AI-powered study companion that revolutionizes the way students learn by providing personalized, adaptive, and interactive learning experiences. Built with Google's Gemini AI, LearnZen serves as a 24/7 personal tutor that understands your learning style, adapts to your pace, and helps you master any subject efficiently.\n\n## 💡 The Problem We're Solving\n\nStudents today face several challenges in their learning journey:\n- **Lack of personalized attention** in traditional classroom settings\n- **Limited access** to tutors and learning resources outside school hours\n- **One-size-fits-all** educational approaches that don't adapt to individual learning styles\n- **Difficulty understanding** complex concepts without immediate feedback\n- **No structured way** to track progress and identify knowledge gaps\n\nLearnZen addresses these pain points by providing an intelligent, always-available study mentor that adapts to each student's unique needs.\n\n## 🚀 What We Built\n\n### Core Features\n\n#### 1. **Intelligent Conversational Learning**\n- Natural language interactions with Google Gemini AI\n- Ask questions in your own words and receive detailed, contextual explanations\n- Follow-up questions and clarifications for deeper understanding\n- Multi-turn conversations that maintain context throughout study sessions\n\n#### 2. **Adaptive Learning Pathways**\n- AI analyzes your responses and understanding level\n- Dynamically adjusts difficulty and pacing based on your progress\n- Provides additional resources when you're struggling\n- Accelerates learning when you're excelling\n\n#### 3. **Multi-Subject Support**\n- Covers a wide range of subjects from mathematics to literature\n- Domain-specific explanations tailored to each subject\n- Cross-subject connections to enhance comprehensive understanding\n- Support for multiple educational levels (primary, secondary, higher education)\n\n#### 4. **Interactive Study Sessions**\n- Real-time Q&A with instant, accurate responses\n- Practice problems with step-by-step solutions\n- Concept explanations with examples and analogies\n- Visual learning aids and conceptual breakdowns\n\n#### 5. **Smart Study Assistant**\n- Generates custom practice questions based on topics\n- Provides study tips and memorization techniques\n- Suggests optimal learning strategies for different subjects\n- Breaks down complex topics into manageable chunks\n\n#### 6. **Progress Tracking & Analytics**\n- Monitors your learning progress over time\n- Identifies strengths and areas for improvement\n- Provides insights into study patterns and habits\n- Recommends focus areas for maximum learning efficiency\n\n### Technical Architecture\n\n**Frontend:**\n- **React** with TypeScript for type-safe, maintainable code\n- **Vite** for lightning-fast development and optimized production builds\n- Modern, responsive UI that works seamlessly across devices\n- Component-based architecture for scalability\n\n**AI Integration:**\n- **Google Gemini API** for advanced natural language processing\n- Intelligent prompt engineering for optimal learning experiences\n- Context management for coherent multi-turn conversations\n- Real-time response streaming for immediate feedback\n\n**Development Stack:**\n- TypeScript for enhanced code quality and developer experience\n- Modern ES6+ JavaScript features\n- Modular service architecture for API interactions\n- Clean separation of concerns (components, services, types)\n\n## 🎨 User Experience\n\n### Intuitive Interface\n- Clean, distraction-free design that puts learning first\n- Easy navigation between different study topics\n- Responsive layout that works on desktop, tablet, and mobile\n- Accessible design following modern web standards\n\n### Seamless Interaction Flow\n1. **Choose Your Topic** - Select what you want to learn\n2. **Start Conversation** - Ask questions naturally\n3. **Receive Guidance** - Get personalized explanations\n4. **Practice & Improve** - Test your understanding\n5. **Track Progress** - Monitor your learning journey\n\n## 🌟 Value Proposition\n\n### For Students\n- **24/7 Availability** - Learn anytime, anywhere, at your own pace\n- **Personalized Learning** - Content adapted to your level and style\n- **Immediate Feedback** - No waiting for answers or clarifications\n- **Safe Learning Environment** - Ask questions without judgment\n- **Cost-Effective** - Accessible alternative to expensive private tutoring\n\n### For Educators\n- **Supplementary Tool** - Enhances traditional teaching methods\n- **Scalable Support** - Helps reach more students effectively\n- **Insight into Learning** - Understand common student challenges\n- **Frees Up Time** - Reduces repetitive question-answering\n\n### For Parents\n- **Peace of Mind** - Reliable homework help available anytime\n- **Monitor Progress** - Track your child's learning development\n- **Quality Education** - AI-powered guidance from advanced technology\n- **Affordable Solution** - Cost-effective compared to traditional tutoring\n\n## 🔧 Technical Innovation\n\n### AI-Powered Intelligence\n- Leverages Google Gemini's advanced language understanding\n- Contextual awareness for coherent conversations\n- Adaptive response generation based on user comprehension\n- Continuous learning from interaction patterns\n\n### Performance Optimization\n- Fast load times with optimized bundle sizes\n- Efficient API calls to minimize latency\n- Responsive UI updates for smooth user experience\n- Progressive web app capabilities for offline support\n\n### Scalability & Maintainability\n- Modular architecture allows easy feature additions\n- TypeScript ensures code reliability and refactoring safety\n- Component reusability reduces development time\n- Clean code practices for long-term maintenance\n\n## 🎓 Educational Impact\n\n### Democratizing Education\nLearnZen makes quality education accessible to students regardless of:\n- Geographic location\n- Socioeconomic background\n- Time zone or schedule constraints\n- Availability of local tutors or resources\n\n### Promoting Self-Directed Learning\n- Encourages curiosity-driven exploration\n- Builds confidence through non-judgmental interactions\n- Develops critical thinking skills\n- Fosters independent problem-solving abilities\n\n### Supporting Diverse Learning Styles\n- Visual learners get diagrams and examples\n- Auditory learners can engage in conversational learning\n- Kinesthetic learners can practice and experiment\n- Reading/writing learners get detailed explanations\n\n## 🚀 Future Roadmap\n\n### Short-Term Goals\n- Enhanced visual learning with diagram generation\n- Voice interaction for hands-free learning\n- Study group collaboration features\n- Mobile app for iOS and Android\n- Offline mode with cached content\n\n### Long-Term Vision\n- Integration with school curricula and syllabi\n- Gamification with achievements and leaderboards\n- Virtual study rooms for collaborative learning\n- Advanced analytics dashboard for teachers\n- Multi-language support for global accessibility\n- AR/VR integration for immersive learning experiences\n\n## 🏆 Why LearnZen Stands Out\n\n### Innovation\n- Cutting-edge AI technology applied to education\n- Novel approach to personalized learning at scale\n- Seamless integration of AI into study workflows\n\n### Execution\n- Polished, production-ready application\n- Robust error handling and user experience\n- Deployed and accessible for immediate use\n- Clean, maintainable codebase\n\n### Impact\n- Addresses real educational challenges\n- Scalable solution with broad applicability\n- Potential to reach millions of students globally\n- Measurable improvement in learning outcomes\n\n### Technical Excellence\n- Modern tech stack and best practices\n- Type-safe implementation with TypeScript\n- Efficient API usage and performance optimization\n- Well-documented and maintainable code\n\n## 📊 Success Metrics\n\nWe measure LearnZen's success through:\n- **Student Engagement** - Session duration and return rate\n- **Learning Outcomes** - Improvement in understanding and retention\n- **User Satisfaction** - Feedback and ratings from students\n- **Accessibility** - Number of students reached across demographics\n- **Technical Performance** - Response time, uptime, and reliability\n\n## 🌍 Real-World Applications\n\n### Use Cases\n- **Homework Help** - Instant assistance with assignments\n- **Exam Preparation** - Focused study sessions before tests\n- **Concept Clarification** - Understanding difficult topics\n- **Self-Paced Learning** - Exploring new subjects independently\n- **Language Learning** - Practice and conversation\n- **Skill Development** - Learning practical skills and techniques\n\n## 🎯 Call to Action\n\nLearnZen represents the future of education—personalized, accessible, and powered by AI. We're not just building an app; we're creating a learning revolution that empowers every student to reach their full potential.\n\n**Try LearnZen Today:** [https://realsxum.github.io/LEARNZEN-upgraded/](https://realsxum.github.io/LEARNZEN-upgraded/)\n\n---\n\n*Built with ❤️ using Google Gemini AI | Making quality education accessible to everyone*",
+            "Project Links": "https://github.com/realsxum/LEARNZEN-upgraded",
+            "Video Demo": "N/A",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "AIML TINKERS",
+            "Team Member 1 Name": "SAMRIDHA BANERJEE",
+            "Team Member 2 Name": "RHITAM MANDAL",
+            "Team Member 3 Name": "SOUMYADIP",
+            "Title": "AgroPredict AI",
+            "Subtitle": "Empowering Farmers with AI-Driven Crop Predictions",
+            "Project Description": "Harnessing the power of Random Forest and XGBoost to deliver hyper-local crop yield predictions & Empowering farmers, planners, and insurers with certainty in an uncertain climate. Our AI powered solution provides: Accurate crop yield predictions (90%+ accuracy), Real-time analysis of soil, weather, and crop data, Optimized resource allocation and planning, Data-driven decisions for sustainable farming, etc.",
+            "Project Links": "https://github.com/SAMRIDHABANERJEE/AGRO-PREDICT-AI",
+            "Video Demo": "https://youtu.be/Vw7Kql7eSzQ?si=AcCj29JswCaFTYtO",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Qumtum Crew",
+            "Team Member 1 Name": "Somya Ranjan Bhoi",
+            "Team Member 2 Name": "Ayan Ghosh",
+            "Team Member 3 Name": "Ankan Ghosh",
+            "Title": "Study-with-me",
+            "Subtitle": "StudyWithMe helps students truly understand concepts by adapting explanations to their learning depth while maintaining academic integrity in assignments.",
+            "Project Description": "StudyWithMe is an ethical, depth-driven AI learning platform designed to act like a real teacher, tutor, and learning companion for students. Instead of simply giving answers, it focuses on helping students understand concepts at their own level, practice what they learn, and receive guidance on assignments without breaking academic integrity.\n\nMost existing AI tools provide the same explanation to everyone and often give direct solutions, which leads to memorization and copying rather than real learning. StudyWithMe solves this problem by allowing students to choose how deeply they want to learn and by strictly separating learning support from answer generation.\n\nThe platform offers three learning depth levels:\n\nCore – For beginners who need simple explanations, intuition, and fundamentals\n\nApplied – For students who want step-by-step reasoning and practice\n\nMastery – For advanced learners who want deeper logic, assumptions, and edge cases\n\nBased on the selected depth, StudyWithMe adapts how much explanation, reasoning, and detail it provides.\n\nStudyWithMe also supports two modes of interaction:\n\nInteractive Learning Mode\nIn this mode, the AI teaches concepts step by step, using examples and explanations that match the student’s depth level. It explains mathematics using equations, programming using code, and science using formulas—so students learn in the natural language of the subject, not just English text.\n\nAssignment Help Mode (Ethical by Design)\nIn this mode, the AI never gives direct answers or fully solved code. Instead, it provides hints, breaks down the problem, explains the underlying concepts, and asks guiding questions. This ensures students learn while solving, rather than copying answers.\n\nA key strength of StudyWithMe is its Ethics Guard, a rule-based system that prevents cheating and enforces responsible AI behavior. This makes the platform safe for real academic environments such as schools, colleges, and institutions.\n\nTechnically, StudyWithMe uses a Node.js backend to control all AI behavior and enforce rules, and a Next.js frontend to provide a clean, student-friendly interface. The AI model is used as a constrained reasoning engine, meaning it follows strict system instructions and does not decide learning depth or ethics on its own.\n\nIn summary, StudyWithMe is not an answer generator.\nIt is a depth-aware, ethical learning companion built to help students grow academically by understanding concepts properly, practicing independently, and solving assignments the right way.",
+            "Project Links": "https://github.com/ankan288/Studywithme.git",
+            "Video Demo": "https://youtu.be/_1ShRqCXi70",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Tech-Titan",
+            "Team Member 1 Name": "Ayush Pratap Singh",
+            "Team Member 2 Name": "Bishal kumar",
+            "Team Member 3 Name": "Anirban chandra",
+            "Title": "HealthBuddy chatbot",
+            "Subtitle": "HealthBuddy AI is an intelligent virtual assistant that provides instant, personalized health guidance, symptom insights, and wellness support using artificial intelligence.",
+            "Project Description": "HealthBuddy AI is a smart, user-friendly health assistant that allows users to ask health-related questions, check symptoms, receive basic medical guidance, and get wellness tips instantly using AI, helping people make informed health decisions anytime, anywhere.",
+            "Project Links": "https://github.com/ayu1234-dot/HealthBuddy-Chatbot",
+            "Video Demo": "https://youtu.be/i_wIXBVped8?si=TyTNna80-hDphCB3",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Team PMPN",
+            "Team Member 1 Name": "Prinjal Mistry",
+            "Team Member 2 Name": "Priyam Naskar",
+            "Team Member 3 Name": "",
+            "Title": "Vibe Check AI",
+            "Subtitle": "Checks up your vibe and fashion and makes your looks better with AI",
+            "Project Description": "Vibe Check AI is an intelligent fashion assistant designed to help users choose the right clothing size and style with confidence while shopping online. Many people hesitate to buy clothes online because they are unsure how an outfit will actually fit their body. This project addresses that problem by combining video input and artificial intelligence to provide personalized fashion advice.\n\nThe user simply uploads a short full-body walking video and pastes the link of a dress or outfit they want to buy from platforms like Amazon, Flipkart, or Myntra. The system then uses an AI stylist powered by Google Gemini to analyze the product details and generate a detailed fit recommendation. It evaluates fabric quality, predicts how different sizes (XS to XXL) may fit, assigns a fit score, recommends the best size, and suggests similar outfits suitable for the user’s body type. A price comparison in Indian Rupees is also provided for better decision-making.\n\nThe application is built using Streamlit for a clean, mobile-friendly interface and focuses on clarity and usability rather than complexity. While the current version uses simulated body analysis, it is designed to support real-time posture, height, and body shape detection in future versions. Vibe Check AI demonstrates how AI can enhance online shopping by making fashion advice more personalized, practical, and accessible.",
+            "Project Links": "https://github.com/PRIME-BN1000/ML_hackathon",
+            "Video Demo": "https://youtu.be/Mg6ENrZCTNA?si=9cJKULYDyaG4EDGV",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "suicideCode",
+            "Team Member 1 Name": "Shreyas Guha Neogi",
+            "Team Member 2 Name": "Samriddha Chaudhury",
+            "Team Member 3 Name": "",
+            "Title": "bonVoyage",
+            "Subtitle": "Travel like an Insider, Book like a Pro",
+            "Project Description": "This is a prototype of a flight booking sim. Booking a flight today is a friction-heavy ordeal of rigid filters, endless date pickers, and clunky forms. This cognitive load excludes non-tech-savvy users and frustrates frequent travelers. TripMe solves this by dismantling the traditional booking UI entirely, replacing it with only the key information required. It is easy to use, and simple. It gives us all the possible flights in accordance to our given details.\nNow, we can select any flight according to our preference and skip the hassle of finding cheap flights.",
+            "Project Links": "https://github.com/shrguhaneogi-pixel/bonVoyage",
+            "Video Demo": "https://www.youtube.com/watch?v=juqGDd_ygJU",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Suicide Coders",
+            "Team Member 1 Name": "Samriddha Chaudhury",
+            "Team Member 2 Name": "Shreyas Guha Neogi",
+            "Team Member 3 Name": "Debarghya Ray",
+            "Title": "TripMe",
+            "Subtitle": "Killing the dropdown menu with the details that turn complex travel intent into instant bookings",
+            "Project Description": "This is a prototype of a flight booking sim. Booking a flight today is a friction-heavy ordeal of rigid filters, endless date pickers, and clunky forms. This cognitive load excludes non-tech-savvy users and frustrates frequent travelers. TripMe solves this by dismantling the traditional booking UI entirely, replacing it with only the key information required. It is easy to use, and simple. It gives us all the possible flights in accordance to our given details. Now, we can select any flight according to our preference and skip the hassle of finding cheap flights.",
+            "Project Links": "https://samriddha0207.github.io/GenAI-Flight-Booking-Sim/",
+            "Video Demo": "https://www.youtube.com/watch?v=juqGDd_ygJU",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "CyberTronz",
+            "Team Member 1 Name": "Archita Mandal",
+            "Team Member 2 Name": "Poulami Roy",
+            "Team Member 3 Name": "Rahul Thakur",
+            "Title": 4,
+            "Subtitle": "The Social Shield is an online chatbot that employs AI to immediately scan pasted copies or links to social media messages to determine whether they are safe, suspicious, or have high levels of scams.",
+            "Project Description": "We developed the Social Shield, a web-based system for evaluating social media scams. With our system, a user who is a victim or is a potential victim can quickly identify whether they are being scammed. The system consists of a simple chatbot interface in which a user posts a social media message or link, and in return, receives a rapid analysis of whether the posted content is a phishing attempt or not. This system is powered by a hybrid artificial intelligence algorithm, where the algorithm combines the use of predefined rules for the existence of scams in social media with TF-IDF, a machine-learning algorithm for analyzing messages. The result is a clear indication of whether a given post is Low, Medium, or High risk for scams.",
+            "Project Links": "https://social-shield-upgraded.vercel.app/",
+            "Video Demo": "https://youtu.be/91_gXyfDV54",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Dhruv.AI",
+            "Team Member 1 Name": "Kundan Raj Singh",
+            "Team Member 2 Name": "Vishal Kumar Dangi",
+            "Team Member 3 Name": "",
+            "Title": "A.I driven Drone system.",
+            "Subtitle": "A.I driven Drone system for pesticide spraying  after diseases detection and give farmer support.",
+            "Project Description": "This project integrates Generative AI to automate two high-impact workflows:\n\n1.Multi-Article Intelligence from a Single Link\n2.AI-Driven Cold Email Generation for Tech Collaborations",
+            "Project Links": "https://github.com/kundansinghrajput16/Gen-AI-Hackthon",
+            "Video Demo": "https://youtu.be/bufd3IM8PNo",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "FRAUDBUSTER",
+            "Team Member 1 Name": "SOUMYANEEL Dey sarkar",
+            "Team Member 2 Name": "soulina mondal",
+            "Team Member 3 Name": "Anupom Kundu",
+            "Title": "AI Scam and fraud message analyser",
+            "Subtitle": "It helps in detection of scams in message, emails chats etc",
+            "Project Description": "It reduces phising by helping in detection of scams in message, emails chats etc",
+            "Project Links": "https://github.com/soulina-34/fraudanalyzer-ai",
+            "Video Demo": "https://youtu.be/7tN5iSwkrRo?si=Vc-dl4mP1gIZhb7n",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "CyberTronz",
+            "Team Member 1 Name": "Archita Mandal",
+            "Team Member 2 Name": "Poulami  Roy",
+            "Team Member 3 Name": "Rahul Thakur",
+            "Title": "Social Media Scam Detector",
+            "Subtitle": 5,
+            "Project Description": "We built Social Shield, a web-based social media scam detector that helps users quickly identify phishing messages, fake giveaways, and impersonation scams before they become victims. The platform uses a simple chatbot-style interface where users can paste any suspicious message, post, or link, and receive an instant analysis. Using a hybrid AI approach—combining rule-based scam pattern detection with machine learning (TF-IDF–based text classification)—the system evaluates common red flags such as urgent language, requests for personal information, fake rewards, and suspicious links. It then clearly classifies the content into Low, Medium, or High scam risk, explains why it may be risky, and provides safety recommendations. Our focus was on real-time detection, ease of use for non-technical users, and privacy, making scam awareness accessible to everyone.",
+            "Project Links": "https://github.com/mandalarabinda349-boop/Social-Shield",
+            "Video Demo": "https://youtu.be/ONn3VNMo6C8",
+            "Prizes": ""
+          },
+          {
+            "Team Name": "Agile&Empathy",
+            "Team Member 1 Name": "PRITAM ADAK",
+            "Team Member 2 Name": "",
+            "Team Member 3 Name": "",
+            "Title": "A Decision-First Agent with Emotional Cognition",
+            "Subtitle": "An agentic AI system that decides whether and how to respond using emotional state, cognitive signals, and priority scheduling before calling an LLM.",
+            "Project Description": "It is a decision-first agentic AI backend designed to model how an assistant should act before generating language.\nInstead of directly prompting a large language model, the system first performs emotion detection, semantic embedding, and slow-moving cognitive state tracking (stability, agency, cognitive load, and recurrence). These signals are fused into a priority score that feeds a Fibonacci-heap–based decision scheduler.\n\nEach possible action (such as responding supportively or remaining silent) is treated as a schedulable decision with an explicit priority. Only after a decision is selected does the system optionally invoke a language model, making the LLM a tool rather than the agent’s reasoning core.\n\nThis architecture demonstrates how agent behavior can be governed by internal cognition and intentional control, enabling restraint, transparency, and extensibility beyond prompt-based chatbots.",
+            "Project Links": "https://github.com/PRITAMADAK11/my-first-repo",
+            "Video Demo": "https://youtube.com/shorts/RuA8TwIYTXM?si=kpFS0j7XWIR9pvJg",
+            "Prizes": ""
+          }
+        ];
+
+        // ==========================================
+        // RENDERING LOGIC
+        // ==========================================
+        const winnersGrid = document.getElementById('winners-grid');
+        const projectsGrid = document.getElementById('projects-grid');
+        const winnersSection = document.getElementById('winners-section');
+
+        // Helper to get initials for placeholder logo
+        function getInitials(name) {
+            return name.split(' ').map(n => n[0]).join('').substring(0,2).toUpperCase();
+        }
+
+        // Helper to parse prizes
+        function getBadgeHTML(prizeString) {
+            if (!prizeString) return '';
+            const lower = prizeString.toLowerCase();
+            let html = '';
+            
+            // Determine Track Color and Icon
+            let colorClass = 'bg-gray-100 text-gray-800 border-gray-300';
+            let icon = 'fa-trophy';
+            let label = prizeString;
+
+            if (lower.includes('google')) {
+                colorClass = 'bg-blue-50 text-blue-700 border-blue-200';
+                icon = 'fa-brands fa-google';
+            } else if (lower.includes('wandb')) {
+                colorClass = 'bg-yellow-50 text-yellow-700 border-yellow-200';
+                icon = 'fa-solid fa-chart-line';
+            }
+
+            // Determine Rank Style
+            let rankIcon = '';
+            if (lower.includes('1st')) rankIcon = '<i class="fa-solid fa-medal text-yellow-500 mr-1"></i>';
+            if (lower.includes('2nd')) rankIcon = '<i class="fa-solid fa-medal text-gray-400 mr-1"></i>';
+            if (lower.includes('3rd')) rankIcon = '<i class="fa-solid fa-medal text-orange-400 mr-1"></i>';
+
+            return `
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold border ${colorClass} uppercase tracking-wide">
+                    ${rankIcon} <i class="${icon} mr-1.5"></i> ${label}
+                </span>
+            `;
+        }
+
+        function createProjectCard(project, index) {
+            const hasPrize = project.Prizes && project.Prizes.length > 0;
+            const cardClass = hasPrize ? 'paper-card winner-card' : 'paper-card';
+            
+            const badges = getBadgeHTML(project.Prizes);
+            
+            // Team Members
+            let members = [];
+            if(project["Team Member 1 Name"]) members.push(project["Team Member 1 Name"]);
+            if(project["Team Member 2 Name"]) members.push(project["Team Member 2 Name"]);
+            if(project["Team Member 3 Name"]) members.push(project["Team Member 3 Name"]);
+            
+            return `
+                <div class="${cardClass} rounded-2xl p-6 flex flex-col h-full animate-fade-in-up" style="animation-delay: ${index * 100}ms">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 bg-sketch-dark text-white rounded-xl flex items-center justify-center font-bold text-xl font-display shadow-md">
+                            ${getInitials(project["Title"])}
+                        </div>
+                        ${hasPrize ? `<div class="flex flex-col items-end gap-1">${badges}</div>` : ''}
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-gray-900 font-display leading-tight mb-2">${project["Title"]}</h3>
+                    <p class="text-xs font-bold text-sketch-flame uppercase tracking-widest mb-3">${project["Team Name"]}</p>
+                    
+                    <p class="text-gray-600 text-sm mb-6 line-clamp-3 flex-grow">${project["Subtitle"]}</p>
+                    
+                    <div class="border-t border-dashed border-gray-300 pt-4 mt-auto">
+                        <div class="flex flex-wrap gap-2 text-xs font-medium text-gray-500 mb-4">
+                            ${members.slice(0, 2).join(', ')} ${members.length > 2 ? `+${members.length - 2}` : ''}
+                        </div>
+                        <button onclick="openModal(${index})" class="w-full py-2.5 px-4 bg-white border-2 border-black rounded-lg text-sm font-bold shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex items-center justify-center group">
+                            Read More <i class="fa-solid fa-arrow-right ml-2 group-hover:ml-3 transition-all"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize
+        let winnersCount = 0;
+        hackathonData.forEach((project, index) => {
+            // Add a temporary ID for modal lookup
+            project.id = index;
+            
+            if (project.Prizes && project.Prizes.trim() !== "") {
+                winnersGrid.innerHTML += createProjectCard(project, index);
+                winnersCount++;
+            } else {
+                projectsGrid.innerHTML += createProjectCard(project, index);
+            }
+        });
+
+        if (winnersCount > 0) {
+            winnersSection.classList.remove('hidden');
+        }
+
+        // ==========================================
+        // MODAL LOGIC
+        // ==========================================
+        const modal = document.getElementById('project-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalSubtitle = document.getElementById('modal-subtitle');
+        const modalDesc = document.getElementById('modal-description');
+        const modalTeam = document.getElementById('modal-team-name');
+        const modalMembers = document.getElementById('modal-members');
+        const modalLinks = document.getElementById('modal-links');
+        const modalBadges = document.getElementById('modal-badges');
+
+        function openModal(index) {
+            const project = hackathonData[index];
+            
+            // Populate Data
+            modalTitle.innerText = project["Title"];
+            modalSubtitle.innerText = project["Subtitle"];
+            modalTeam.innerText = project["Team Name"];
+            modalDesc.innerHTML = project["Project Description"]; // Intentionally using innerHTML for formatting if needed, though textContent is safer
+            modalBadges.innerHTML = getBadgeHTML(project.Prizes);
+
+            // Members
+            modalMembers.innerHTML = '';
+            const members = [project["Team Member 1 Name"], project["Team Member 2 Name"], project["Team Member 3 Name"]].filter(n => n);
+            members.forEach(m => {
+                modalMembers.innerHTML += `<li class="flex items-center"><i class="fa-solid fa-user-tag text-gray-400 mr-2 text-xs"></i> ${m}</li>`;
+            });
+
+            // Links
+            modalLinks.innerHTML = '';
+            if (project["Project Links"]) {
+                const links = project["Project Links"].split(',').map(l => l.trim());
+                links.forEach(link => {
+                    let label = "View Project";
+                    let icon = "fa-solid fa-link";
+                    if(link.includes('github')) { label = "GitHub Repo"; icon = "fa-brands fa-github"; }
+                    if(link.includes('vercel') || link.includes('app')) { label = "Live Demo"; icon = "fa-solid fa-globe"; }
+                    
+                    modalLinks.innerHTML += `
+                        <a href="${link}" target="_blank" class="flex items-center p-2 rounded-lg bg-white border border-black hover:bg-gray-50 transition-colors text-sm font-bold text-sketch-dark">
+                            <i class="${icon} mr-2"></i> ${label}
+                        </a>
+                    `;
+                });
+            } else {
+                modalLinks.innerHTML = '<span class="text-sm text-gray-400 italic">No links provided.</span>';
+            }
+
+            if (project["Video Demo"]) {
+                 modalLinks.innerHTML += `
+                        <a href="${project["Video Demo"]}" target="_blank" class="flex items-center p-2 rounded-lg bg-sketch-flame/10 border border-sketch-flame hover:bg-sketch-flame/20 transition-colors text-sm font-bold text-sketch-flame">
+                            <i class="fa-solid fa-video mr-2"></i> Watch Demo
+                        </a>
+                    `;
+            }
+
+            // Show Modal
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close on outside click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
+    </script>
+</body>
+</html>
