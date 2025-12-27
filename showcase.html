@@ -20,13 +20,8 @@
                         sketch: {
                             bg: '#f4f1ea',
                             dark: '#1a1a1a',
-                            gray: '#5a5a5a',
                             flame: '#ff5e1f',
-                            flameLight: '#ff8a4c',
                             googleBlue: '#4285F4',
-                            googleRed: '#EA4335',
-                            googleYellow: '#FBBC05',
-                            googleGreen: '#34A853',
                             wandbYellow: '#FFBE0B',
                         }
                     },
@@ -48,9 +43,9 @@
             background-color: #f4f1ea;
             color: #1a1a1a;
             overflow-x: hidden;
-            position: relative;
         }
 
+        /* Noise Texture */
         body::before {
             content: "";
             position: fixed;
@@ -60,29 +55,18 @@
             mix-blend-mode: multiply;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #e6e2d8; }
-        ::-webkit-scrollbar-thumb { background: #888; border-radius: 5px; border: 2px solid #e6e2d8; }
-        ::-webkit-scrollbar-thumb:hover { background: #555; }
-
         .paper-card {
             background: rgba(255, 255, 255, 0.95);
-            border: 2px solid rgba(0,0,0,1); /* Darker border for cards */
-            box-shadow: 6px 6px 0px rgba(0,0,0,1); /* Hard shadow */
+            border: 2px solid #1a1a1a;
+            box-shadow: 6px 6px 0px #1a1a1a;
             transition: all 0.3s ease;
         }
         
         .paper-card:hover {
             transform: translate(-2px, -2px);
-            box-shadow: 8px 8px 0px rgba(0,0,0,1);
+            box-shadow: 10px 10px 0px #1a1a1a;
         }
 
-        .charcoal-text {
-            color: #1a1a1a;
-            text-shadow: 0.5px 0.5px 0px rgba(0,0,0,0.1);
-        }
-        
         .charcoal-heading {
              background: linear-gradient(#1a1a1a, #2a2a2a);
              -webkit-background-clip: text;
@@ -91,20 +75,16 @@
         }
 
         .modal-overlay {
-            background-color: rgba(244, 241, 234, 0.8);
-            backdrop-filter: blur(8px);
+            background-color: rgba(244, 241, 234, 0.85);
+            backdrop-filter: blur(5px);
         }
 
         /* Badge Styles */
         .badge-google {
-            background-color: #E8F0FE;
-            color: #1967D2;
-            border: 2px solid #1967D2;
+            background-color: #E8F0FE; color: #1967D2; border: 2px solid #1967D2;
         }
         .badge-wandb {
-            background-color: #FFF8E1;
-            color: #F57F17;
-            border: 2px solid #F57F17;
+            background-color: #FFF8E1; color: #F57F17; border: 2px solid #F57F17;
         }
     </style>
 </head>
@@ -113,71 +93,52 @@
     <!-- Navigation -->
     <nav class="fixed w-full z-40 top-0 start-0 bg-[#f4f1ea]/90 backdrop-blur-md border-b border-gray-300 shadow-sm">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="index.html" class="flex items-center space-x-2 rtl:space-x-reverse group">
+            <a href="index.html" class="flex items-center space-x-2 group">
                 <div class="w-8 h-8 bg-sketch-dark text-white flex items-center justify-center rounded-lg font-bold text-lg group-hover:bg-sketch-flame transition-colors transform rotate-3">🔥</div>
-                <span class="self-center text-xl font-bold whitespace-nowrap tracking-tight font-display text-sketch-dark charcoal-text">ML <span class="text-sketch-flame">KOLKATA</span></span>
+                <span class="self-center text-xl font-bold font-display text-sketch-dark">ML <span class="text-sketch-flame">KOLKATA</span></span>
             </a>
-            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <a href="index.html" class="text-sketch-dark font-bold hover:text-sketch-flame transition-colors flex items-center gap-2">
-                    <i class="fa-solid fa-arrow-left"></i> Back to Home
-                </a>
-            </div>
+            <a href="index.html" class="text-sketch-dark font-bold hover:text-sketch-flame transition-colors flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i> Back to Home
+            </a>
         </div>
     </nav>
 
     <!-- Header -->
-    <header class="pt-32 pb-10 px-4 text-center relative">
+    <header class="pt-32 pb-10 px-4 text-center">
         <h1 class="text-4xl md:text-7xl font-extrabold font-display charcoal-heading mb-4">
             PROJECT SHOWCASE
         </h1>
-        <p class="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto font-medium">
+        <p class="text-lg text-gray-700 max-w-2xl mx-auto font-medium">
             Celebrating the innovation and code vibes from the Global GenAI Hackathon.
         </p>
-        <div class="mt-4 flex justify-center gap-4 text-sm font-bold">
-            <span class="flex items-center gap-2 px-3 py-1 bg-blue-100 text-blue-800 rounded-full border border-blue-200"><i class="fa-brands fa-google"></i> Google Track Winners</span>
-            <span class="flex items-center gap-2 px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full border border-yellow-200"><i class="fa-solid fa-chart-line"></i> W&B Track Winners</span>
-        </div>
     </header>
 
     <!-- Projects Grid -->
     <main class="flex-grow container mx-auto px-4 pb-20">
         <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Cards will be injected here via JS -->
+            <!-- Cards injected here -->
         </div>
     </main>
 
-    <!-- Modal for Description -->
+    <!-- Modal -->
     <div id="project-modal" class="fixed inset-0 z-50 hidden modal-overlay flex items-center justify-center p-4">
-        <div class="bg-white w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-2xl border-2 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] relative animate-fade-in-up">
-            <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors border-2 border-gray-300 z-10">
+        <div class="bg-white w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl border-2 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] relative animate-fade-in-up">
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 bg-gray-100 hover:bg-sketch-flame hover:text-white rounded-full flex items-center justify-center transition-colors border-2 border-black z-10 font-bold">
                 <i class="fa-solid fa-times text-xl"></i>
             </button>
-            
-            <div class="p-8 md:p-10">
-                <div id="modal-content">
-                    <!-- Dynamic Content -->
-                </div>
-            </div>
+            <div class="p-8 md:p-10" id="modal-content"></div>
         </div>
     </div>
 
     <!-- Footer -->
     <footer class="bg-white/80 py-12 border-t-2 border-gray-200 mt-auto">
-        <div class="max-w-screen-xl px-4 mx-auto flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-4 md:mb-0 text-center md:text-left">
-                <span class="text-2xl font-black text-sketch-dark font-display charcoal-text">ML <span class="text-sketch-flame">Kolkata</span></span>
-                <p class="text-sm text-gray-500 mt-2 font-bold">© 2025 Machine Learning Kolkata.</p>
-            </div>
-            <div class="flex space-x-6">
-                <a href="https://x.com/MLKolkata" class="text-gray-400 hover:text-black transition-colors"><i class="fa-brands fa-twitter text-2xl"></i></a>
-                <a href="https://www.linkedin.com/company/mlkolkata" class="text-gray-400 hover:text-blue-700 transition-colors"><i class="fa-brands fa-linkedin text-2xl"></i></a>
-                <a href="https://www.instagram.com/mlkolkata" class="text-gray-400 hover:text-pink-600 transition-colors"><i class="fa-brands fa-instagram text-2xl"></i></a>
-            </div>
+        <div class="max-w-screen-xl px-4 mx-auto text-center">
+            <p class="text-sm text-gray-500 font-bold">© 2025 Machine Learning Kolkata.</p>
         </div>
     </footer>
 
     <script>
-        // --- DATA SOURCE ---
+        // --- JSON DATA PLACEHOLDER ---
         const projects = [
   {
     "Team Name": "Stack Overflowers",
@@ -781,33 +742,31 @@
   }
 ];
 
-        // --- RENDER LOGIC ---
-
         const container = document.getElementById('projects-container');
         const modal = document.getElementById('project-modal');
         const modalContent = document.getElementById('modal-content');
 
-        // Helper to format text with newlines
-        const formatText = (text) => text.replace(/\n/g, '<br>');
-
-        // Helper to get links
-        const getLinks = (linkString) => {
-            if (!linkString) return '';
-            const links = linkString.split(',').map(l => l.trim()).filter(l => l);
-            return links.map(link => {
-                let icon = 'fa-link';
-                let text = 'Link';
-                if (link.includes('github.com')) { icon = 'fa-github'; text = 'Code'; }
-                else if (link.includes('youtube.com') || link.includes('youtu.be')) { icon = 'fa-youtube'; text = 'Video'; }
-                else if (link.includes('vercel') || link.includes('netlify') || link.includes('app')) { icon = 'fa-globe'; text = 'Live'; }
-                
-                return `<a href="${link}" target="_blank" class="inline-flex items-center gap-1 text-sm font-bold text-gray-600 hover:text-sketch-flame transition-colors mr-3">
-                    <i class="fa-brands ${icon}"></i> ${text}
-                </a>`;
-            }).join('');
+        // Extract YouTube Video ID
+        const getYouTubeId = (url) => {
+            if (!url) return null;
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
         };
 
-        // Helper to determine badge HTML
+        // Find YouTube URL (checks 'Video Demo' first, then scans 'Project Links')
+        const findVideoUrl = (proj) => {
+            if (proj["Video Demo"] && proj["Video Demo"].trim() !== "") {
+                return proj["Video Demo"];
+            }
+            if (proj["Project Links"]) {
+                const links = proj["Project Links"].split(',');
+                // Look for youtube.com or youtu.be
+                return links.find(l => l.includes('youtube.com') || l.includes('youtu.be'));
+            }
+            return null;
+        };
+
         const getBadge = (prizeString) => {
             if (!prizeString) return '';
             const lower = prizeString.toLowerCase();
@@ -822,11 +781,25 @@
                 badgeClass = 'badge-wandb';
                 icon = 'fa-solid fa-chart-line';
             }
-
-            // Clean up string like "1st google track" -> "1st Place - Google Track" (Optional formatting)
-            return `<div class="absolute -top-4 -right-2 px-4 py-2 rounded-full font-bold shadow-md transform rotate-2 ${badgeClass} text-xs uppercase tracking-wide flex items-center gap-2">
+            return `<div class="absolute -top-4 -right-2 px-3 py-1.5 rounded-full font-bold shadow-md transform rotate-2 ${badgeClass} text-xs uppercase tracking-wide flex items-center gap-2 z-20">
                 <i class="${icon}"></i> ${label}
             </div>`;
+        };
+
+        const getLinksHTML = (linkString) => {
+            if (!linkString) return '';
+            const links = linkString.split(',').map(l => l.trim()).filter(l => l);
+            return links.map(link => {
+                let icon = 'fa-link';
+                let text = 'Link';
+                if (link.includes('github.com')) { icon = 'fa-github'; text = 'Code'; }
+                else if (link.includes('youtube.com') || link.includes('youtu.be')) { icon = 'fa-youtube'; text = 'Video'; }
+                else if (link.includes('vercel') || link.includes('netlify') || link.includes('app') || link.includes('huggingface')) { icon = 'fa-globe'; text = 'Live'; }
+                
+                return `<a href="${link}" target="_blank" class="inline-flex items-center gap-1 text-sm font-bold text-gray-600 hover:text-sketch-flame transition-colors mr-4">
+                    <i class="fa-brands ${icon}"></i> ${text}
+                </a>`;
+            }).join('');
         };
 
         function renderProjects() {
@@ -838,33 +811,47 @@
             });
 
             sortedProjects.forEach((proj, index) => {
-                const members = [proj["Team Member 1 Name"], proj["Team Member 2 Name"], proj["Team Member 3 Name"]].filter(m => m).join(', ');
                 const isWinner = !!proj.Prizes;
-                
+                const members = [proj["Team Member 1 Name"], proj["Team Member 2 Name"], proj["Team Member 3 Name"]].filter(m => m).join(', ');
+                const videoUrl = findVideoUrl(proj);
+                const videoId = getYouTubeId(videoUrl);
+
                 const card = document.createElement('div');
-                card.className = `paper-card rounded-2xl p-6 relative flex flex-col h-full ${isWinner ? 'border-t-8 border-t-black' : ''}`;
+                card.className = `paper-card rounded-2xl p-6 relative flex flex-col h-full group ${isWinner ? 'border-t-[6px] border-t-black' : ''}`;
                 
                 card.innerHTML = `
                     ${getBadge(proj.Prizes)}
                     
+                    ${videoId ? `
+                    <a href="${videoUrl}" target="_blank" class="block mb-5 relative overflow-hidden rounded-xl border-2 border-black shadow-sm group-hover:shadow-md transition-all transform group-hover:rotate-1">
+                        <img src="https://img.youtube.com/vi/${videoId}/mqdefault.jpg" class="w-full h-48 object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="Video Thumbnail">
+                        <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors flex items-center justify-center">
+                            <div class="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-play text-sketch-flame ml-1 text-xl"></i>
+                            </div>
+                        </div>
+                    </a>
+                    ` : ''}
+
                     <div class="mb-4">
-                        <h2 class="text-2xl font-bold font-display leading-tight mb-1 text-gray-900">${proj.Title}</h2>
+                        <h2 class="text-2xl font-bold font-display leading-tight mb-2 text-gray-900 group-hover:text-sketch-flame transition-colors">${proj.Title}</h2>
                         <div class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">${proj["Team Name"]}</div>
                         <p class="text-gray-600 text-sm leading-relaxed line-clamp-3">${proj.Subtitle || proj["Project Description"]}</p>
                     </div>
 
-                    <div class="mt-auto pt-4 border-t border-dashed border-gray-300">
-                        <div class="text-xs text-gray-500 font-semibold mb-3">
+                    <div class="mt-auto pt-4 border-t-2 border-dashed border-gray-300">
+                        <div class="text-xs text-gray-500 font-semibold mb-3 truncate" title="${members}">
                             <i class="fa-solid fa-users mr-1"></i> ${members}
                         </div>
-                        
                         <div class="flex items-center justify-between">
-                            <div class="flex flex-wrap">
-                                ${getLinks(proj["Project Links"])}
-                            </div>
-                            <button onclick="openModal(${index})" class="text-sketch-dark hover:text-white hover:bg-sketch-dark border border-black rounded-lg px-3 py-1 text-sm font-bold transition-all">
+                            <button onclick="openModal(${index})" class="text-sketch-dark hover:text-white hover:bg-sketch-dark border-2 border-black rounded-lg px-4 py-1.5 text-sm font-bold transition-all shadow-[2px_2px_0px_#000] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
                                 Read More
                             </button>
+                            <div class="flex">
+                                ${proj["Project Links"] && proj["Project Links"].includes('github') ? 
+                                    `<a href="${proj["Project Links"].split(',').find(l=>l.includes('github'))}" target="_blank" class="text-2xl text-gray-400 hover:text-black transition-colors"><i class="fa-brands fa-github"></i></a>` 
+                                    : ''}
+                            </div>
                         </div>
                     </div>
                 `;
@@ -872,48 +859,50 @@
             });
         }
 
-        // Modal Logic
         window.openModal = function(index) {
-            // We need to find the project in the sorted list or original list? 
-            // Better to find by title or pass the project object, but simplified here:
-            // Re-sorting to match render order
              const sortedProjects = [...projects].sort((a, b) => {
                 if (a.Prizes && !b.Prizes) return -1;
                 if (!a.Prizes && b.Prizes) return 1;
                 return 0;
             });
             const proj = sortedProjects[index];
-
             const members = [proj["Team Member 1 Name"], proj["Team Member 2 Name"], proj["Team Member 3 Name"]].filter(m => m).join(', ');
+            const videoUrl = findVideoUrl(proj);
+            const videoId = getYouTubeId(videoUrl);
             
             modalContent.innerHTML = `
                 <div class="mb-6 pb-6 border-b-2 border-dashed border-gray-300">
                     <div class="flex flex-wrap items-start justify-between gap-4">
-                        <div>
+                        <div class="flex-1">
                             <h2 class="text-3xl md:text-4xl font-black font-display charcoal-heading mb-2">${proj.Title}</h2>
-                            <div class="font-bold text-lg text-sketch-flame">${proj["Team Name"]}</div>
-                            <div class="text-sm text-gray-500 mt-1 font-semibold"><i class="fa-solid fa-users"></i> ${members}</div>
+                            <div class="font-bold text-lg text-sketch-flame mb-2">${proj["Team Name"]}</div>
+                            <div class="text-sm text-gray-500 font-semibold"><i class="fa-solid fa-users"></i> ${members}</div>
                         </div>
                         ${proj.Prizes ? `
-                            <div class="px-4 py-2 bg-yellow-100 border-2 border-yellow-400 text-yellow-800 rounded-lg font-bold shadow-[4px_4px_0px_rgba(0,0,0,0.1)]">
+                            <div class="px-4 py-2 bg-yellow-50 border-2 border-yellow-400 text-yellow-800 rounded-lg font-bold shadow-[4px_4px_0px_rgba(0,0,0,0.1)]">
                                 <i class="fa-solid fa-trophy mr-2"></i> ${proj.Prizes}
                             </div>
                         ` : ''}
                     </div>
                 </div>
+
+                ${videoId ? `
+                <div class="mb-8 rounded-xl overflow-hidden border-2 border-black shadow-[6px_6px_0px_#000]">
+                    <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                ` : ''}
                 
-                <div class="prose max-w-none text-gray-800 leading-relaxed whitespace-pre-line">
-                    <h3 class="text-xl font-bold mb-2 font-display">Description</h3>
+                <div class="prose max-w-none text-gray-800 leading-relaxed whitespace-pre-line text-lg">
                     ${proj["Project Description"]}
                 </div>
 
-                <div class="mt-8 pt-6 border-t-2 border-black bg-gray-50 -mx-4 -mb-4 p-6 rounded-b-xl flex flex-wrap gap-4 justify-center">
-                    ${getLinks(proj["Project Links"])}
+                <div class="mt-8 pt-6 border-t-2 border-black bg-gray-50 -mx-8 -mb-8 md:-mx-10 md:-mb-10 p-6 flex flex-wrap gap-4 justify-center items-center">
+                    ${getLinksHTML(proj["Project Links"])}
                 </div>
             `;
             
             modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden';
         }
 
         window.closeModal = function() {
@@ -921,14 +910,11 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Close on clicking outside
         modal.addEventListener('click', (e) => {
             if (e.target === modal) closeModal();
         });
 
-        // Initialize
         renderProjects();
-
     </script>
 </body>
 </html>
