@@ -1,0 +1,1012 @@
+Team Name,Team Member 1 Name,Team Member 2 Name,Team Member 3 Name,Title,Subtitle,Project Description,Project Links,Video Demo,Prizes
+Stack Overflowers,Shagil Islam,Shadan Akhtar,Yousuf Minhaj Khan,Mnemosyne - The AI Memory Prosthetic,"Instead of a simple reminder app, Mnemosyne is an ""Always-On"" Multi-Agent System that runs on an early-stage Alzheimer’s/Dementia patients' phone (or wearable) and passively ""listens"" to conversations and ""sees"" the environment (via camera/audio) to provide real-time context cues to the patient before they get confused.","We've added a detailed description about the entire project in this public README: https://github.com/shagil77/mnemosyne
+
+Mnemosyne: The Gemini 3 Memory Prosthetic 🧠✨
+
+A real-time ""Cognitive Prosthetic"" that leverages Gemini 3's 2M+ context window to restore dignity and social connection for dementia patients.
+
+---
+
+The Mission (Problem & Impact): Dementia doesn't just steal memories; it steals the confidence to interact with the world. Patients often face the ""Stranger in the Mirror"" problem—failing to recognize loved ones, which leads to social withdrawal and rapid cognitive decline. Mnemosyne acts as an invisible, empathetic friend that whispers vital context (names, shared memories, and emotional cues) into a patient’s earpiece in real-time, allowing them to navigate life with independence and dignity.
+
+---
+
+Technical Architecture: Mnemosyne uses a Hierarchical Multi-Agent System designed to process a live multimodal stream with extreme efficiency.
+
+1. Perception Agent (Gemini 3 Flash)
+
+* Role: Handles the high-frequency multimodal ""Passive Listening"" phase.
+
+* Capability: Processes sub-second video/audio frames to detect faces, voices, and environmental ""vibes."" It outputs structured JSON only when ""High-Signal"" entities (like a person entering the room) are detected.
+
+2. Context Agent (Gemini 3 Pro)
+* Role: The ""Active Reasoning"" brain.
+
+* Gemini Advantage: Utilizes the 2M+ context window to maintain a ""Living Knowledge Graph"" of the patient’s entire life history.
+* Frugal Relevance Filter: We engineered a custom filter that reduces token usage by intelligently deciding when to trigger deep memory retrieval vs. remaining in a low-power idle state.
+
+3. Whisper Agent (Gemini 3 Pro)
+* Role: Natural Language Generation with high Emotional EQ.
+
+* Output: Decides what to whisper to the patient to minimize cognitive load while maximizing social success (e.g., ""That's your grandson, Rahul. He was here yesterday."").
+
+---
+
+Safety & Monitoring (Weights & Biases)
+We integrated **Weights & Biases (W&B) to move beyond a simple prototype into a safety-first HealthTech solution:
+
+* Memory Confidence: Tracks how accurately the AI is identifying entities.
+* Hallucination Guardrails: Logs AI reasoning paths to ensure whispers are grounded in the patient's actual history.
+* Emotional Heatmaps: Provides caregivers with a dashboard of the patient's mood and engagement trends throughout the day.
+
+---
+
+Tech Stack
+* Core AI: Google Gemini 3.0 Pro & Flash (Multimodal Preview).
+
+* Observability: Weights & Biases (Trace & Dashboarding).
+* Frontend: Vite, React (Glassmorphism & High-Contrast UI for accessibility).
+* Backend: Python 3.10+, FastAPI.
+* Deployment: Optimized for low-latency edge processing.
+
+---
+
+Mnemosyne doesn't just use AI to answer questions; it uses Gemini 3 to anticipate human needs. By bridging global knowledge (recognizing a face) with private memory (mapping that face to a grandson), we’ve created a ""Zero-UI"" interface where the technology learns the patient, not the other way around.
+
+Submission for the Global GenAI Hackathon hosted by Machine Learning Kolkata.","https://github.com/shagil77/mnemosyne,https://mnemosyne-frontend-677184796940.us-central1.run.app/",https://youtu.be/_JeuQl3rqYM?si=r4iOh2RXDTaBXm-R,1st wandb track
+Beginny,Akanksha Kumari,Tushar Vaskar Sharma,,StudyBee,"StudyBee is an AI study companion that turns focus into a friendly competition by tracking learning habits, generating AI insights, and ranking students on shared leaderboards.","This project is an AI-powered student productivity tracker made as a Chrome extension. It tracks browsing activity and sort into learning, distraction, or mixed usage and gives real-time feedback through a clean, interactive dashboard. The platform also adds a competitive aspect by letting users create groups, compare their progress on leaderboards , and stay accountable together. It pushes notification alerts when user is distracted while having a low learning time. Using Generative AI (Gemini), the system displays daily motivation, weekly reflections through a dashboard of learning vs distracted, and an AI study coach that students can talk to. Overall, the project combines tracking behaviour, AI insights, and gamification to make studying more engaging and self-aware.",https://github.com/tusharvaskarsharma/StudyBee.git,https://youtu.be/oebV_2La9vg?si=gDIMzg9srVdGpH5O,1st google track
+Code Matrix,Ayush Kumar,Dhiraj Kumar Chowdhury,,DocAI — AI-Powered Clinical Health Intelligence,"DocAI turns medical reports and scans into clear, traceable health insights using AI you can actually trust.","DocAI is built to help people make sense of their medical reports when they need clarity the most. By allowing users to upload blood reports or medical images, DocAI carefully extracts key health markers and explains them in simple, understandable language, helping users see what matters and what steps they can take next.
+
+All analysis is handled securely on the backend using Google Gemini, and every AI decision is traced with Weights & Biases (W&B Weave) to ensure transparency and reliability. By combining thoughtful AI with traceability and a calm, user-first experience, DocAI aims to make early health awareness and preventive care more approachable, respectful, and accessible.
+
+GitHub Link: https://github.com/ayushkumar2601/DocAI
+Live Link: https://docaihealth.vercel.app
+X post: https://x.com/notmuchayush/status/2004456915812958476?s=20",https://docaihealth.vercel.app/,https://www.youtube.com/watch?v=C8qsbIZCLR0,
+DEV NEXUS,Amitava Datta,Pranay De,Srinjinee Mitra,CivicPulse: AI-Powered Civic Engagement for Smarter Communities,"CivicPulse reconnects citizens with their local government by transforming the often frustrating process of reporting public issues into a simple, transparent, and rewarding collaboration, using AI to help everyone work together to build safer and more beautiful communities.","CivicPulse is a comprehensive, AI-powered Progressive Web App (PWA) with TWA features designed to revolutionize how local communities report, manage, and resolve civic issues. It creates a transparent and efficient three-node network that connects Citizens, Municipal Officials, and Field Supervisors, ensuring accountability and engagement at every step and also maintain a trust between government and citizen.
+
+The platform is built on a ""three-faced"" model, providing a tailored experience for each user role:
+1. For Citizens: An interactive, gamified mobile-first experience to report issues, track their resolution in real-time, and earn rewards for contributing to their community.
+2. For Municipal Officials: A powerful administrative dashboard to manage incoming reports, assign tasks to field staff or supervisors, and monitor overall performance with detailed analytics.
+3. For Field Supervisors: A streamlined work queue to receive assignments, submit completion reports with photo evidence, and compete on a performance-based leaderboard.
+
+The application follows a seamless workflow powered by AI:
+
+1. AI-Assisted Reporting (Citizen): A citizen spots an issue (e.g., a pothole). They use the app to capture photos, record audio notes, and select a category. Our AI engine, powered by Google's Gemini model, instantly analyses the submission to:
+o Validate the image's relevance (whether the image actually represent a issue or not) and assign a severity score (1-10). If the image is of any random person or object it will be rejected during submission and no issue will be generated.
+o Transcribe audio notes (can be in any language including regional languages like Hindi, Bengali etc.) into text.
+o Checks whether the audio is relevant to the image or not.
+o Determine an intelligent priority level (Low, Medium, High).
+o Generate a concise, descriptive title with a ticket ID.
+
+2. Sorting and Assignment (Municipal Official): The validated report appears in the official's ""Sorted Work Queue."" They can view all AI-generated details, see how many other citizens have ""joined"" the report, and assign it to the appropriate supervisor with a deadline.
+
+3. Resolution and Verification (Field Supervisor): The ticket appears in the supervisor's personal dashboard. After completing the work, they submit a completion report with ""after"" photos. To ensure authenticity, our AI performs:
+o AI Image Detection: Rejects submissions with AI-generated images and penalizes the supervisor's ""Trust Score.""
+o Completion Analysis: Cross-validates the ""before"" and ""after"" photos to confirm the work was done correctly.
+
+4. Final Approval & Feedback (Official & Citizen): The official reviews the supervisor's report, aided by the AI analysis. Upon approval, the ticket is marked as ""Resolved,"" and the supervisor earns ""Efficiency Points."" The original reporter i.e., the citizen is then notified and can provide a star rating, which directly influences the supervisor's ""Trust Score.""
+Highlighting Features:
+o Gamification Engine: In addition to simple reporting, CivicPulse also provides a rewarding and competitive environment where:
+o Citizens earn Utility Points for valid reports, which can be redeemed for local vouchers (integration with Blockchain currency in future), and unlock Badges for achievements.
+o Supervisors earn Efficiency Points for timely, high-quality work, competing on a dedicated leaderboard.
+o A universal Trust Score penalizes misuse (e.g., spam reports, fraudulent photos) to maintain system integrity.
+o Hybrid AI Priority Engine: Our intelligent triage system combines multiple data points—image severity, textual keywords, issue category, and community ""join"" count—to create a priority level that is far more accurate and effective than manual sorting as here priority will increase based on the number of users that joined the issue.","https://github.com/AmitavaDatta2004/Civic-Nexus , https://civic-pulse-seven.vercel.app/",https://youtu.be/AZlao4by4-c?si=bsuGyYa4IUe3hOZ_,2nd google track
+Pokemon,Fardin Rahaman,Ashish Karmakar,,Flow Do,"FlowDo is an AI-powered visual learning flow builder that lets you create interactive study plans by connecting nodes, upload files to generate flows, chat with your flow for context-aware answers, and automatically organize your content with AI assistance","FlowDo is an AI-powered visual learning flow builder that helps students and educators create interactive study plans by connecting concepts as nodes on a canvas. It integrates Google Gemini AI to generate explanations, quizzes, and study plans from topics or uploaded files (PDF/TXT/MD), features a RAG-based chat system that answers questions using visible node content, and includes auto-layout algorithms for organizing complex flows. Built with React, TypeScript, and Firebase for cloud storage, it combines graph visualization, AI content generation, and intelligent organization to transform how people structure and interact with learning materials
+
+Here is our github project link: https://github.com/hawatri/FlowDo.git",https://flowdo.hawatri.in/,https://youtu.be/BKTN3upEgY0,3rd google track
+Mambas,Aryan Biswas,Nikhil Kumar Ria,Ayush Kumar,PixelPrompt,"PixelPrompt is an AI-powered educational tool that instantly converts any written text into a fully playable, interactive video game using Google Gemini 2.5 for logic and generative AI for real-time graphics.","PixelPrompt is an AI-powered ""Text-to-Game"" engine designed to revolutionize the EduTech sector. It allows educators and students to instantly convert abstract concepts into fully playable, interactive video games just by typing a sentence.
+
+Traditional education often struggles with engagement because creating interactive software requires coding skills that most teachers lack. PixelPrompt solves this by using Google Gemini 2.5 Flash to analyze natural language (e.g., ""The white blood cells hunt the virus"" or ""Sort the waste into plastic and organic"") and dynamically construct a game from scratch.
+
+The engine automatically selects the best gameplay mechanic (Shooter, Sorter, Dodger, Connector), generates unique pixel-art assets in real-time using generative image diffusion, and builds a working executable in seconds. This democratizes game development, turning passive textbook reading into active, gamified learning without requiring a single line of code.
+
+Key Features:
+
+Instant Gamification: Transforms text prompts into one of 6 unique game modes.
+
+Real-Time Asset Generation: Creates custom sprites and visuals on the fly.
+
+Smart Assessment: Tracks player reaction times and accuracy for psychometric profiling.
+
+Zero-Code Platform: Accessible to any teacher or student with a computer.",https://github.com/CodesByAryan/PixelPrompt,https://www.youtube.com/watch?v=W8yopEFuyuU,
+Nano pineapple,Poushali Bhattacharyya,Mounasuvra Banerjee,Souradip Pal,Ramen Art,Manga creation app using AI,"🍜 Ramen Art AI
+
+Ramen Art AI is a powerful web application that combines AI-driven storytelling, character creation, and manga generation to help creators bring their narratives to life. Built with modern web technologies, it offers an intuitive interface for generating stories, creating original characters (OCs), and managing creative projects with a full-fledged manga creation suite.
+
+✨ Features
+📖 Story Generation & Refinement
+
+AI-Powered Story Creation
+Generate complete stories with customizable parameters such as genre, tone, length, and target audience.
+
+AI Story Refinement
+Refine raw prompts into detailed, structured narratives using Google Gemini AI.
+
+Full-Context Prompting
+Automatically builds rich prompts including story metadata, world-building, arc details, and scene summaries.
+
+🎨 OC Maker (Original Character Creator)
+
+AI Image Generation
+Generate high-quality character artwork using Z-Image groups and Gemini Image models.
+
+Flexible Input Methods
+
+Free-text custom descriptions
+
+Dropdown selections for:
+
+Gender, Style, Age
+
+Body Type, Hair, Eyes, Face
+
+Skin Tone, Clothing, Accessories
+
+AI Prompt Optimization
+Enhance character descriptions using Gemini-powered refinement.
+
+Character Library
+Save OCs per story and reuse them as visual references during manga generation.
+
+🖌️ Manga Creator (Interactive Canvas)
+
+Interactive Canvas
+Drag-and-drop elements with fully customizable panel layouts.
+
+Automated Panel Generation (1-Click Workflow)
+A streamlined 3-step AI pipeline:
+
+Suggest Action – AI analyzes story context to propose the next panel action
+
+Optimize Prompt – Converts the action into a detailed image prompt
+
+Generate Image – Uses Gemini 2.5 Flash Image to create the panel
+
+Character Consistency
+Automatically uses saved character images as visual references.
+
+Page-Level Generation
+Generate complete manga pages with consistent style and layout.
+
+Real-Time Updates
+Generated images are instantly applied to the selected panels on the canvas.
+
+🎯 Smart Enhancements
+
+AI Background Removal using Cloudinary
+
+Responsive, Modern UI with glassmorphism design
+
+Toast Notifications for clear user feedback",https://github.com/ramenartai/Ramen_Art/,https://www.youtube.com/watch?v=n8K_2LgP61A,2nd wandb track
+Han Solo,Priyam Pandey,,,Med Sage,"MedSage is a lightweight clinical triage tool that converts raw patient transcripts into concise, risk-focused medical summaries using Gemini, with full AI performance tracing via Weave.","MedSage is a web-based application designed to help clinicians quickly understand complex patient histories. Doctors can upload medical transcripts as text, PDF, or DOCX files, which are then analyzed using Google Gemini to generate a short, clinically useful summary, key symptoms, conditions, medications, and an overall risk assessment.
+The application emphasizes clarity, speed, and accountability. Every AI inference is automatically logged and traced using Weave, allowing developers and judges to inspect model behavior, prompts, and outputs for transparency and evaluation. MedSage demonstrates how generative AI can be safely integrated into healthcare workflows while maintaining observability and performance insights.",https://huggingface.co/spaces/Priyam2307/Med_Sage,https://youtu.be/dGxCBcsHeqU?si=5cW9MSOO2Bz5kqEJ,3rd wandb track
+Team Envision,Sougata Sarkar,Sayan Debnath,Sanish Bhagat,Health Sathi,Healthcare simplified with multimodal AI.,"Health Sathi: Healthcare simplified with Multimodal AI
+The Problem: Uncertainty among patients regarding their medical reports and diagnosis.
+In the current healthcare landscape, there is a huge ""clarity gap"" between medical professionals, medical reports and patients. Medical reports are often dense with handwritten prescriptions with unclear handwriting and instructions, being very difficult to understand, and lab results can feel very complex to extract. For many, especially those in regional areas and senior citizens, this confusion is compounded by language barriers and unclear instructions. When patients don’t fully understand their diagnosis or medication schedules, it leads to anxiety, non compliance and health complications.
+Our Solution: Health Sathi : Your digital health companion.
+Health Sathi (meaning ""Health Companion"") is an innovative, multimodal AI assistant designed to bridge this gap. By leveraging the advanced reasoning and vision capabilities of Google’s Gemini 2.5 and 3 Flash models, Health Sathi transforms complex medical data into actionable, easy-to-understand guidance. It doesn't just process text; it ""sees"" prescriptions, ""hears"" symptoms, and ""reads"" clinical reports to provide a holistic view of a patient’s health.
+
+Unique Selling Points:
+1. Empowering Patients: Health Sathi makes healthcare accessible through intuitive multimodal inputs:
+•	Vision & Voice: Patients can upload photos of medicine bottles or record their symptoms naturally using speech-to-text.
+•	Breaking Barriers: To ensure no one is left behind, the AI translates clinical advice into 10+ Indian regional languages (such as Hindi, Tamil, Marathi and other Indian regional language) unlike any other solutions.
+•	Accessibility: With integrated Text-to-Speech (TTS), users can listen to their guidance—a vital feature for the elderly or visually impaired.
+•	Privacy & Portability: Using IndexedDB, the app works offline, storing records locally on the device. Patients can also generate professional PDF assessments to share with family or caregivers.
+2. Supporting Doctors: The platform is designed to complement, not replace, human expertise:
+•	Triage Dashboard: Doctors are presented with a prioritized list, distinguishing between Critical and Pending cases to optimize their workflow.
+•	Clinical Verification: Every AI insight is anchored in a RAG (Retrieval-Augmented Generation) framework. This ""Health Sathi Medical Library"" ensures that responses are grounded in established medical protocols (e.g., Cardiology or Renal guidelines), significantly reducing the risk of hallucinations.
+•	One-Click Actions: Doctors can quickly approve, modify, or escalate AI assessments, maintaining total clinical oversight.
+The Innovation Stack:
+Health Sathi is built on a high-performance, modern tech stack designed for speed and responsiveness:
+•	Core: Built with React 19 and TypeScript for a robust, type-safe frontend experience.
+•	AI Engine:  We are utilizing Gemini-3-Flash for rapid document analysis and Gemini-2.5-Flash-TTS for natural voice generation.
+•	State & Storage: Zustand manages the application state, while IndexedDB provides a secure, client-side NoSQL database for local-first data persistence.
+•	Styling: A custom-animated UI powered by Tailwind CSS ensures the experience is as comforting as it is functional.
+The Vision:
+Health Sathi represents a shift toward empathetic tech. By combining the power of Large Multimodal Models (LMMs) with a human-centric design, the project ensures that medical clarity is no longer a luxury, but a standard for everyone, regardless of their language or technical literacy.
+
+",https://health-sathi-rosy.vercel.app/,https://youtu.be/Or58CVNoXNc,
+White Hats 2.0,Prajes Das,Shreyash Tiwari,Mohini Mishra,AI Powered Smart Exercise System with Personalized Coaching Assistant.,AI-Driven Personalized Fitness & Coaching System with Real Time Feedback Analysis using Gemini and Weave for statistical formulation.,"INTRODUCTION: Our AI powered smart exercise system represents a significant advancement in integrating technology with wellness, specifically yoga practice. This innovation combines embedded sensors, artificial intelligence (AI), and smart watch integration to provide users with a comprehensive and personalized exercise  experience. The device’s embedded sensors monitor posture, balance, and pressure distribution, feeding data to an AI-driven application that delivers real-time feedback and recommendations. By syncing with smart watches, the software also tracks heart rate, calorie expenditure, and activity levels, offering a holistic view of the user's fitness journey.
+A key feature of the AI powered smart exercise is its ability to deliver curated yoga and exercising content from expert instructors. This vast library of guided sessions is tailored to individual skill levels, goals, and preferences. The AI system continuously learns from user interactions, refining its recommendations to maintain relevance and engagement, thereby enhancing practice effectiveness and user motivation. Affordability is a core consideration in the software’s design, achieved through cost-effective materials and scalable manufacturing. By leveraging existing smart watch technology, the need for additional devices is minimized, further reducing costs.
+
+PROBLEM BEING SOLVED: Exercise is widely recognized for its physical and mental health benefits; however, incorrect posture, lack of expert supervision, and inconsistent practice significantly reduce its effectiveness and may lead to injury. Traditional yoga mats are passive tools that provide no feedback, and online classes , while helpful, lacked personal guidance and real-time correction. Hiring personal instructors offers quality guidance but is cost-prohibitive and inaccessible for many users.
+
+Existing smart fitness solutions are often fragmented, expensive, or dependent on multiple devices, increasing complexity and reducing adoption. There is a clear need for a unified, intelligent, and affordable system that can provide real-time feedback, adaptive training, and progress tracking without requiring constant human supervision.
+
+PROPOSED SOLUTION: SOLMat (our device) addresses these challenges by the integration of technology with wellness practices that has seen significant advancements, particularly in the realm of exercise. The system focuses on the development of an Artificial Intelligence (AI)-based software solution that enhances user experience by integrating with smartwatches for comprehensive progress tracking and providing expert-curated wellness content. The primary objective of this innovation is to make advanced in house exercise practice accessible and affordable to a broader audience.
+
+SYSTEM ARCHITECTURE:
+
+The SOLMat comprises the following features:
+
+1.Embedded sensors and camera that monitors physical parameters and capture's users movements for posture correction.
+2.AI powered guidance and personalized yoga sessions that ensures high-quality engaging experience.
+3.Affordability and accessibility using cost-effective hardware and existing wearable devices.
+4.Voice interaction module that provides real-time guidance and accepts voice commands.
+5.Smartwatch integration that collects biometric data to complement posture analytics.
+
+KEY TECHNICAL DETAILS:
+AI Model:
+
+*Model Used: Gemini-2.0-Flash
+
+*Purpose: Enables high-speed, low-latency inference for real-time posture correction, intelligent feedback generation, and automated workout routine creation.
+Justification: Optimized for responsiveness and scalability, ensuring instant corrective guidance and adaptive workout recommendations without perceptible lag.
+
+*Input Data:
+
+*Source: MediaPipe and YOLO Pose Estimation Framework
+*Data Type: Raw two-dimensional Cartesian coordinate pairs (x, y) extracted from detected body landmarks such as shoulders, elbows, hips, and knees, used for posture analysis and movement tracking.
+
+*Output Mechanism:
+
+*Feedback Type: Dynamic voice guidance and adaptive workout instructions
+Delivery Method: Text-to-speech engine via the speak() function, powered by AI-generated responses from the Gemini API.
+*Weight–Bias Analytics and Monitoring:
+Tool Used: Weights & Biases (W&B)
+Purpose: Used in conjunction with the weight–bias decision tool to log, monitor, and analyze workout performance metrics across sessions.
+*Tracked Parameters:
+Number of repetitions performed
+Duration of each workout session
+Detected posture states and correction frequency
+Exercise type and completion status
+Justification: W&B enables persistent storage and visualization of workout statistics, allowing longitudinal performance tracking and facilitating data-driven refinement of AI decision thresholds and weight–bias parameters for improved personalization.
+
+PERSONALIZED AI ASSISTANT:
+
+It is a revolutionary fusion of ancient practice and cutting-edge technology, designed to elevate your wellness journey. It is a sophisticated network of embedded sensors, designed to track your movements with pinpoint accuracy. These sensors capture data on your body alignment, weight distribution, and even micro-adjustments during poses, all in real time. As you move through your practice, the AI processes this data and provides immediate, personalized feedback through a connected app or integrated audio system. Whether you’re holding a challenging pose, the AI ensures that you are always in optimal alignment, reducing the risk of injury and enhancing the effectiveness of each posture. It’s also equipped to monitor your breathing patterns and heart rate, giving you the overall wellness. The AI can detect subtle changes in your breath and suggest modifications to your practice. This integration of breath and movement helps you achieve a more mindful practice, where body and mind are in perfect balance. This software can also count the number of postures you have performed and automatically switches to another posture once repetition goals are met.
+
+SMART WATCH INTEGRATION:
+
+The Smart Yoga Mat integrates seamlessly with smart watches, allowing for comprehensive tracking of additional metrics such as heart rate, calories burned, and overall activity levels.
+This integration provides a holistic view of the user’s fitness journey, combining data from both the mat and the smart watch.
+
+ADVANTAGE OVER NORMAL CURRENT INDUSTRY DEVICES : 
+
+An AI-powered exercising assistant offers significant advantages over traditional, standard methods, primarily by providing personalized feedback and guidance. Here's a breakdown:
+ Real-time Posture Correction: 
+1.Unlike a regular gym trainer, an AI-powered exercising coach uses sensors to track your movements and alignment.
+2. It provides instant feedback, helping you correct your poses and prevent injuries.
+Personalized Guidance: 
+3. AI algorithms can adapt to your skill level, offering tailored routines and adjustments.
+4. This eliminates the need for constant in-person instruction, making it ideal for home practice.
+Progress Tracking: 
+5. SOLMat can record your sessions, track your progress, and identify areas for improvement.
+6.This data-driven approach helps you stay motivated and achieve your fitness goals.
+Enhanced Safety: 
+7.By providing real-time corrections, the device minimizes the risk of injury from incorrect posture.
+8. This is particularly beneficial for beginners or those with physical limitations.
+Increased Engagement: 
+9.The interactive nature of AI-powered coach can make exercise practice more engaging and enjoyable.
+10.Features like audio prompts and haptic feedback can enhance the overall experience.
+The gamified mode in our website also enables users to compete with their own self and make you exercising sessions much more engaging and enjoying.
+Convenience: 
+11.Being able to have expert level feed back at any time, in your own home, adds a level of convience that is hard to overstate.
+In essence, an AI-powered yoga mat transforms a passive tool into an active, intelligent guide, revolutionizing the way people practice yoga.
+
+CONCLUSION:
+By transforming a yoga mat into an intelligent training system, SoLMat bridges the gap between expert instruction and home-based practice.This report details the technical specifications of the Smart Yoga Mat, including sensor technology, AI algorithms, and smart watch integration protocols. It also emphasizes user experience design, focusing on ease of use and accessibility. Our Device aims to democratize access to high-quality practice, potentially impacting the wellness industry by making advanced exercise accessible and affordable to a wider audience.",https://github.com/prajesdas/AI-Driven-Smart-Yoga-Mat-for-Personalized-Yoga-Guidance-and-Progress-Analytics,https://youtube.com/shorts/NeV0AUD9Msw?feature=share,
+NoAura,Sanjoy Paul,Shubhojit Ghosh,,Mailto,AI-powered Personalized Outreach Workspace,"We Developers can build anything, but when its about the very opportunities we need the most, we struggle. We are not expert in outreach, sales, or marketing, but these skills decide whether our work gets noticed.
+Writing personalized emails is slow, inconsistent and mentally exhausting, which limits our visibility and growth.
+
+Mailto solves that.
+Mailto is an AI powered outreach workspace that helps you generate, personalize, send and track emails from one place.
+
+We use Google Gemini API to craft context-aware messaging and Weights & Biases to continuously learn what tone produces better response.
+
+So users have 80% of their time, scale outreach effortlessly and get more replies, without learning marketing. It turns communication from weakness into a strength for developers, founders and builders who want their work to gain attention.
+
+Basically Mailto is an intelligent email workspace that helps you generate, customize, send, and track emails—all from a single interface. Designed for productivity-focused users, Mailto combines AI-driven content generation with real-world email workflows like recipient management, tone control, delivery, and status tracking. It is built for the Submission for Global GenAI Hackathon hosted by Machine Learning Kolkata.
+
+Tech Stack:
+ReactJS
+ExpressJS
+MongoDB
+NodeJS
+Gemini API
+Wandb Weights & Biases
+Nodemailer
+SMTP
+
+Working Flow/Architecture:
+First Users have to create a workspace and set context to it, it can have multiple intent like: Job Outreach, Selling a product and Collaboration.
+After making workspace you can compose an email, for this you have to give the person’s X handle and email whom you want to outreach. You can manage the mail tone by customizing the sliders which have parameters such as: personalized, formal and persuasiveness.
+After clicking generate we collect the user’s X posts and analyze his/her personality and tone and make a customized mail for reaching them.
+On clicking send the mail gets sent with help of SMTP and nodemailer and the recipient card gets saved and renders on frontend. 
+With the help of Weights and Biases we get the data of which format or what level of customization brings us the best reply rate.
+",https://github.com/Shubhojit-Official/Mailto/tree/main?tab=readme-ov-file,https://youtu.be/fYv2q_RCG4w,
+Null Pointer,Puskar Nath,Souvik Chakraborty,,Rakshak, An intelligent AI guardian for nuclear plants that predicts disasters before they happen and guides operators with step-by-step instructions to save lives.,"Team Name: Null Pointer
+RAKSHAK: An AI System for Proactive Nuclear Safety and Automated Emergency Coordination
+
+1. Problem Statement
+The privatization and growth of the nuclear ecosystem present a significant safety concern as India pursues its clean energy aspirations under the new SHANTI ACT.
+Historical disasters like Bhopal and Chernobyl taught us a brutal lesson: the greatest loss of life isn't caused by the mechanical failure itself, but by the delay in detection and poor coordination between plant operators and external emergency services.
+Current SCADA(Supervisory Control And Data Acquisition) systems are Reactive—they trigger alarms only after a threshold is exceeded. In a critical meltdown scenario, this leaves minimal reaction time for operators and surrounding communities.
+2. The Solution: RAKSHAK
+RAKSHAK is an intelligent Human-Machine Interface (HMI) that transforms passive sensor data into proactive life-saving interventions .It's ""Physics-Constrained"" architecture guarantees that AI forecasts never go beyond safety rules or physical principles.
+Key Concepts of the RAKSHAK Architecture
+1. Analytics Layers (Deterministic & Machine Learning)
+We split the AI analysis into two distinct parts:
+•	Deterministic Safety Layer: This follows strict laws of physics. It uses Rate-of-Change Analysis ($dT/dt$ and $dP/dt$) to calculate the ""velocity of danger,"" helping us understand how fast the situation is escalating.
+•	Machine-Learning Anomaly Layer: This uses advanced models  to detect tiny patterns or deviations in sensor data that are invisible to the human eye.
+2. Rule-Based Safety  
+This is a critical safety feature. This ensures the AI never violates reactor physics or regulatory limits. 
+3. Probabilistic Root-Cause Diagnosis
+The system doesn’t just say ""Danger""; it explains why it is happening using statistical confidence. For example: ""Primary Coolant Pump Failure: 85% Confidence."" This helps operators make the right decision instantly.
+4. Dynamic SOP Guidance:
+The system offers a particular SOP (Standard Operating Procedure) or Advisory Action Plan during a crisis. Based on the particular failure found, it provides the operator with detailed guidance on what to do next.
+5. Defense-in-Depth & Security:
+To satisfy regulatory bodies, the architecture includes Air-Gapped Data Access and Defense-in-Depth layers. This means the core safety logic is physically isolated from the internet to prevent cyber-attacks.
+6.Safety Alert :
+If the system detects a situation going out of control, it automatically sends alerts to nearby hospitals and police stations located outside the danger zone. This ensures help is ready before the crisis hits.
+CONCLUSION:
+Constrained AI framework to change nuclear safety from a reactive battle to a proactive approach. It prevents AI faults in critical  which guarantees complete dependability and regulatory compliance. In the end, RAKSHAK bridges the gap between detection and reaction to save lives by automating coordination with emergency services.",https://geminiworkflow.vercel.app/,https://youtu.be/Xyhirj5W_eE,
+Arnab,Arnab Kumar Dey,,,HealthWise,Personalized Health Care Assistant,https://drive.google.com/file/d/1i-jl24pYb7f3usQo8LYYbRysp_Czjkvx/view?usp=sharing,https://github.com/arnab9957/HeathWise.git,https://youtu.be/-hkV75Cna1U,
+Ascension,Arnab Mandal,Debaditya Majumder,Ananya Mukherjee,3D Learning Hub,An interactive 3D learning site that showcases models and answers questions via a Gemini-powered chatbot.,"3D Learning Hub is a lightweight, web-based educational platform that transforms learning into an immersive experience using interactive 3D models and an AI assistant.
+
+Built with vanilla JavaScript, Tailwind CSS, and Google’s <model-viewer>, the platform runs as a fast static site — no heavy frameworks, no build tools, easy to deploy anywhere.
+
+✨ Key Features
+
+🧠 AI-powered chatbot (via secure backend + Google Gemini) for real-time learning support
+
+🧩 Interactive 3D model viewer for visual and hands-on exploration
+
+📱 Responsive, modern UI optimized for all devices
+
+⚡ Zero-build deployment — host instantly on Vercel or any static server
+
+🎯 Why It Matters
+
+3D Learning Hub demonstrates how 3D visualization + AI can dramatically improve engagement and understanding in education — while keeping the tech stack simple, fast, and accessible.",https://github.com/Arnab-apk/Model-StudyPlace,https://youtu.be/9cCIE-nqhT0,
+Solo Leveling,Sayan Senapati,,,Krishi AI,AI-powered crop disease diagnosis application,"AI-powered crop disease diagnosis application for Indian farmers. Built with Next.js, TypeScript, MongoDB, and Google Gemini AI. next step is creating one WhatsApp chat bot for al those features",https://krishi-aii.vercel.app,https://youtu.be/05lyNJCKLAE,
+Frostbyte,ADRISHA BISWAS,,,MediBill AI,MediBill AI is a web app that is used for live tracking of updates in a hospital bill and giving detailed explanation of billed items when required. ,"MediBill AI is a patient-focused web app built to make hospital billing more transparent and easier to understand. Instead of revealing all charges at the time of discharge, it allows patients and families to see their bills update in real time as treatment progresses.
+The idea came from noticing how confusing hospital bills can be, especially in private hospitals where medical terms, unclear charges and insurance uncertainty often leave families stressed and unprepared. MediBill AI helps reduce this confusion by explaining each bill item in simple language and indicating how insurance usually applies.
+To make the experience more accessible, MediBill AI includes a family-friendly explanation mode, supports multiple languages and provides educational visual descriptions of medicines and procedures. Overall, the goal is to help patients and families stay informed, avoid surprises and feel more confident about hospital expenses.",https://github.com/adrisha-dev/medibill-ai (Github Repo)  https://medibill-ai-r96xmviyydp5zbduvxj7yk.streamlit.app/#medi-bill-ai (Demo Web app) ,https://youtu.be/ASwWTOONouU,
+Prompt-as-a-Service(Paas),Suvam Paul,Vikash Kumar,Mohana Pal,DEV.OS - Advanced AI Operating System Assistant,Intelligent AI-Powered Automation Platform for Seamless System Control and Workflow Integration,"DEV.OS is an innovative AI-powered assistant designed to revolutionize how developers and users interact with their operating systems. Built with a modular microservices architecture, it seamlessly integrates cutting-edge generative AI technology to automate complex workflows.",https://github.com/Suvam-paul145/Dev-AI-OS-assistant,https://youtu.be/_-PIhqmKfw0,
+Neuro Vortex,Soumyl Singh Sisodia,Altamas,Tanay Chowdhury,Skin Arogya,Skin Arogya is an AI-powered multilingual web app that identifies Acne or Eczema and provides the user with a detailed report.,"A user-friendly, AI-powered web application called Skin Arogya helps people comprehend common skin conditions like acne and eczema. In addition to describing their symptoms, such as itching, duration, or discomfort, users can upload a picture of their skin. In order to produce a clear, understandable result, the app uses both the image and their description.
+
+Skin Arogya generates a detailed report in multiple languages using the Gemini API to enhance and broaden the experience. This report emphasizes the significance of specific symptoms and provides a straightforward explanation of the findings. With an emphasis on safety, transparency, and trust, the app does not speculate when it is unsure; instead, it makes this clear and advises users to consult a professional.",https://skinarogya.streamlit.app/ ; https://github.com/Altamas1399/skinarogya,https://youtu.be/dsF3HbBNMhw?si=U17E9XGCuOu4Wz_B,
+BhayanakAtmas,Aritra Giri,Satyam Mondal,,EventHub,EventHub is an AI-powered full-stack platform that uses Gemini 3 Pro to eliminate manual data entry through intelligent ID scanning and provide hyper-personalized event recommendations based on user intent.,"EventHub – Event Engagement with Gemini 3 Pro
+
+
+The Problem We’re Solving
+
+Most people have had the experience of the problem called ""registration wall"" — that moment when you want to join an event but lose interest because you have to type out a long list of personal details. On top of that, scrolling through hundreds of events to find something that you actually want to be a part of or somewhere you actually want to be in.
+To bridge this problem between organizers and attendees, we introduce “EventHub” ,making the entire problem less time-consuming and effortless rather than being a headache.
+
+
+Our Proposed Solution
+
+        EventHub, an AI-driven platform which handles the “heavy-lifting” for both the user and the administrator. Instead of a static website where everything feels dull, we built a living system which has a soul as AI that recognizes who you are and where you actually belong.
+        Our core idea is simple: Handle the boring tasks, like typing forms and searching for an event for yourself, over to an AI, so we can focus on the event by our own.
+
+
+How We Integrated Gemini 3 Pro
+
+For this particular task we chose the model “Gemini 3 Pro Preview” because of its “multimodal features”, meaning it can understand images and texts simultaneously with human-like reasoning. 
+
+A. AI-Powered Smart Registration
+Instead of a manual form, we implemented a ""Scan & Go"" feature.
+•        The Experience: A user simply uploads a photo of their ID card (which can be their college ID or any kind of Govt. ID).
+•        The Intelligence: Gemini 3 Pro uses its vision capabilities to identify the layout of the card, extract the name and email, and even calculate the user's age based on their date of birth.
+•        The Result: A registration process that used to take minutes now takes seconds, with zero typing required.
+B. Contextual Event Recommendations
+Most systems suggest events based on simple tags (e.g., ""Coding""). EventHub uses Gemini’s reasoning to understand the vibe of a user's interests and picks what matches their vibe perfectly.
+•        The Experience: Users see a ""Top Picks"" section curated specifically for them.
+•        The Intelligence: Gemini looks at a user’s profile and explains its logic. For example: ""Because you are a Computer Science student and recently attended a Logic Seminar, you might enjoy this Chess Tournament"".
+•        The Result: Higher engagement because users feel the platform truly understands their professional and personal goals and tries to pick the best for the user.
+C. Dynamic Access Control
+We leveraged AI to help manage our secure 3-tier system (User, Moderator, Admin).
+•        The Experience: Admins can ""invite"" others to help manage the site.
+•        The Intelligence: The system uses secure back-end logic to generate invite notifications. Once a user accepts, the AI-driven ""Gatekeeper"" reveals their access credentials, ensuring that staff privileges are handled with high security but a smooth user flow.
+
+
+Why This Matters
+
+By using Gemini 3 Pro, we’ve moved beyond basic automation. We’ve created a platform that:
+1.        Respects User Time: By eliminating manual data entry.
+2.        Reduces Human Error: By letting AI handle data extraction from documents.
+3.        Encourages Discovery: By making personalized suggestions that actually make sense to the user.
+EventHub is not just a tool for booking events; it is a demonstration of how AI can make digital interactions feel more human.
+
+
+Conclusion
+
+        EventHub redefines the whole process of event managing by replacing the manual administrative hurdles with a seamless AI-driven experience. We have transformed the standard booking process into a modern digital concierge by prioritizing user time and personalization.
+        The integration of “Google Gemini 3 Pro Preview” was a huge turn for this field, which took event managing to a next level. Its multimodal capabilities turned the complex task of ID verification into a “one-click” auto-fill action, while its reasoning engine allowed for sematic event recommendations that truly matches the vibes of the user.
+        And last but not the least, this project stands out to be a proof that Generative AI can be powerful when it acts as an “invisible” layer, removing friction, enhancing security, and simplifying discovery. By combining the MERN Stack with cutting-edge AI, EventHub demonstrates that modern software can be both highly functional and genuinely human-centric.
+",https://github.com/Saty-am21-04/EventHub,https://youtu.be/cSRNBgxde8k,
+Trinity,Sayan Paul,Soumili Sarkar,Shreya Dutta,Serene_AI,Mental Health Assistant,"SERENE - AI-Powered Mental Wellness Companion
+SERENE is a 24/7 mental health support chatbot built to provide empathetic, accessible, and private emotional support to anyone experiencing stress, anxiety, or emotional distress.
+
+🎯 The Problem
+Mental health challenges affect millions worldwide, yet professional help remains inaccessible due to cost, stigma, and long wait times. People need immediate, judgment-free support during emotional crises.
+
+💡 Our Solution
+SERENE combines Google Gemini 2.0 Flash AI with custom TensorFlow intent classification to deliver:
+
+Instant emotional support - No waiting lists or appointments
+Empathetic AI conversations - Trained specifically for mental wellness
+Crisis intervention protocols - Built-in safety measures for self-harm detection
+Complete privacy - All conversations stored locally, never used for training
+Personalized journey tracking - Remembers your emotional patterns over time
+🛠️ How It Works
+Intent Classification: Custom TensorFlow model identifies mental health needs (stress, anxiety, depression, crisis)
+Gemini AI Integration: Context-aware prompts generate empathetic, supportive responses
+Safety First: Detects crisis situations and suggests professional resources
+Persistent Memory: SQLite database maintains conversation history for continuity
+🚀 Technical Stack
+Frontend: React + TypeScript, Tailwind CSS, Shadcn/ui
+Backend: FastAPI (Python), TensorFlow/Keras
+AI: Google Gemini 2.0 Flash, custom ML models
+Database: SQLite with JWT authentication
+Deployment Ready: Docker, Render, Vercel compatible
+🎨 Key Features
+✅ Real-time AI mental health conversations
+✅ Intent classification (10+ mental health categories)
+✅ Multi-conversation management with search
+✅ Dark/Light theme for accessibility
+✅ Mobile-responsive design
+✅ Secure authentication & data isolation
+✅ Crisis support protocols
+
+⚠️ Ethical Design
+SERENE is NOT a replacement for professional therapy. We clearly communicate:
+
+We don't diagnose conditions
+We don't provide medical advice
+We encourage seeking professional help
+Emergency resources are always accessible
+🌍 Impact
+SERENE democratizes mental health support by providing:
+
+Immediate help when therapists aren't available
+Stigma-free environment for vulnerable conversations
+24/7 availability across time zones
+Free alternative to expensive therapy (supplement, not replacement)
+🔮 Future Vision
+Mood tracking analytics over time
+Integration with professional therapist platforms
+Multi-language support for global reach
+Voice conversation capabilities
+Community support features
+SERENE isn't just a chatbot—it's a compassionate companion built to make mental wellness support accessible to everyone, everywhere, anytime. 
+
+",https://github.com/Sayan1355/Serene_AI,https://youtu.be/vmF1oZZnvaw,
+Alu Siddo,Samiran Pal,Sudipta Ghorami,Aniket Pal,Context: Your Second Brain,"A browser extension that captures webpage context, stores it as searchable AI memory, and powers a smart chatbot using Gemini embeddings.","Context - Your Personal Second Brain for Web Browsing
+
+Ever saved a hundred bookmarks and then forgot why you saved half of them? Yeah, we've all been there. That's exactly why we built Context.
+
+What is it?
+
+Context is a browser extension + web app combo that helps you save the important parts of web pages (not the whole page) and then lets you chat with your saved stuff using AI. Think of it like having a personal assistant who remembers everything you told them to remember.
+
+The Problem We're Solving
+
+Here's the thing - bookmarks are broken. You save a page, it sits in a folder, and three weeks later you have no idea why you saved it. The title says ""React Documentation"" but which part? What were you trying to learn?
+
+We wanted something smarter:
+
+Save only the parts that matter to you (a paragraph, a code snippet, a key insight)
+Automatically tag and categorize what you save
+Search by meaning, not just keywords
+Ask questions and get answers from YOUR saved knowledge
+How It Actually Works
+
+Saving Memories (Ctrl+Shift+S)
+
+When you're on any webpage and find something useful, just hit the keyboard shortcut. The extension grabs the page info - title, URL, any text you've selected. Then our AI (Gemini) analyzes it and creates a summary, figures out why you might have saved it (learning? research? shopping?), and adds relevant tags. Everything gets stored with vector embeddings so we can search by meaning later.
+
+The Chat Feature (RAG Pipeline)
+
+This is the cool part. When you ask a question like ""What did I read about React hooks?"", here's what happens behind the scenes:
+
+Your question gets converted into a vector (numbers that represent meaning)
+We search through all your saved memories to find the most relevant ones
+We bundle those memories as context and ask the AI to answer using ONLY your saved content
+You get an answer with sources showing exactly which memories were used
+It's called RAG (Retrieval Augmented Generation) - basically the AI only knows what you've told it to remember.
+
+Dashboard & Stats
+
+See all your memories in one place. Filter by intent (learning, research, work, etc.), search semantically, view tag clouds, check how many memories you have per category. It's your personal knowledge base visualized.
+
+Tech Stack
+
+Browser Extension - Chrome extension with React-based sidepanel, captures page content
+Backend - Node.js + Express, handles auth, memory storage, search, and chat
+Database - MongoDB for storing memories with vector embeddings
+AI - Google Gemini for content analysis, summarization, embeddings, and chat responses
+Frontend Web App - React + TypeScript dashboard for viewing memories and chatting
+Features
+
+One-click save - Ctrl+Shift+S saves current page with AI analysis
+Smart summarization - AI creates a 1-2 sentence summary of what you saved
+Auto-tagging - Automatically adds 3-5 relevant tags
+Intent detection - Figures out if you're learning, researching, shopping, etc.
+Semantic search - Search by meaning, not just exact words
+RAG Chat - Ask questions, get answers from your saved memories
+Source citations - See which memories the AI used to answer
+Privacy-first - Nothing is saved unless YOU choose to save it
+What Makes This Different
+
+Most note-taking or bookmark apps either:
+
+Save too much (whole pages you'll never read again)
+Require too much manual work (tagging, organizing)
+Don't let you query your knowledge
+We hit a middle ground - you control what gets saved, but the AI does the boring work of organizing and retrieving. And when you need that info back, you just ask in plain English.
+
+Privacy
+
+We take this seriously. The extension doesn't auto-save anything. No background scraping. No selling your data. You press save, it saves. You don't press save, it doesn't exist in our system. Simple.",https://github.com/samiranpal2004/Context,https://www.youtube.com/watch?v=Nk8B8mw-tik,
+NueralCoders,Bikram Mondal,Sreeja Guha Majumdar,Rohit Kumar Debnath,DevOps-Ghostwriter,"Autonomous DevOps agents to automates PR audits, security, and docs with observability via W&B Weave","An intelligent multi-agent AI system that acts as your virtual DevOps engineer. Monitor GitHub Pull Requests, perform deep security audits, execute code in sandboxes, and auto-generate documentation — all while maintaining full observability through Weights & Biases Weave. Sit back, relax, and let AI handle your DevOps workflows!",https://github.com/BikramMondal5/DevOps-Ghostwriter,https://youtu.be/g9ufl5saa7U,
+codely,Biswaranjan Nag,Swapna Pal Chowdhury,,CODEQUEST,easy coding learning website gamified version,"Welcome to CodeQuest — an interactive, game-inspired platform that makes learning to code simple, engaging, and beginner-friendly.CodeQuest helps learners build strong fundamentals in Python and JavaScript through short levels, quizzes, hands-on challenges, instant feedback, and fun visual cues. Instead of long lectures, learners actively practice and learn by doing.
+Why CodeQuest?
+
+✔ Level-based learning with clear progression
+✔ Separate Python and JavaScript learning paths
+✔ Star and XP-based progress tracking
+✔ Instant explanations for correct and wrong answers
+✔ Light-hearted feedback to reduce learning stress
+✔ Built-in AI tutor for on-demand coding help
+✔ Clean, modern UI with light and dark mode
+
+ Who is CodeQuest for?
+
+• Absolute beginners in coding
+• College students and self-learners
+• Hackathon and academic projects
+• Anyone who wants a friendly, pressure-free way to learn programming
+
+Tech Stack
+
+• React + TypeScript + Vite
+• AI-powered tutoring (Google Gemini)
+• Modern, responsive UI design
+ 
+Learn. Practice. Improve.
+CodeQuest turns coding into a guided, supportive experience where mistakes are part of the journey—not something to fear.",https://python-playground-nine.vercel.app,https://youtu.be/PQXnqBQbzvQ,
+TANTRIKS,Subhojyoti Maity,Chandan Saha,,Twindex,Personalized Health Risk Analysis Powered by AI,https://twindex-write-up.vercel.app/,https://github.com/MONSTERBOY110/Twindex,https://youtu.be/T2_dkNMZqU8?si=08P-T0dqBDlgMKsL,
+Strange Coders,Arko Kundu,Swastik Sarkar,,Strat OS,The Operating System for Strategic Intelligence,"StratOS is the world's first Living Strategic Twin powered by Gemini. While traditional BI tools look backward at data, StratOS looks forward using Generative Game Theory. It allows CEOs to simulate high-stakes decisions, predict specific competitor counter-moves, and generate execution blueprints—war-gaming the future before spending a dollar.
+
+💡 The Problem (Business/FinTech track):
+Strategic decision-making is currently broken. Executives rely on gut instinct or static spreadsheets to make billion-dollar bets.
+The Cost: 67% of strategic plans fail due to unforeseen second-order effects.
+The Gap: There is no tool that simulates ""Competitor Retaliation."" Standard AI gives generic advice; it doesn't play out the scenario like a chess engine.
+
+🛠️ The Solution :
+StratOS upgrades the concept of a ""Chatbot"" to a ""Simulation Engine.""
+By leveraging Gemini’s advanced reasoning and massive context window, we created a Nash Equilibrium Engine.
+Twin Synchronization: Ingests company profile and market context.
+Game Theory Agents: Assigns the AI a ""Ruthless Competitor"" persona to stress-test your strategy.
+Visual Logic: Converts unstructured text into a valid React Flow Data Flow Diagram (DFD) for execution.
+
+⚙️ Technical Implementation :
+Frontend: Next.js 16 (App Router) with Framer Motion for ""Reasoning Trace"" visualization.
+AI Engine: Google Gemini Pro/Flash via the Vercel AI SDK. We utilize System Instructions to enforce JSON schema outputs for the competitor_profile and risk_heatmap.
+Visualization: react-flow + dagre: Automated layout algorithms to render the Implementation Blueprint.
+Dynamic Risk Heatmaps calculated from semantic analysis of the scenario.
+
+🌍 Real-World Viability :
+StratOS transforms strategy from an art into a science. From a startup founder deciding on a pivot to a Fortune 500 CEO weighing an acquisition, StratOS provides the one thing money can't buy: ""Foresight"".",https://ceo-in-a-box.vercel.app/,https://youtu.be/YRpLNCWM_Jg,
+Evo X,Manas Kumar Ghosh,Debkanta Dey,,CropShield: The Voice-Native AI Agronomist,"Saving harvests with a multimodal AI that sees disease, senses weather, and speaks the farmer's native dialect via Gemini 2.5.","In the Global South, pests destroy 20-40% of crops annually. The cure exists, but the access does not. Existing apps rely on text, failing the millions of smallholder farmers who cannot read.
+CropShield is a multilingual, multimodal AI platform that acts as a ""Digital Kissan Mitra"" (Farmer's Friend), bridging the gap between frontier AI and the furrowed field.
+
+How we built it (The Tech Stack):
+
+Multimodal Reasoning (Gemini 2.5 Flash): We go beyond simple image classification. CropShield combines Visual Evidence (leaf photo) + Environmental Context (Real-time Lat/Long Weather Data). The model reasons across these modalities—for example, advising against chemical spraying if rain is forecast—to generate a safe, hyper-local treatment plan.
+
+Native Audio Agent (The Breakthrough): Leveraging Gemini 2.5’s native audio streaming, we built a real-time, bi-directional voice agent. It bypasses text entirely. Farmers can speak in their local dialect (Hindi/Bengali), and the AI listens, understands context, and responds instantly with empathy and precision.
+
+Key Features:
+Zero-Literacy Interface: Full functionality via Native Audio.
+Dual-Path Remedy: Suggests both zero-cost organic solutions (""Desi Jugad"") and specific chemical brands available in local markets.
+Market Linkage: Locates nearby fertilizer shops using Geolocation.
+
+In future we will add a crop related disease catalog that works based on the crop's age ( growth stage). These feature will help farmers identify possible diseases before and after they affect the crop.
+
+CropShield isn't just an app; it's food security in a pocket.",https://ai.studio/apps/drive/1Qf2L5cAjtL7Ct5hUAiJyXu9uX02WwVZW?fullscreenApplet=true,https://youtu.be/qL5vkqxaI18,
+Ashes,Samya Deb Biswas,Anindha Biswas,Akash Biswas,Zentra,Micro finance loan dApp,"Zentra combines Google Gemini 2.0's advanced AI vision capabilities with Polygon blockchain smart contracts to revolutionize peer-to-peer lending. Our platform uses real-time deepfake detection and liveness verification for instant KYC, eliminating identity fraud while providing trustless, collateral-free loans to the underbanked. With Weights & Biases ML monitoring and dynamic trust scoring, we're building the future of financial inclusion where AI meets blockchain to create transparent, fraud-proof lending for everyone.
+",https://github.com/anindhabiswas25/Zentra,https://youtu.be/-EILpMadRJI?si=DXvAb9UKzPc2I1gO ,
+Team Mavericks ,Piyush Sharma ,,,Vertical Farming Planner Pro,"ertical Farm Planner an AI-tool built with Google Gemini that helps first-time vertical farm founders in India simulate pre-investment scenarios, estimating costs, revenues, and ROI to mitigate risks in sustainable urban agriculture","Hi, I'm Piyush Sharma, a 3rd-year B.Tech CSE student from The Neotia University in Kolkata. I built Vertical Farm Planner for the Global GenAI Hackathon by Machine Learning Kolkata because It's a quick web app to help new vertical farm owners in India plan without the guesswork.
+
+Vertical farming? It's like growing veggies in stacked shelves inside buildings—no big fields needed. Uses less water (95% savings), fits in cities, grows food all year, and skips chemicals for fresh eats. Perfect for India's crowded spots and water shortages.
+
+BUT the downside of this is it is very much cost intensive and requires costly infrastructure hence if the startups invest this big amount without proper planning it can incur huge losses to them..
+
+HERE COMES MY VF-PLANNER-PRO,  
+it simulates investments fast—input city, size, crops (lettuce/herbs), setup. Gemini AI delivers costs, revenue forecasts, ROI timelines (e.g., 30% margins in 18 months), power-saving tips, and eco-scores. No spreadsheets or consultants; turns rooftop ""Also you can CHAT with our AI Advisor to optimize your plan.",https://vertical-farm-planner-wtw7gapvd2ysvjeincptwp.streamlit.app/,https://youtu.be/AHM7BS7RIXY,
+Prime,Debangan Ghosh,Soumojit Das,Soumyadeep Das Adhikary,PathShala AI,PathShala AI is an AI-powered career architect designed to guide India's youth through the complexities of the modern job market.,"PathShala AI is an AI-powered career architect designed to guide India's youth through the
+complexities of the modern job market. It is a full-stack web application that provides a seamless journey from personalized
+onboarding to career readiness.
+Our core feature: Instead of generic courses, our platform uses AI model to generate a unique, stepby-step learning roadmap for every single user.
+Our goal is to transform a user's individual skills and career ambitions into a dynamic, scannable,
+and actionable plan, bridging the gap between their current abilities and their dream job.",https://github.com/debanganghosh08/PathShala-AI.git,https://youtu.be/DM6tyDBnizc?si=eGvq8yBrWy4UlLxL,
+Dobby ,Soudip Biswas ,Srinjoy Pramanick ,,AssumptionLens,"A web app that analyzes code changes and surfaces the hidden engineering assumptions they introduce, remove, or strengthen—so developers understand what might break before it breaks.","We built a web app that helps developers understand the unspoken assumptions their code changes make — things like whether code will run safely in parallel, whether data will always be clean, or whether external services will behave as expected. Instead of throwing raw diffs or error messages at you, it explains potential risks in simple, human language, so you can see what might break before it actually does.",https://github.com/SoudipBiswas/genai,https://www.youtube.com/watch?v=tf2lBWJOLzM,
+404s,Sayan Ghosh,Snarta Paul,Subhajit Kumar Roy,Traily,Traily is a smart Chrome extension that helps you make sense of your browsing by visually mapping your research and letting you talk to it like a personal assistant.,"Traily is a smart Chrome extension that helps you keep track of your online learning without any extra effort. As you browse articles, docs, or tutorials, Traily automatically connects related pages and turns them into a simple visual map of your research. You can then ask questions in plain language—like what you’ve already learned about a topic—and get answers based on your own browsing history. Everything stays inside your browser, so it’s private, lightweight, and designed to turn messy tabs into a clear learning journey.",https://github.com/subhajit-7047/CHROME-EXTENTION-TRAILY,https://youtu.be/m6XfmHEpOjE,
+Bengal Blazers,Tousif Azim,Shreejita Biswas,,AI Stock Analyst,AI Stock Analyst is an AI-powered web application that provides intelligent stock analysis and recommendation insights using Google’s Gemini AI and real-time market data.,"We have build an AI powered Stock Analyst which povidesd quick analysis and recommendation using Gemini AI and real time market data that is provided manually by the user.It gives a clear cut verdict whether to buy,hold or avoid the stocks.",https://github.com/Tousif18/Ai-Stock-Analyst,https://drive.google.com/file/d/1XcAlN86JlikkNAagFWagLSgwXsq4fAfx/view?usp=sharing,
+Kit-Kat,Rohit Ghosh,Pritam Saha,,Lecture_Lens,"Lecture_Lens is an AI-powered tool that transforms educational YouTube lectures into timestamped visual summaries, enabling faster revision through automated scene detection and Generative AI insights.","Lecture_Lens is an AI-powered application designed to make learning from long educational videos faster and more effective. Students often spend a lot of time rewatching entire lectures just to find a specific explanation or concept. Lecture_Lens solves this problem by automatically breaking down YouTube lecture videos into meaningful, easy-to-understand sections.
+
+When a user provides a lecture video link, the system first downloads the video and uses computer vision techniques to detect important visual changes such as slide transitions, whiteboard explanations, or code demonstrations. Instead of sending the entire video to an AI model, only these key visual snapshots are selected. Each snapshot is then analyzed using a Generative AI vision model, which produces a short, clear summary explaining what is happening at that exact moment in the lecture.
+
+The final output is a structured timeline containing timestamps, visual snapshots, and concise summaries. This allows learners to quickly scan the lecture, understand what topics are covered, and jump directly to the parts they need for revision. Lecture_Lens demonstrates how Generative AI and computer vision can work together to transform passive video lectures into organized, student-friendly study resources.",https://github.com/R0HIT-01/lecture-lens,https://youtu.be/tIQhH_j97Ho,
+TEAM SOUL,BISHWAJIT SHAW,,,NEXUS,EDUCATIONAL AI AGENT,"Project Title: NEXUS AI AGENT
+Tagline: Bridging the gap between standard curriculum and individual potential through a multi-agent smart classroom ecosystem.
+
+1. Project Overview
+NEXUS AI AGENT is an intelligent, multi-agent orchestration platform designed to transform traditional classrooms into dynamic, personalized learning environments. Built using advanced LLMs (like Gemini) and the Model Context Protocol (MCP), Nexus acts as a ""Digital Teaching Assistant"" that analyzes student performance in real-time to curate bespoke educational paths.
+
+The core of Nexus lies in its ability to take a single lesson topic and automatically differentiate it into scaffolded tiers, ensuring that no student is left behind while high-performers remain challenged.
+
+2. What We Built
+We developed a fully functional agentic workflow that handles the heavy lifting of lesson planning and student monitoring:
+
+The Orchestrator: The brain of the system that receives teacher inputs and coordinates specialized sub-agents.
+
+The Personalization Agent: Analyzes student profiles (interests, learning gaps, and past scores) to generate three distinct versions of every lesson: Emerging, Proficient, and Advanced.
+
+The Smart Classroom Agent: Recommends specific EdTech tool integrations (VR, IoT, or interactive boards) tailored to the day's specific activity.
+
+Socratic Feedback Engine: An interactive layer that engages students with critical-thinking questions rather than rote memorization, facilitating true conceptual understanding.
+
+3. Key Features
+Real-time Differentiation: Automatically adjusts reading levels, vocabulary, and problem complexity based on individual student data.
+
+Interests-Based Scaffolding: Can re-frame complex math or science problems into contexts students care about (e.g., using sports stats to teach linear equations).
+
+Interactive Chat Interface: A student-facing portal where the AI acts as a 1:1 tutor, using the Socratic method to guide them toward answers.
+
+Teacher Dashboard: Provides a birds-eye view of classroom progress, highlighting which students are ""stuck"" and requiring human intervention.
+
+4. The Value Proposition
+For Teachers: Reduces the administrative burden of manual differentiation by up to 80%, allowing educators to focus on emotional support and high-level mentorship.
+
+For Students: Provides a ""safe space"" to ask questions and receive explanations that resonate with their personal learning style.
+
+For Schools: Maximizes the utility of existing hardware (tablets, smartboards) by providing a software layer that makes these tools truly ""smart.""
+
+5. Technical Stack
+AI Engine: Google Gemini Pro / Flash (via Google AI Studio/Vertex AI).
+
+Framework: Python / LangChain (or CrewAI/Autogen for agent orchestration).
+
+Deployment: Vercel (Frontend) & FastAPI (Backend).
+
+Interfacing: Streamlit / Next.js for the user dashboard.",https://github.com/biswajitsaw/NEXUS-AI-AGENT,https://youtu.be/UnIAfdZy7jI,
+Mind_Matrix,Tiyasha Paul,Anurag Dey,Saikat Bera,SkillHive,"An intelligent learning platform that adapts to each student's pace, identifies learning gaps, and provides personalized recommendations, and helps in job searching using AI and machine learning algorithms.","Our student-first MVP is a smart study companion that turns your existing notes, screenshots, and video links into a tailored learning plan and bite-sized practice you can actually do every day: after a quick diagnostic it creates a realistic multi-day plan based on your exam, time availability and strengths; you can snap photos of textbook pages or handwritten sheets and the app’s OCR instantly makes them searchable and quizable; with one click the system generates exam-style practice questions and clear model answers drawn from your own materials; a context-aware chat tutor answers doubts using your uploaded notes and past mistakes, so help is specific to what you’re learning; and a simple progress dashboard and daily reminders show where you improved and what to focus on next. The result is less time hunting for resources and more time practicing the exact material you need to master—designed to help students build momentum, close knowledge gaps quickly, and feel confident on exam day.",https://github.com/Saikat-Bera04/ml-kolkata,https://youtu.be/KQTlThXM7lQ,
+Arjun,Srijita Dutta,Dibyendu Chatterjee,,SecureFin,"Scalability , Security , Regulatory Compliance, all at one place.","Smart-Fin is a cutting-edge fintech application that addresses the three major challenges in the financial technology industry:
+
+ Security: Blockchain-based immutable audit trails and cryptographic verification
+ Scalability: Cloud-native architecture with auto-scaling and load balancing
+Compliance: AI-powered regulatory monitoring and automated updates.
+Security Layer (Blockchain)
+✅ Immutable transaction logging on blockchain
+✅ Smart contract-based audit trails
+✅ Cryptographic signing and verification
+✅ Tamper-proof record keeping
+Scalability Layer (Cloud Computing)
+✅ Auto-scaling infrastructure
+✅ Connection pooling and caching
+✅ Rate limiting and load balancing
+✅ Multi-region deployment support
+✅ CDN integration for static assets
+Compliance Layer (AI/ML)
+✅ Real-time transaction analysis using TensorFlow.js
+✅ Automated AML (Anti-Money Laundering) detection
+✅ KYC (Know Your Customer) verification
+✅ Regulatory change detection and implementation
+✅ GDPR, PSD2, SOC 2 compliance",https://studio--studio-7539031716-446f7.us-central1.hosted.app,https://youtu.be/Glgk--a1G_Q?si=-Olsm-jxcnyJ7k5k,
+FraudBuster ,Soumyaneel Dey Sarkar ,SOULINA MONDAL,Anupom kundu ,Ai scam and fraud message analyser ,Helpful in detecting  phishing fake message mails chats etc.,"A full stack web application helpful in detecting fraud and scams often circulated through messages, emails , links, chats etc.",https://codepen.io/Souliy-Mondal/full/zxBxjmy.            http://localhost:5000/ ,https://youtu.be/7tN5iSwkrRo?si=Vc-dl4mP1gIZhb7n,
+CosmicCoderz ,Manish Bera,Sayan Ghanty,Arnab Paul,TruthNet,"The AI-Powered Fraud Detection & Content Authenticity Platform is the next generation in cybersecurity applications designed to combat digital fraud, misinformation, and online scams in real time. In a world where AI-generated content, phishing attacks, and fraudulent payment schemes continue to rise, this platform offers a unified intelligent system for verifying digital trust across media, links, and transactions."," An AI-powered Fraud Detection and Content Authenticity Platform to help fight digital fraud, misinformation, and online scams in real time. While AI-generated content, phishing attacks, and fraudulent payment schemes continue to rise, this platform offers a single intelligent system through which users can verify digital trust across media, links, and transactions.
+
+It uses advanced AI models-Gemini through Lovable AI-to scan images, videos, and QR codes, as well as URLs and payment requests that have been uploaded, for authenticity, manipulation, or maliciousness. Every analysis comes back with a risk score, confidence level, and a human-readable explanation to provide transparency and trust in AI decisions.
+
+With the integration of blockchain-based verification, cryptographic hashes of verified content are stored on Ethereum/Polygon to ensure long-term tamper resistance and authenticity, thus acting as an immutable proof of originality. Therefore, it will be apt for use in legal, journalistic, financial, and forensic casework.
+
+Built on a modern, animated web interface, real-time alerts, and a context-aware AI chatbot, the platform detects fraud but also educates users on how scams work and how to stay protected.
+
+Key Competencies
+
+It detects AI-generated images, deepfakes, and other manipulated media.
+
+Identifies phishing URLs, malicious QR codes, and scam payment requests
+
+Provides the checking of authenticity with blockchain support.
+
+Sends real-time fraud alerts
+
+Includes an AI chatbot, giving explanations and guiding the student.
+
+Ensures users privacy by secure authentication and data isolation.
+
+Impact & Use Cases
+
+Misinformation control for media and journalism
+
+Scam prevention for individuals and businesses
+
+Obtain secure digital verification for finance and legal industries.
+
+Cyber awareness & education for daily users
+
+Conclusion
+
+It acts like a digital trust engine, merging AI, blockchain, and real-time security intelligence on one platform. It empowers users to navigate the modern digital world with confidence by making fraud detection accessible, explainable, and tamper-proof.",https://trruthnet.lovable.app/,https://drive.google.com/drive/folders/19YXTJSntViIalJeyFJQAI4QY3TW3B3Q2,
+ZenX,Soumadeep Maity,Soumalya Roy,Ujan Chakraborti,LearnZen - AI Personal Study Mentor,"LearnZen is an AI-powered personal study mentor that uses Gemini 3 to create realistic, personalized study plans based on a student’s syllabus, available time, and exam deadlines.","# LearnZen - AI-Powered Study Mentor
+
+## 🎯 Project Overview
+
+**LearnZen** is an intelligent, AI-powered study companion that revolutionizes the way students learn by providing personalized, adaptive, and interactive learning experiences. Built with Google's Gemini AI, LearnZen serves as a 24/7 personal tutor that understands your learning style, adapts to your pace, and helps you master any subject efficiently.
+
+## 💡 The Problem We're Solving
+
+Students today face several challenges in their learning journey:
+- **Lack of personalized attention** in traditional classroom settings
+- **Limited access** to tutors and learning resources outside school hours
+- **One-size-fits-all** educational approaches that don't adapt to individual learning styles
+- **Difficulty understanding** complex concepts without immediate feedback
+- **No structured way** to track progress and identify knowledge gaps
+
+LearnZen addresses these pain points by providing an intelligent, always-available study mentor that adapts to each student's unique needs.
+
+## 🚀 What We Built
+
+### Core Features
+
+#### 1. **Intelligent Conversational Learning**
+- Natural language interactions with Google Gemini AI
+- Ask questions in your own words and receive detailed, contextual explanations
+- Follow-up questions and clarifications for deeper understanding
+- Multi-turn conversations that maintain context throughout study sessions
+
+#### 2. **Adaptive Learning Pathways**
+- AI analyzes your responses and understanding level
+- Dynamically adjusts difficulty and pacing based on your progress
+- Provides additional resources when you're struggling
+- Accelerates learning when you're excelling
+
+#### 3. **Multi-Subject Support**
+- Covers a wide range of subjects from mathematics to literature
+- Domain-specific explanations tailored to each subject
+- Cross-subject connections to enhance comprehensive understanding
+- Support for multiple educational levels (primary, secondary, higher education)
+
+#### 4. **Interactive Study Sessions**
+- Real-time Q&A with instant, accurate responses
+- Practice problems with step-by-step solutions
+- Concept explanations with examples and analogies
+- Visual learning aids and conceptual breakdowns
+
+#### 5. **Smart Study Assistant**
+- Generates custom practice questions based on topics
+- Provides study tips and memorization techniques
+- Suggests optimal learning strategies for different subjects
+- Breaks down complex topics into manageable chunks
+
+#### 6. **Progress Tracking & Analytics**
+- Monitors your learning progress over time
+- Identifies strengths and areas for improvement
+- Provides insights into study patterns and habits
+- Recommends focus areas for maximum learning efficiency
+
+### Technical Architecture
+
+**Frontend:**
+- **React** with TypeScript for type-safe, maintainable code
+- **Vite** for lightning-fast development and optimized production builds
+- Modern, responsive UI that works seamlessly across devices
+- Component-based architecture for scalability
+
+**AI Integration:**
+- **Google Gemini API** for advanced natural language processing
+- Intelligent prompt engineering for optimal learning experiences
+- Context management for coherent multi-turn conversations
+- Real-time response streaming for immediate feedback
+
+**Development Stack:**
+- TypeScript for enhanced code quality and developer experience
+- Modern ES6+ JavaScript features
+- Modular service architecture for API interactions
+- Clean separation of concerns (components, services, types)
+
+## 🎨 User Experience
+
+### Intuitive Interface
+- Clean, distraction-free design that puts learning first
+- Easy navigation between different study topics
+- Responsive layout that works on desktop, tablet, and mobile
+- Accessible design following modern web standards
+
+### Seamless Interaction Flow
+1. **Choose Your Topic** - Select what you want to learn
+2. **Start Conversation** - Ask questions naturally
+3. **Receive Guidance** - Get personalized explanations
+4. **Practice & Improve** - Test your understanding
+5. **Track Progress** - Monitor your learning journey
+
+## 🌟 Value Proposition
+
+### For Students
+- **24/7 Availability** - Learn anytime, anywhere, at your own pace
+- **Personalized Learning** - Content adapted to your level and style
+- **Immediate Feedback** - No waiting for answers or clarifications
+- **Safe Learning Environment** - Ask questions without judgment
+- **Cost-Effective** - Accessible alternative to expensive private tutoring
+
+### For Educators
+- **Supplementary Tool** - Enhances traditional teaching methods
+- **Scalable Support** - Helps reach more students effectively
+- **Insight into Learning** - Understand common student challenges
+- **Frees Up Time** - Reduces repetitive question-answering
+
+### For Parents
+- **Peace of Mind** - Reliable homework help available anytime
+- **Monitor Progress** - Track your child's learning development
+- **Quality Education** - AI-powered guidance from advanced technology
+- **Affordable Solution** - Cost-effective compared to traditional tutoring
+
+## 🔧 Technical Innovation
+
+### AI-Powered Intelligence
+- Leverages Google Gemini's advanced language understanding
+- Contextual awareness for coherent conversations
+- Adaptive response generation based on user comprehension
+- Continuous learning from interaction patterns
+
+### Performance Optimization
+- Fast load times with optimized bundle sizes
+- Efficient API calls to minimize latency
+- Responsive UI updates for smooth user experience
+- Progressive web app capabilities for offline support
+
+### Scalability & Maintainability
+- Modular architecture allows easy feature additions
+- TypeScript ensures code reliability and refactoring safety
+- Component reusability reduces development time
+- Clean code practices for long-term maintenance
+
+## 🎓 Educational Impact
+
+### Democratizing Education
+LearnZen makes quality education accessible to students regardless of:
+- Geographic location
+- Socioeconomic background
+- Time zone or schedule constraints
+- Availability of local tutors or resources
+
+### Promoting Self-Directed Learning
+- Encourages curiosity-driven exploration
+- Builds confidence through non-judgmental interactions
+- Develops critical thinking skills
+- Fosters independent problem-solving abilities
+
+### Supporting Diverse Learning Styles
+- Visual learners get diagrams and examples
+- Auditory learners can engage in conversational learning
+- Kinesthetic learners can practice and experiment
+- Reading/writing learners get detailed explanations
+
+## 🚀 Future Roadmap
+
+### Short-Term Goals
+- Enhanced visual learning with diagram generation
+- Voice interaction for hands-free learning
+- Study group collaboration features
+- Mobile app for iOS and Android
+- Offline mode with cached content
+
+### Long-Term Vision
+- Integration with school curricula and syllabi
+- Gamification with achievements and leaderboards
+- Virtual study rooms for collaborative learning
+- Advanced analytics dashboard for teachers
+- Multi-language support for global accessibility
+- AR/VR integration for immersive learning experiences
+
+## 🏆 Why LearnZen Stands Out
+
+### Innovation
+- Cutting-edge AI technology applied to education
+- Novel approach to personalized learning at scale
+- Seamless integration of AI into study workflows
+
+### Execution
+- Polished, production-ready application
+- Robust error handling and user experience
+- Deployed and accessible for immediate use
+- Clean, maintainable codebase
+
+### Impact
+- Addresses real educational challenges
+- Scalable solution with broad applicability
+- Potential to reach millions of students globally
+- Measurable improvement in learning outcomes
+
+### Technical Excellence
+- Modern tech stack and best practices
+- Type-safe implementation with TypeScript
+- Efficient API usage and performance optimization
+- Well-documented and maintainable code
+
+## 📊 Success Metrics
+
+We measure LearnZen's success through:
+- **Student Engagement** - Session duration and return rate
+- **Learning Outcomes** - Improvement in understanding and retention
+- **User Satisfaction** - Feedback and ratings from students
+- **Accessibility** - Number of students reached across demographics
+- **Technical Performance** - Response time, uptime, and reliability
+
+## 🌍 Real-World Applications
+
+### Use Cases
+- **Homework Help** - Instant assistance with assignments
+- **Exam Preparation** - Focused study sessions before tests
+- **Concept Clarification** - Understanding difficult topics
+- **Self-Paced Learning** - Exploring new subjects independently
+- **Language Learning** - Practice and conversation
+- **Skill Development** - Learning practical skills and techniques
+
+## 🎯 Call to Action
+
+LearnZen represents the future of education—personalized, accessible, and powered by AI. We're not just building an app; we're creating a learning revolution that empowers every student to reach their full potential.
+
+**Try LearnZen Today:** [https://realsxum.github.io/LEARNZEN-upgraded/](https://realsxum.github.io/LEARNZEN-upgraded/)
+
+---
+
+*Built with ❤️ using Google Gemini AI | Making quality education accessible to everyone*",https://github.com/realsxum/LEARNZEN-upgraded,N/A,
+AIML TINKERS,SAMRIDHA BANERJEE,RHITAM MANDAL,SOUMYADIP,AgroPredict AI,Empowering Farmers with AI-Driven Crop Predictions,"Harnessing the power of Random Forest and XGBoost to deliver hyper-local crop yield predictions & Empowering farmers, planners, and insurers with certainty in an uncertain climate. Our AI powered solution provides: Accurate crop yield predictions (90%+ accuracy), Real-time analysis of soil, weather, and crop data, Optimized resource allocation and planning, Data-driven decisions for sustainable farming, etc.
+",https://github.com/SAMRIDHABANERJEE/AGRO-PREDICT-AI,https://youtu.be/Vw7Kql7eSzQ?si=AcCj29JswCaFTYtO,
+Qumtum Crew,Somya Ranjan Bhoi,Ayan Ghosh,Ankan Ghosh,Study-with-me,StudyWithMe helps students truly understand concepts by adapting explanations to their learning depth while maintaining academic integrity in assignments.,"StudyWithMe is an ethical, depth-driven AI learning platform designed to act like a real teacher, tutor, and learning companion for students. Instead of simply giving answers, it focuses on helping students understand concepts at their own level, practice what they learn, and receive guidance on assignments without breaking academic integrity.
+
+Most existing AI tools provide the same explanation to everyone and often give direct solutions, which leads to memorization and copying rather than real learning. StudyWithMe solves this problem by allowing students to choose how deeply they want to learn and by strictly separating learning support from answer generation.
+
+The platform offers three learning depth levels:
+
+Core – For beginners who need simple explanations, intuition, and fundamentals
+
+Applied – For students who want step-by-step reasoning and practice
+
+Mastery – For advanced learners who want deeper logic, assumptions, and edge cases
+
+Based on the selected depth, StudyWithMe adapts how much explanation, reasoning, and detail it provides.
+
+StudyWithMe also supports two modes of interaction:
+
+Interactive Learning Mode
+In this mode, the AI teaches concepts step by step, using examples and explanations that match the student’s depth level. It explains mathematics using equations, programming using code, and science using formulas—so students learn in the natural language of the subject, not just English text.
+
+Assignment Help Mode (Ethical by Design)
+In this mode, the AI never gives direct answers or fully solved code. Instead, it provides hints, breaks down the problem, explains the underlying concepts, and asks guiding questions. This ensures students learn while solving, rather than copying answers.
+
+A key strength of StudyWithMe is its Ethics Guard, a rule-based system that prevents cheating and enforces responsible AI behavior. This makes the platform safe for real academic environments such as schools, colleges, and institutions.
+
+Technically, StudyWithMe uses a Node.js backend to control all AI behavior and enforce rules, and a Next.js frontend to provide a clean, student-friendly interface. The AI model is used as a constrained reasoning engine, meaning it follows strict system instructions and does not decide learning depth or ethics on its own.
+
+In summary, StudyWithMe is not an answer generator.
+It is a depth-aware, ethical learning companion built to help students grow academically by understanding concepts properly, practicing independently, and solving assignments the right way.",https://github.com/ankan288/Studywithme.git,https://youtu.be/_1ShRqCXi70,
+Tech-Titan,Ayush Pratap Singh ,Bishal kumar ,Anirban chandra ,HealthBuddy chatbot,"HealthBuddy AI is an intelligent virtual assistant that provides instant, personalized health guidance, symptom insights, and wellness support using artificial intelligence.","HealthBuddy AI is a smart, user-friendly health assistant that allows users to ask health-related questions, check symptoms, receive basic medical guidance, and get wellness tips instantly using AI, helping people make informed health decisions anytime, anywhere. ",https://github.com/ayu1234-dot/HealthBuddy-Chatbot,https://youtu.be/i_wIXBVped8?si=TyTNna80-hDphCB3,
+Team PMPN,Prinjal Mistry,Priyam Naskar,,Vibe Check AI,Checks up your vibe and fashion and makes your looks better with AI,"Vibe Check AI is an intelligent fashion assistant designed to help users choose the right clothing size and style with confidence while shopping online. Many people hesitate to buy clothes online because they are unsure how an outfit will actually fit their body. This project addresses that problem by combining video input and artificial intelligence to provide personalized fashion advice.
+
+The user simply uploads a short full-body walking video and pastes the link of a dress or outfit they want to buy from platforms like Amazon, Flipkart, or Myntra. The system then uses an AI stylist powered by Google Gemini to analyze the product details and generate a detailed fit recommendation. It evaluates fabric quality, predicts how different sizes (XS to XXL) may fit, assigns a fit score, recommends the best size, and suggests similar outfits suitable for the user’s body type. A price comparison in Indian Rupees is also provided for better decision-making.
+
+The application is built using Streamlit for a clean, mobile-friendly interface and focuses on clarity and usability rather than complexity. While the current version uses simulated body analysis, it is designed to support real-time posture, height, and body shape detection in future versions. Vibe Check AI demonstrates how AI can enhance online shopping by making fashion advice more personalized, practical, and accessible.",https://github.com/PRIME-BN1000/ML_hackathon,https://youtu.be/Mg6ENrZCTNA?si=9cJKULYDyaG4EDGV,
+suicideCode,Shreyas Guha Neogi,Samriddha Chaudhury ,,bonVoyage,"Travel like an Insider, Book like a Pro","This is a prototype of a flight booking sim. Booking a flight today is a friction-heavy ordeal of rigid filters, endless date pickers, and clunky forms. This cognitive load excludes non-tech-savvy users and frustrates frequent travelers. TripMe solves this by dismantling the traditional booking UI entirely, replacing it with only the key information required. It is easy to use, and simple. It gives us all the possible flights in accordance to our given details.
+Now, we can select any flight according to our preference and skip the hassle of finding cheap flights.",https://github.com/shrguhaneogi-pixel/bonVoyage,https://www.youtube.com/watch?v=juqGDd_ygJU,
+Suicide Coders,Samriddha Chaudhury,Shreyas Guha Neogi,Debarghya Ray,TripMe,Killing the dropdown menu with the details that turn complex travel intent into instant bookings,"This is a prototype of a flight booking sim. Booking a flight today is a friction-heavy ordeal of rigid filters, endless date pickers, and clunky forms. This cognitive load excludes non-tech-savvy users and frustrates frequent travelers. TripMe solves this by dismantling the traditional booking UI entirely, replacing it with only the key information required. It is easy to use, and simple. It gives us all the possible flights in accordance to our given details. Now, we can select any flight according to our preference and skip the hassle of finding cheap flights.",https://samriddha0207.github.io/GenAI-Flight-Booking-Sim/,https://www.youtube.com/watch?v=juqGDd_ygJU,
+CyberTronz,Archita Mandal,Poulami Roy,Rahul Thakur,4,"The Social Shield is an online chatbot that employs AI to immediately scan pasted copies or links to social media messages to determine whether they are safe, suspicious, or have high levels of scams.","We developed the Social Shield, a web-based system for evaluating social media scams. With our system, a user who is a victim or is a potential victim can quickly identify whether they are being scammed. The system consists of a simple chatbot interface in which a user posts a social media message or link, and in return, receives a rapid analysis of whether the posted content is a phishing attempt or not. This system is powered by a hybrid artificial intelligence algorithm, where the algorithm combines the use of predefined rules for the existence of scams in social media with TF-IDF, a machine-learning algorithm for analyzing messages. The result is a clear indication of whether a given post is Low, Medium, or High risk for scams.",https://social-shield-upgraded.vercel.app/,https://youtu.be/91_gXyfDV54,
+Dhruv.AI,Kundan Raj Singh,Vishal Kumar Dangi,,A.I driven Drone system.,A.I driven Drone system for pesticide spraying  after diseases detection and give farmer support. ,"This project integrates Generative AI to automate two high-impact workflows:
+
+1.Multi-Article Intelligence from a Single Link
+2.AI-Driven Cold Email Generation for Tech Collaborations",https://github.com/kundansinghrajput16/Gen-AI-Hackthon ,https://youtu.be/bufd3IM8PNo,
+FRAUDBUSTER ,SOUMYANEEL Dey sarkar ,soulina mondal,Anupom Kundu ,AI Scam and fraud message analyser ,"It helps in detection of scams in message, emails chats etc","It reduces phising by helping in detection of scams in message, emails chats etc",https://github.com/soulina-34/fraudanalyzer-ai,https://youtu.be/7tN5iSwkrRo?si=Vc-dl4mP1gIZhb7n,
+CyberTronz,Archita Mandal,Poulami  Roy,Rahul Thakur,Social Media Scam Detector,5,"We built Social Shield, a web-based social media scam detector that helps users quickly identify phishing messages, fake giveaways, and impersonation scams before they become victims. The platform uses a simple chatbot-style interface where users can paste any suspicious message, post, or link, and receive an instant analysis. Using a hybrid AI approach—combining rule-based scam pattern detection with machine learning (TF-IDF–based text classification)—the system evaluates common red flags such as urgent language, requests for personal information, fake rewards, and suspicious links. It then clearly classifies the content into Low, Medium, or High scam risk, explains why it may be risky, and provides safety recommendations. Our focus was on real-time detection, ease of use for non-technical users, and privacy, making scam awareness accessible to everyone.",https://github.com/mandalarabinda349-boop/Social-Shield,https://youtu.be/ONn3VNMo6C8,
+Agile&Empathy,PRITAM ADAK,,,A Decision-First Agent with Emotional Cognition,"An agentic AI system that decides whether and how to respond using emotional state, cognitive signals, and priority scheduling before calling an LLM.","It is a decision-first agentic AI backend designed to model how an assistant should act before generating language.
+Instead of directly prompting a large language model, the system first performs emotion detection, semantic embedding, and slow-moving cognitive state tracking (stability, agency, cognitive load, and recurrence). These signals are fused into a priority score that feeds a Fibonacci-heap–based decision scheduler.
+
+Each possible action (such as responding supportively or remaining silent) is treated as a schedulable decision with an explicit priority. Only after a decision is selected does the system optionally invoke a language model, making the LLM a tool rather than the agent’s reasoning core.
+
+This architecture demonstrates how agent behavior can be governed by internal cognition and intentional control, enabling restraint, transparency, and extensibility beyond prompt-based chatbots.",https://github.com/PRITAMADAK11/my-first-repo,https://youtube.com/shorts/RuA8TwIYTXM?si=kpFS0j7XWIR9pvJg,
